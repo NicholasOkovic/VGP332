@@ -1,5 +1,8 @@
 ﻿  TileMap.cpp
-D:\Desktop\artificialInt\Pathfinding\TileMap.cpp(14,41): warning C4390: ';': empty controlled statement found; is this the intent?
-  WinMain.cpp
-  Generating Code...
+D:\Desktop\artificialInt\Pathfinding\TileMap.cpp(264,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Desktop\artificialInt\Pathfinding\TileMap.cpp(265,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Desktop\artificialInt\Pathfinding\TileMap.cpp(271,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Desktop\artificialInt\Pathfinding\TileMap.cpp(272,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Desktop\artificialInt\Pathfinding\TileMap.cpp(279,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Desktop\artificialInt\Pathfinding\TileMap.cpp(280,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   Pathfinding.vcxproj -> D:\Desktop\artificialInt\x64\Debug\Pathfinding.exe

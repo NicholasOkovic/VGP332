@@ -79,6 +79,9 @@
     <None Include="Src\VertexElement.tup" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AI\AI.vcxproj">
+      <Project>{b3649f40-cbab-414d-b2c5-b96e6939f0dc}</Project>
+    </ProjectReference>
     <ProjectReference Include="External\DirectXTK\Audio\DirectXTKAudio_Desktop_2019_Win8.vcxproj">
       <Project>{4f150a30-cecb-49d1-8283-6a3f57438cf5}</Project>
     </ProjectReference>
