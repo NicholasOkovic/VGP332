@@ -55,7 +55,7 @@ bool Miner::IsPocketFull() const
 
 bool Miner::IsWealthy() const
 {
-	return mMoneyInBank > 100;
+	return mMoneyInBank >= 100;
 }
 
 bool Miner::IsRested() const

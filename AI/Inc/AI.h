@@ -2,6 +2,11 @@
 
 #include "Common.h"
 
+
+#include "Entity.h"
+#include "Agent.h"
+#include "AIWorld.h"
+
 #include "GridBasedGraph.h"
 
 #include "BFS.h"
@@ -13,3 +18,7 @@
 //fsm
 #include "State.h"
 #include "StateMachine.h"
+
+
+#include "SteeringBehavior.h"
+

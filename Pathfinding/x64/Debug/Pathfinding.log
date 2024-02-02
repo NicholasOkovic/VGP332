@@ -1,8 +1,13 @@
 ﻿  TileMap.cpp
-D:\Desktop\artificialInt\Pathfinding\TileMap.cpp(264,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Desktop\artificialInt\Pathfinding\TileMap.cpp(265,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Desktop\artificialInt\Pathfinding\TileMap.cpp(271,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Desktop\artificialInt\Pathfinding\TileMap.cpp(272,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Desktop\artificialInt\Pathfinding\TileMap.cpp(279,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Desktop\artificialInt\Pathfinding\TileMap.cpp(280,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  Pathfinding.vcxproj -> D:\Desktop\artificialInt\x64\Debug\Pathfinding.exe
+C:\Users\LCv2242596\Documents\GitHub\VGP332\Pathfinding\TileMap.cpp(264,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\LCv2242596\Documents\GitHub\VGP332\Pathfinding\TileMap.cpp(265,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\LCv2242596\Documents\GitHub\VGP332\Pathfinding\TileMap.cpp(271,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\LCv2242596\Documents\GitHub\VGP332\Pathfinding\TileMap.cpp(272,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\LCv2242596\Documents\GitHub\VGP332\Pathfinding\TileMap.cpp(279,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\LCv2242596\Documents\GitHub\VGP332\Pathfinding\TileMap.cpp(280,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  WinMain.cpp
+C:\Users\LCv2242596\Documents\GitHub\VGP332\Pathfinding\WinMain.cpp(78,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\LCv2242596\Documents\GitHub\VGP332\Pathfinding\WinMain.cpp(79,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+     Creating library C:\Users\LCv2242596\Documents\GitHub\VGP332\x64\Debug\Pathfinding.lib and object C:\Users\LCv2242596\Documents\GitHub\VGP332\x64\Debug\Pathfinding.exp
+  Pathfinding.vcxproj -> C:\Users\LCv2242596\Documents\GitHub\VGP332\x64\Debug\Pathfinding.exe
