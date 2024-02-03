@@ -18,7 +18,7 @@
 //fsm
 #include "State.h"
 #include "StateMachine.h"
-
-
+#include "SteeringModule.h"
+#include "SeekBehavior.h"
 #include "SteeringBehavior.h"
 

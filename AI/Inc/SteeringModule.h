@@ -14,8 +14,8 @@ namespace AI
 		template<class NewBehavior>
 		NewBehavior* AddBehavior()
 		{
-			static_assert(std::is_base_of_v<SteeringBehavior, NewBehavior>, "steering");
-			auto& newBehavior = AddBehavior.emplace_back(std::make_unique<NewBehavior>());
+			static_assert(std::is_base_of_v<SteeringBehavior, NewBehavior>, "steeringModule: can only add type behavior");
+			auto& newBehavior = mBehaviors.emplace_back(std::make_unique<NewBehavior>());
 			return static_cast<NewBehavior*>(newBehavior.get());
 		}
 

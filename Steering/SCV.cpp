@@ -15,8 +15,8 @@ void SCV::Load()
 	seek->SetActive(true);
 	seek->ShowDebug(true);
 
-	const float screenWidth = static_cast<float>(X::GetScreenWidth);
-	const float screenHeight = static_cast<float>(X::GetScreenHeight);
+	const float screenWidth = static_cast<float>(X::GetScreenWidth());
+	const float screenHeight = static_cast<float>(X::GetScreenHeight());
 	destination = { screenWidth * 0.5f, screenHeight * 0.5f };
 
 	for (int i = 0; i < mTextureIds.size(); i++)
@@ -35,7 +35,7 @@ void SCV::Update(float deltaTime)
 {
 
 	const X::Math::Vector2 force = mSteeringModule->Calculate();
-	const X::Math::Vector2 accelertion = force / mass;
+	const X::Math::Vector2 acceleration = force / mass;
 	velocity += acceleration * deltaTime;
 	position += velocity * deltaTime;
 	if (X::Math::MagnitudeSqr(velocity) > 1.0f)
@@ -44,8 +44,8 @@ void SCV::Update(float deltaTime)
 	}
 
 
-	const float screenWidth = static_cast<float>(X::GetScreenWidth);
-	const float screenHeight = static_cast<float>(X::GetScreenHeight);
+	const float screenWidth = static_cast<float>(X::GetScreenWidth());
+	const float screenHeight = static_cast<float>(X::GetScreenHeight());
 
 	if (position.x < 0.0f)
 	{
@@ -57,11 +57,11 @@ void SCV::Update(float deltaTime)
 	}
 	if (position.y < 0.0f)
 	{
-		position.
+		position.y += screenHeight;
 	}
-	if (true)
+	if (position.y >= screenHeight)
 	{
-
+		position.y -= screenHeight;
 	}
 
 

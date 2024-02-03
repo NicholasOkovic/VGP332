@@ -15,9 +15,9 @@ namespace AI
 		virtual X::Math::Vector2 Calculate(Agent& agent) = 0;
 
 		void SetWeight(float weight) { mWeight = weight; }
-		float GetWeight(float weight) { return mWeight; }
+		float GetWeight() const { return mWeight; }
 
-		void SetActive(bool active) { active = true; }	///////
+		void SetActive(bool active) { mActive = active; }	
 		bool IsActive() const { return mActive; }
 
 		void ShowDebug(bool debug) { mDebug = debug; }

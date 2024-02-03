@@ -8,6 +8,6 @@ namespace AI
 	class SeekBehavior : public SteeringBehavior
 	{
 	public:
-		X::MathVector
+		X::Math::Vector2 Calculate(Agent& agent) override;
 	};
 }
