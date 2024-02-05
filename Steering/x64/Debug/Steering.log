@@ -1,6 +1,3 @@
-﻿  WinMain.cpp
-C:\Users\LCv2242596\Documents\GitHub\VGP332\Steering\WinMain.cpp(19,45): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
-C:\Users\LCv2242596\Documents\GitHub\VGP332\Steering\WinMain.cpp(19,26): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
-C:\Users\LCv2242596\Documents\GitHub\VGP332\Steering\WinMain.cpp(20,47): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
-C:\Users\LCv2242596\Documents\GitHub\VGP332\Steering\WinMain.cpp(20,27): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
-  Steering.vcxproj -> C:\Users\LCv2242596\Documents\GitHub\VGP332\x64\Debug\Steering.exe
+﻿     Creating library D:\Desktop\artificialInt\x64\Debug\Steering.lib and object D:\Desktop\artificialInt\x64\Debug\Steering.exp
+SCV.obj : error LNK2019: unresolved external symbol "public: __cdecl AI::SteeringBehavior::SteeringBehavior(void)" (??0SteeringBehavior@AI@@QEAA@XZ) referenced in function "public: __cdecl AI::SeekBehavior::SeekBehavior(void)" (??0SeekBehavior@AI@@QEAA@XZ)
+D:\Desktop\artificialInt\x64\Debug\Steering.exe : fatal error LNK1120: 1 unresolved externals

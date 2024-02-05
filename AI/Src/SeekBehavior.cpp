@@ -6,7 +6,7 @@ using namespace AI;
 
 X::Math::Vector2 SeekBehavior::Calculate(Agent& agent)
 {
-	const X::Math::Vector2 agentToDest = agent.destiniation - agent.position;
+	const X::Math::Vector2 agentToDest = agent.destination - agent.position;
 	if (X::Math::MagnitudeSqr(agentToDest) <= 1.0)
 	{
 		return X::Math::Vector2::Zero();
@@ -20,7 +20,7 @@ X::Math::Vector2 SeekBehavior::Calculate(Agent& agent)
 	{
 		X::DrawScreenLine(agent.position, agent.position + desiredVelocity, X::Colors::Yellow);
 		X::DrawScreenLine(agent.position, agent.position + agent.velocity, X::Colors::Green);
-		X::DrawScreenCircle(agent.destiniation, 20.0f, X::Colors::Red);
+		X::DrawScreenCircle(agent.destination, 20.0f, X::Colors::Red);
 	}
 	return seekForce;
 }

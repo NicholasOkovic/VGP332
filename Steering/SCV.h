@@ -5,9 +5,10 @@
 class SCV : public AI::Agent
 {
 public:
+	SCV(AI::AIWorld& world);
 	~SCV() override = default;
 
-	SCV(AI::AIWorld& world);
+
 	void Load();
 	void Unload();
 
