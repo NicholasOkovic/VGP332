@@ -1,7 +1,17 @@
-﻿  WinMain.cpp
-C:\Users\lcv2242596\Documents\GitHub\VGP332\Steering\WinMain.cpp(30,45): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
-C:\Users\lcv2242596\Documents\GitHub\VGP332\Steering\WinMain.cpp(30,26): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
-C:\Users\lcv2242596\Documents\GitHub\VGP332\Steering\WinMain.cpp(31,47): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
-C:\Users\lcv2242596\Documents\GitHub\VGP332\Steering\WinMain.cpp(31,27): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
-     Creating library C:\Users\lcv2242596\Documents\GitHub\VGP332\x64\Debug\Steering.lib and object C:\Users\lcv2242596\Documents\GitHub\VGP332\x64\Debug\Steering.exp
-  Steering.vcxproj -> C:\Users\lcv2242596\Documents\GitHub\VGP332\x64\Debug\Steering.exe
+﻿  SCV.cpp
+  Steering.cpp
+  WinMain.cpp
+D:\Desktop\artificialInt\Steering\WinMain.cpp(34,45): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
+D:\Desktop\artificialInt\Steering\WinMain.cpp(34,26): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
+D:\Desktop\artificialInt\Steering\WinMain.cpp(35,47): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
+D:\Desktop\artificialInt\Steering\WinMain.cpp(35,27): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
+  Generating Code...
+     Creating library D:\Desktop\artificialInt\x64\Debug\Steering.lib and object D:\Desktop\artificialInt\x64\Debug\Steering.exp
+SCV.obj : error LNK2001: unresolved external symbol "public: virtual struct X::Math::Vector2 __cdecl AI::FleeBehavior::Calculate(class AI::Agent &)" (?Calculate@FleeBehavior@AI@@UEAA?AUVector2@Math@X@@AEAVAgent@2@@Z)
+SCV.obj : error LNK2001: unresolved external symbol "public: virtual struct X::Math::Vector2 __cdecl AI::ArriveBehavior::Calculate(class AI::Agent &)" (?Calculate@ArriveBehavior@AI@@UEAA?AUVector2@Math@X@@AEAVAgent@2@@Z)
+SCV.obj : error LNK2001: unresolved external symbol "public: virtual struct X::Math::Vector2 __cdecl AI::WanderingBehavior::Calculate(class AI::Agent &)" (?Calculate@WanderingBehavior@AI@@UEAA?AUVector2@Math@X@@AEAVAgent@2@@Z)
+SCV.obj : error LNK2019: unresolved external symbol "public: void __cdecl AI::WanderingBehavior::SetUp(float,float,float)" (?SetUp@WanderingBehavior@AI@@QEAAXMMM@Z) referenced in function "public: void __cdecl SCV::Update(float)" (?Update@SCV@@QEAAXM@Z)
+SCV.obj : error LNK2001: unresolved external symbol "public: virtual struct X::Math::Vector2 __cdecl AI::PursuitBehavior::Calculate(class AI::Agent &)" (?Calculate@PursuitBehavior@AI@@UEAA?AUVector2@Math@X@@AEAVAgent@2@@Z)
+SCV.obj : error LNK2001: unresolved external symbol "public: virtual struct X::Math::Vector2 __cdecl AI::SeparationBehavior::Calculate(class AI::Agent &)" (?Calculate@SeparationBehavior@AI@@UEAA?AUVector2@Math@X@@AEAVAgent@2@@Z)
+WinMain.obj : error LNK2019: unresolved external symbol "public: class std::vector<class AI::Entity *,class std::allocator<class AI::Entity *> > __cdecl AI::AIWorld::GetEntitiesInRange(struct X::Math::Circle const &,unsigned int)" (?GetEntitiesInRange@AIWorld@AI@@QEAA?AV?$vector@PEAVEntity@AI@@V?$allocator@PEAVEntity@AI@@@std@@@std@@AEBUCircle@Math@X@@I@Z) referenced in function "bool __cdecl GameLoop(float)" (?GameLoop@@YA_NM@Z)
+D:\Desktop\artificialInt\x64\Debug\Steering.exe : fatal error LNK1120: 7 unresolved externals

@@ -96,6 +96,9 @@ void SCV::ShowDebug(bool debug)
 	mSeekBehavior->ShowDebug(debug);
 	mFleeBehavior->ShowDebug(debug);
 	mArriveBehavior->ShowDebug(debug);
+	mWanderBehavior->ShowDebug(debug);
+	mPursuitBehavior->ShowDebug(debug);
+	mSeperationBehavior->ShowDebug(debug);
 }
 void SCV::SetSeek(bool active)
 {

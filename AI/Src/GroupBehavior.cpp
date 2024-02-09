@@ -3,17 +3,19 @@
 
 #include "Agent.h"
 
-X::Math::Vector2 AI::SeparationBehavior::Calculate(Agent& agent)
+using namespace AI;
+
+X::Math::Vector2 SeparationBehavior::Calculate(Agent& agent)
 {
 	const float forcedMulitiplier = 5.0f;
 	X::Math::Vector2 seperationForce = X::Math::Vector2::Zero();
-	for (auto& : agent.neighbors)
+	for (auto& n : agent.neighbors)
 	{
 		if (n != agent.target)
 		{
 			X::Math::Vector2 dirToNeighbor = n->position - agent.position;
 			float distance = X::Math::Magnitude(dirToNeighbor);
-			float overlapDistance = (n->radius = agent.radius) - distance;
+			float overlapDistance = (n->radius + agent.radius) - distance;
 			if (overlapDistance > 0.0f)
 			{
 				dirToNeighbor /= distance;

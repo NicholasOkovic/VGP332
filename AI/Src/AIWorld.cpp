@@ -32,6 +32,8 @@ void AIWorld::UnRegister(Entity* entity)
 
 }
 
+
+
 EntityPtrs AIWorld::GetEntitiesInRange(const X::Math::Circle& range, uint32_t typeId)
 {
 	const float radiusSq = range.radius * range.radius;

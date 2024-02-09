@@ -4,9 +4,11 @@
 
 namespace AI
 {
+	using EntityPtrs = std::vector<Entity*>;	///
+
 	class AIWorld
 	{
-		using EntityPtrs = std::vector<Entity*>;
+		
 	public:
 
 		void Initialize();

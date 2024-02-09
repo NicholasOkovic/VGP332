@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 #include "SteeringBehavior.h"
 
 namespace AI
@@ -9,7 +8,7 @@ namespace AI
 	class PursuitBehavior : public SteeringBehavior
 	{
 	public:
-		X::Math::Vector2 Calculate(Agent& agent);
+		X::Math::Vector2 Calculate(Agent& agent) override;
 
 	};
 

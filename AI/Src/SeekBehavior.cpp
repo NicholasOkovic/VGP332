@@ -63,7 +63,7 @@ X::Math::Vector2 ArriveBehavior::Calculate(Agent& agent)
 	const float decelerationScale = (static_cast<float>(deceleration) + 1.0f) * decelTweaker;
 	float speed = distance / ((decelerationScale));
 	speed = X::Math::Min(speed, agent.maxSpeed);
-	const X::Math::Vector2 desiredVelocity = (agentToDest / distance) * speed;	//////////
+	const X::Math::Vector2 desiredVelocity = (agentToDest / distance) * speed;	
 	const X::Math::Vector2 arriveForce = desiredVelocity - agent.velocity;
 
 	if (IsDebug())
