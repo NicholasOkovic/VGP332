@@ -2,6 +2,10 @@
 #include "SCV.h"
 #include "TypeId.h"
 
+extern float wanderJitter;
+extern float wanderRadius;
+extern float wanderDistance;
+
 SCV::SCV(AI::AIWorld& world)
 	: Agent(world, static_cast<uint32_t>(AgentType::SCV))
 {
@@ -11,9 +15,16 @@ SCV::SCV(AI::AIWorld& world)
 void SCV::Load()
 {
 	mSteeringModule = std::make_unique<AI::SteeringModule>(*this);
-	AI::SteeringBehavior* seek = mSteeringModule->AddBehavior<AI::SeekBehavior>();
-	seek->SetActive(true);
-	seek->ShowDebug(true);
+	mSeekBehavior = mSteeringModule->AddBehavior<AI::SeekBehavior>();
+	mFleeBehavior = mSteeringModule->AddBehavior<AI::FleeBehavior>();
+	mArriveBehavior = mSteeringModule->AddBehavior<AI::ArriveBehavior>();
+	mWanderBehavior = mSteeringModule->AddBehavior<AI::WanderingBehavior>();
+	mPursuitBehavior = mSteeringModule->AddBehavior<AI::PursuitBehavior>();
+	mSeperationBehavior = mSteeringModule->AddBehavior<AI::SeparationBehavior>();
+	//AI::SteeringBehavior* seek = mSteeringModule->AddBehavior<AI::SeekBehavior>();
+	//AI::FleeBehavior* flee = mSteeringModule->AddBehavior<AI::FleeBehavior>();
+	//flee->SetActive(true);
+	//flee->ShowDebug(true);
 
 	const float screenWidth = static_cast<float>(X::GetScreenWidth());
 	const float screenHeight = static_cast<float>(X::GetScreenHeight());
@@ -33,6 +44,11 @@ void SCV::Unload()
 
 void SCV::Update(float deltaTime)
 {
+	if (mWanderBehavior != nullptr)
+	{
+		mWanderBehavior->SetUp(wanderRadius, wanderDistance, wanderJitter);
+	}
+
 
 	const X::Math::Vector2 force = mSteeringModule->Calculate();
 	const X::Math::Vector2 acceleration = force / mass;
@@ -77,4 +93,31 @@ void SCV::Render()
 
 void SCV::ShowDebug(bool debug)
 {
+	mSeekBehavior->ShowDebug(debug);
+	mFleeBehavior->ShowDebug(debug);
+	mArriveBehavior->ShowDebug(debug);
+}
+void SCV::SetSeek(bool active)
+{
+	mSeekBehavior->SetActive(active);
+}
+void SCV::SetFlee(bool active)
+{
+	mFleeBehavior->SetActive(active);
+}
+void SCV::SetArrive(bool active)
+{
+	mArriveBehavior->SetActive(active);
+}
+void SCV::SetWander(bool active)
+{
+	mWanderBehavior->SetActive(active);
+}
+void SCV::SetPursuit(bool active)
+{
+	mPursuitBehavior->SetActive(active);
+}
+void SCV::SetSeperation(bool active)
+{
+	mSeperationBehavior->SetActive(active);
 }

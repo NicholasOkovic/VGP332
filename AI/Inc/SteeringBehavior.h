@@ -9,7 +9,7 @@ namespace AI
 	class SteeringBehavior
 	{
 	public:
-		SteeringBehavior();
+		SteeringBehavior() = default;
 		virtual ~SteeringBehavior() = default;
 
 		virtual X::Math::Vector2 Calculate(Agent& agent) = 0;

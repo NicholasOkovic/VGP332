@@ -16,6 +16,12 @@
     <Filter Include="Inc\FSM">
       <UniqueIdentifier>{67fd819c-9ad6-47dd-be8a-124e16e33b43}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inc\Steering">
+      <UniqueIdentifier>{fd6eabcc-5b7a-4f15-b2d7-bf42c8d9d1be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Steering">
+      <UniqueIdentifier>{ec466f79-c9b8-4464-9423-8b0e0a15b3b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\Common.h">
@@ -57,14 +63,23 @@
     <ClInclude Include="Inc\Agent.h">
       <Filter>Inc</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\SteeringBehavior.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
     <ClInclude Include="Inc\SteeringModule.h">
-      <Filter>Inc</Filter>
+      <Filter>Inc\Steering</Filter>
     </ClInclude>
     <ClInclude Include="Inc\SeekBehavior.h">
-      <Filter>Inc</Filter>
+      <Filter>Inc\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\SteeringBehavior.h">
+      <Filter>Inc\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\WanderBehavior.h">
+      <Filter>Inc\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\PursuitBehavior.h">
+      <Filter>Inc\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\GroupBehavior.h">
+      <Filter>Inc\Steering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -93,9 +108,18 @@
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="Src\SteeringModule.cpp">
-      <Filter>Src</Filter>
+      <Filter>Src\Steering</Filter>
     </ClCompile>
     <ClCompile Include="Src\SeekBehavior.cpp">
+      <Filter>Src\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\WanderBehavior.cpp">
+      <Filter>Src\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\PursuitBehavior.cpp">
+      <Filter>Src\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GroupBehavior.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>
