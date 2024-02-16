@@ -2,6 +2,15 @@
 #include "SCV.h"
 #include "TypeId.h"
 
+
+namespace
+{
+	float ComputeImportance(const AI::Agent& agent, const AI::MemoryRecord& record)
+	{
+		return 0;
+	}
+}
+
 extern float wanderJitter;
 extern float wanderRadius;
 extern float wanderDistance;
@@ -14,6 +23,9 @@ SCV::SCV(AI::AIWorld& world)
 
 void SCV::Load()
 {
+	mPerceptionModule = std::make_unique<AI::PerceptionModule(*this, ComputeImportance)>;
+	mPerceptionModule->SetMemorySpan(2.0f);
+
 	mSteeringModule = std::make_unique<AI::SteeringModule>(*this);
 	mSeekBehavior = mSteeringModule->AddBehavior<AI::SeekBehavior>();
 	mFleeBehavior = mSteeringModule->AddBehavior<AI::FleeBehavior>();
@@ -21,6 +33,7 @@ void SCV::Load()
 	mWanderBehavior = mSteeringModule->AddBehavior<AI::WanderingBehavior>();
 	mPursuitBehavior = mSteeringModule->AddBehavior<AI::PursuitBehavior>();
 	mSeperationBehavior = mSteeringModule->AddBehavior<AI::SeparationBehavior>();
+	mAlignmentBehavior = mSteeringModule->AddBehavior<AI::AlignmentBehavior>();
 	//AI::SteeringBehavior* seek = mSteeringModule->AddBehavior<AI::SeekBehavior>();
 	//AI::FleeBehavior* flee = mSteeringModule->AddBehavior<AI::FleeBehavior>();
 	//flee->SetActive(true);
@@ -44,6 +57,10 @@ void SCV::Unload()
 
 void SCV::Update(float deltaTime)
 {
+	mPerceptionModule->Update(deltaTime);
+
+
+
 	if (mWanderBehavior != nullptr)
 	{
 		mWanderBehavior->SetUp(wanderRadius, wanderDistance, wanderJitter);
@@ -123,4 +140,52 @@ void SCV::SetPursuit(bool active)
 void SCV::SetSeperation(bool active)
 {
 	mSeperationBehavior->SetActive(active);
+}
+
+void SCV::SetAlignment(bool active)
+{
+	mAlignmentBehavior->SetActive(active);
+}
+void SCV::SetCohesion(bool active)
+{
+	mCohesionBehavior->SetActive(active);
+}
+
+void SCV::SetSeekWeight(float weight)
+{
+	mSeekBehavior->SetWeight(weight);
+}
+
+void SCV::SetFleeWeight(float weight)
+{
+	mFleeBehavior->SetWeight(weight);
+}
+
+void SCV::SetArriveWeight(float weight)
+{
+	mArriveBehavior->SetWeight(weight);
+}
+
+void SCV::SetWanderWeight(float weight)
+{
+	mWanderBehavior->SetWeight(weight);
+}
+
+void SCV::SetPursuitWeight(float weight)
+{
+	mPursuitBehavior->SetWeight(weight);
+}
+
+void SCV::SetSeperationWeight(float weight)
+{
+	mSeperationBehavior->SetWeight(weight);
+}
+
+void SCV::SetAlignmentWeight(float weight)
+{
+	mArriveBehavior->SetWeight(weight);
+}
+
+void SCV::SetCohesionWeight(float weight)
+{
 }
