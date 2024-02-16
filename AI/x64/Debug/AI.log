@@ -1,9 +1,2 @@
-﻿  GroupBehavior.cpp
-  PursuitBehavior.cpp
-  Generating Code...
-D:\Desktop\artificialInt\AI\Src\PursuitBehavior.cpp(8,18): error C2653: 'PursuitBehavior': is not a class or namespace name
-  (compiling source file '/Src/PursuitBehavior.cpp')
-  
-D:\Desktop\artificialInt\AI\Src\PursuitBehavior.cpp(42,6): error C3861: 'IsDebug': identifier not found
-  (compiling source file '/Src/PursuitBehavior.cpp')
-  
+﻿  PursuitBehavior.cpp
+  AI.vcxproj -> D:\Desktop\artificialInt\x64\Debug\AI.lib

@@ -23,7 +23,7 @@ SCV::SCV(AI::AIWorld& world)
 
 void SCV::Load()
 {
-	mPerceptionModule = std::make_unique<AI::PerceptionModule(*this, ComputeImportance)>;
+	mPerceptionModule = std::make_unique<AI::PerceptionModule>(*this, ComputeImportance);
 	mPerceptionModule->SetMemorySpan(2.0f);
 
 	mSteeringModule = std::make_unique<AI::SteeringModule>(*this);

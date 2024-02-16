@@ -4,14 +4,15 @@
 #include <AI.h>
 
 #include "SCV.h"
+#include "Mineral.h"
 
 using namespace AI;
 
 //--------------------------------------------------
 AIWorld aiWorld;
+SCV target(aiWorld);
 std::vector<std::unique_ptr<SCV>> scvAgents;
 std::vector<std::unique_ptr<SCV>> minerals;
-SCV target(aiWorld);
 
 X::Math::Vector2 destination = X::Math::Vector2::Zero();
 
@@ -26,14 +27,14 @@ bool useAlignment = false;
 bool useCohesion = false;
 
 
-//bool useSeek = false;			weight
-//bool useFlee = false;
-//bool useArrive = false;
-//bool useWander = false;
-//bool usePursuit = false;
-//bool useSeperation = false;
-//bool useAlignment = false;
-//bool useCohesion = false;
+float weightSeek = 1.0f;			
+float weightFlee = 1.0f;
+float weightArrive = 1.0f;
+float weightWander = 1.0f;
+float weightPursuit = 1.0f;
+float weightSeperation = 1.0f;
+float weightAlignment = 1.0f;
+float weightCohesion = 1.0f;
 
 float wanderJitter = 5.0f;
 float wanderRadius = 20.0f;
@@ -75,16 +76,16 @@ void GameInit()
 	aiWorld.Initialize();
 	target.Load();
 
-	for (uint32_t i = 0; i < )
+	for (uint32_t i = 0; i < 10; ++i)
 	{
-
+		auto& mineral = minerals.emplace_back(std::make_unique<Mineral>(aiWorld));
 	}
-
+	
 }
 
 bool GameLoop(float deltaTime)
 {
-
+	
 
 	ImGui::Begin("Steering", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 	{
@@ -103,6 +104,9 @@ bool GameLoop(float deltaTime)
 				agent->ShowDebug(showDebug);
 			}
 		}
+
+
+
 		if (ImGui::Checkbox("seek", &useSeek))
 		{
 			for (auto& agent : scvAgents)
@@ -111,24 +115,48 @@ bool GameLoop(float deltaTime)
 			}
 		}
 		ImGui::SameLine();
-		ImGui::DragFloat("seekWeight", &weightSeek, 0.1f, 0.1f, 0.5f);
+		if (ImGui::DragFloat("seekWeight", &weightSeek, 0.1f, 0.1f, 0.5f))
+		{
+			for (auto& agent : scvAgents)
+			{
+				agent->SetSeekWeight(weightSeek);
+			}
+		}
 
-
-		if (ImGui::Checkbox("flee", &useFlee))	///
+		if (ImGui::Checkbox("flee", &useFlee))	
 		{
 			for (auto& agent : scvAgents)
 			{
 				agent->SetFlee(useFlee);
 			}
 		}
+		ImGui::SameLine();
+		if (ImGui::DragFloat("fleeWeight", &weightFlee, 0.1f, 0.1f, 0.5f))
+		{
+			for (auto& agent : scvAgents)
+			{
+				agent->SetFleeWeight(weightFlee);
+			}
+		}
 
-		if (ImGui::Checkbox("Arrive", &useArrive))
+
+		if (ImGui::Checkbox("Arrive", &useArrive))	
 		{
 			for (auto& agent : scvAgents)
 			{
 				agent->SetArrive(useArrive);
 			}
 		}
+		ImGui::SameLine();
+		if (ImGui::DragFloat("arriveWeight", &weightArrive, 0.1f, 0.1f, 0.5f))
+		{
+			for (auto& agent : scvAgents)
+			{
+				agent->SetArriveWeight(weightArrive);
+			}
+		}
+
+
 		if (ImGui::Checkbox("Wander", &useWander))
 		{
 			for (auto& agent : scvAgents)
@@ -145,32 +173,52 @@ bool GameLoop(float deltaTime)
 				ImGui::DragFloat("Distance", &wanderDistance, 0.1f, 0.1f, 500.0f);
 			}
 		}
-		if (ImGui::Checkbox("Pursuit", &usePursuit))	/////////
+		if (ImGui::Checkbox("Pursuit", &usePursuit))	
 		{
 			for (auto& agent : scvAgents)
 			{
 				agent->SetPursuit(usePursuit);
 			}
 		}
-		if (ImGui::Checkbox("Seperation", &useSeperation))
+		ImGui::SameLine();
+		if (ImGui::DragFloat("pursuitWeight", &weightPursuit, 0.1f, 0.1f, 0.5f))
+		{
+			for (auto& agent : scvAgents)
+			{
+				agent->SetPursuitWeight(weightPursuit);
+			}
+		}
+
+		if (ImGui::Checkbox("Seperation", &useSeperation))	
 		{
 			for (auto& agent : scvAgents)
 			{
 				agent->SetSeperation(useSeperation);
 			}
 		}
-		if (ImGui::Checkbox("Alignment", &useAlignment))
+		ImGui::SameLine();
+		if (ImGui::DragFloat("SeperationWeight", &weightSeperation, 0.1f, 0.1f, 0.5f))
+		{
+			for (auto& agent : scvAgents)
+			{
+				agent->SetSeperationWeight(weightSeperation);
+			}
+		}
+
+
+		if (ImGui::Checkbox("Alignment", &useAlignment))	
 		{
 			for (auto& agent : scvAgents)
 			{
 				agent->SetAlignment(useAlignment);
 			}
 		}
-		if (ImGui::Checkbox("AlignmentWeight", &weightAlignment))		//weight
+		ImGui::SameLine();
+		if (ImGui::DragFloat("alignmentWeight", &weightAlignment, 0.1f, 0.1f, 0.5f))
 		{
 			for (auto& agent : scvAgents)
 			{
-				agent->SetAlignment(useAlignment);
+				agent->SetAlignmentWeight(weightAlignment);
 			}
 		}
 		if (ImGui::Checkbox("Cohesion", &useCohesion))
@@ -178,6 +226,14 @@ bool GameLoop(float deltaTime)
 			for (auto& agent : scvAgents)
 			{
 				agent->SetCohesion(useCohesion);
+			}
+		}
+		ImGui::SameLine();
+		if (ImGui::DragFloat("cohesionWeight", &weightCohesion, 0.1f, 0.1f, 0.5f))
+		{
+			for (auto& agent : scvAgents)
+			{
+				agent->SetCohesionWeight(weightCohesion);
 			}
 		}
 	}
@@ -226,7 +282,6 @@ bool GameLoop(float deltaTime)
 	{
 		mineral->Render();
 	}
-
 	const bool quit = X::IsKeyPressed(X::Keys::ESCAPE);
 	return quit;
 }

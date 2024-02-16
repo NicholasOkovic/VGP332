@@ -1,5 +1,6 @@
-#include "PursuitBehavior.h"
 #include "Precompiled.h"
+#include "PursuitBehavior.h"
+
 
 #include "Agent.h"
 
@@ -11,8 +12,6 @@ X::Math::Vector2 PursuitBehavior::Calculate(Agent& agent)
 	{
 		return X::Math::Vector2();
 	}
-
-
 
 
 	X::Math::Vector2 agentToTarget = agent.target->position - agent.position;

@@ -11,7 +11,7 @@ namespace AI
 	{
 		std::unordered_map<std::string, Property> properties;
 		uint64_t uniqueId = 0;
-		float lastRecordTime = 0.0f;
+		float lastRecordedTime = 0.0f;
 		float importance = 0.0f;
 
 

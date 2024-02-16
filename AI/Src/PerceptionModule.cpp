@@ -8,7 +8,6 @@ AI::PerceptionModule::PerceptionModule(Agent& agent, ImportanceCalculator calcul
 	:mAgent(agent)
 	, mComputeImportance(calculator)
 {
-
 }
 
 void AI::PerceptionModule::Update(float deltaTime)
@@ -19,14 +18,15 @@ void AI::PerceptionModule::Update(float deltaTime)
 	}
 
 	//remove
-	mMemoryRecords.erase(std::remove_if(
-		mMemoryRecords.begin(), 
-		mMemoryRecords.end(),
-		[span = mMemorySpan](const auto& record)
-		{
-			return record.lastRecordedTime + span < X::GetTime();
-		}),
-		mMemoryRecords.end());
+	mMemoryRecords.erase(
+		std::remove_if(
+			mMemoryRecords.begin(), 
+			mMemoryRecords.end(),
+			[span = mMemorySpan](const auto& record)
+			{
+				return record.lastRecordedTime + span < X::GetTime();
+			}),
+			mMemoryRecords.end());
 	//calc import
 
 	for (auto& record : mMemoryRecords)

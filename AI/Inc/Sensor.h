@@ -10,9 +10,9 @@ namespace AI
 	class Sensor
 	{
 	public:
-		Sensor();
+
 		virtual ~Sensor() = default;
-		virtual void Update(Agent& agent, MemoryRecord memory, float deltaTime) = 0;
+		virtual void Update(Agent& agent, MemoryRecords& memory, float deltaTime) = 0;
 
 	private:
 
