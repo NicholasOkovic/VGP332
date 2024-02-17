@@ -24,6 +24,7 @@
 
 #include "WanderBehavior.h"
 #include "PursuitBehavior.h"
+#include "EvadeBehavior.h"
 #include "GroupBehavior.h"
 
 

@@ -1,7 +1,6 @@
 #include "Precompiled.h"
 #include "PursuitBehavior.h"
 
-
 #include "Agent.h"
 
 using namespace AI;

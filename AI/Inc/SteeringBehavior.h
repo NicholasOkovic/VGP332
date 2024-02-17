@@ -17,7 +17,7 @@ namespace AI
 		void SetWeight(float weight) { mWeight = weight; }
 		float GetWeight() const { return mWeight; }
 
-		void SetActive(bool active) { mActive = active; }	
+		void SetActive(bool active) { mActive = active; }				///// problem, variables not initialized
 		bool IsActive() const { return mActive; }
 
 		void ShowDebug(bool debug) { mDebug = debug; }
