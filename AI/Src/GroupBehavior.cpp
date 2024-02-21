@@ -73,7 +73,7 @@ X::Math::Vector2 CohesionBehavior::Calculate(Agent& agent)
 {
 	X::Math::Vector2 cohesionForce;
 	X::Math::Vector2 centerOfMass;
-	float totalAgents = 0.0f;
+	float totalAgents = 0.0f;	
 	for (auto& n : agent.neighbors)
 	{
 		if (n != agent.target)
