@@ -25,6 +25,7 @@ public:
 	void SetSeperation(bool active);
 	void SetAlignment(bool active);
 	void SetCohesion(bool active);
+	void SetEvade(bool active);
 
 	void SetSeekWeight(float weight);
 	void SetFleeWeight(float weight);
@@ -34,6 +35,7 @@ public:
 	void SetSeperationWeight(float weight);
 	void SetAlignmentWeight(float weight);
 	void SetCohesionWeight(float weight);
+	void SetEvadeWeight(float weight);
 
 
 private:
@@ -50,6 +52,7 @@ private:
 	AI::SeparationBehavior* mSeperationBehavior = nullptr;
 	AI::AlignmentBehavior* mAlignmentBehavior = nullptr;
 	AI::CohesionBehavior* mCohesionBehavior = nullptr;
+	AI::EvadeBehavior* mEvadeBehavior = nullptr;
 
 	std::array<X::TextureId, 16> mTextureIds;
 

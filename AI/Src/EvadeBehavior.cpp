@@ -11,6 +11,7 @@ X::Math::Vector2 AI::EvadeBehavior::Calculate(Agent& agent)
 		return X::Math::Vector2();
 	}
 
+
 	X::Math::Vector2 agentToTarget = agent.target->position - agent.position;
 	float distanceToTarget = X::Math::Magnitude(agentToTarget);
 
@@ -24,6 +25,8 @@ X::Math::Vector2 AI::EvadeBehavior::Calculate(Agent& agent)
 	const X::Math::Vector2& targetPosition = agent.target->position;
 	const X::Math::Vector2 predictedPosition = agent.target->position + targetVelocity * timeToTarget;
 
+
+
 	agentToTarget = predictedPosition - agent.position;
 	distanceToTarget = X::Math::Magnitude(agentToTarget);
 
@@ -31,18 +34,25 @@ X::Math::Vector2 AI::EvadeBehavior::Calculate(Agent& agent)
 	{
 		return X::Math::Vector2();
 	}
+	X::Math::Vector2 desiredVelocity = X::Math::Vector2::Zero();
 
-	const X::Math::Vector2 desiredVelocity = (agentToTarget / distanceToTarget) * agent.maxSpeed;
-	const X::Math::Vector2 evadeForce = desiredVelocity - agent.velocity;								///change
+	if (X::Math::MagnitudeSqr(agentToTarget) <= panicDistance * panicDistance)
+	{
+		desiredVelocity = -(agentToTarget / distanceToTarget) * agent.maxSpeed;
+	}
+
+	
+	const X::Math::Vector2 evadeForce = desiredVelocity - agent.velocity;
+
 
 	if (IsDebug())
 	{
 		X::DrawScreenCircle(targetPosition, 20.0f, X::Colors::Red);
 		X::DrawScreenLine(agent.position, agent.position + agent.velocity, X::Colors::Green);
 		X::DrawScreenLine(agent.position, agent.position + desiredVelocity, X::Colors::Yellow);
+		X::DrawScreenCircle(agent.position, panicDistance, X::Colors::Pink);
 	}
 
 
 	return evadeForce;
-
 }

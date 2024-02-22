@@ -29,24 +29,22 @@ X::Math::Vector2 FleeBehavior::Calculate(Agent& agent)
 {
 	X::Math::Vector2 desiredVelocity = X::Math::Vector2::Zero();
 	const X::Math::Vector2 agentToDest = agent.destination - agent.position;
-	if (X::Math::MagnitudeSqr(agentToDest) > panicDistance * panicDistance)
+	if (X::Math::MagnitudeSqr(agentToDest) <= panicDistance * panicDistance)
 	{
 		desiredVelocity = -X::Math::Normalize(agentToDest) * agent.maxSpeed;
-		return X::Math::Vector2::Zero();
+
 	}
 
-
-	//const X::Math::Vector2 desiredVelocity = -X::Math::Normalize(agentToDest) * agent.maxSpeed;
-	const X::Math::Vector2 seekForce = desiredVelocity - agent.velocity;
+	const X::Math::Vector2 fleeForce = desiredVelocity - agent.velocity;
 
 	if (IsDebug())
 	{
 		X::DrawScreenLine(agent.position, agent.position + desiredVelocity, X::Colors::Yellow);
 		X::DrawScreenLine(agent.position, agent.position + agent.velocity, X::Colors::Green);
 		X::DrawScreenCircle(agent.destination, 20.0f, X::Colors::Red);
-		X::DrawScreenLine(agent.position, agent.position + panicDistance, X::Colors::Pink);
+		X::DrawScreenCircle(agent.position, panicDistance, X::Colors::Pink);
 	}
-	return seekForce;
+	return fleeForce;
 }
 
 

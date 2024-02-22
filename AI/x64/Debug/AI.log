@@ -1,8 +1,2 @@
 ﻿  EvadeBehavior.cpp
-  GroupBehavior.cpp
-  PursuitBehavior.cpp
-  SeekBehavior.cpp
-  SteeringModule.cpp
-  WanderBehavior.cpp
-  Generating Code...
-  AI.vcxproj -> C:\Users\LCV2242596\Documents\GitHub\VGP332\x64\Debug\AI.lib
+  AI.vcxproj -> D:\Desktop\artificialInt\x64\Debug\AI.lib

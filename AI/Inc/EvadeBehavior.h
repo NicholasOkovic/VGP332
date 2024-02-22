@@ -9,7 +9,7 @@ namespace AI
 	{
 	public:
 		X::Math::Vector2 Calculate(Agent& agent) override;
-
+		float panicDistance = 300.0f;
 	};
 
 

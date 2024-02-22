@@ -23,6 +23,7 @@ bool usePursuit = false;
 bool useSeperation = false;
 bool useAlignment = false;
 bool useCohesion = false;
+bool useEvade = false;
 
 
 float weightSeek = 1.0f;			
@@ -33,6 +34,7 @@ float weightPursuit = 1.0f;
 float weightSeperation = 1.0f;
 float weightAlignment = 1.0f;
 float weightCohesion = 1.0f;
+float weightEvade = 1.0f;
 
 float wanderJitter = 5.0f;
 float wanderRadius = 20.0f;
@@ -59,6 +61,7 @@ void SpawnAgent()
 	agent->SetSeperation(useSeperation);
 	agent->SetAlignment(useAlignment);
 	agent->SetCohesion(useCohesion);
+	agent->SetEvade(useEvade);
 
 }
 void KillAgent()
@@ -73,7 +76,7 @@ void GameInit()
 {
 	aiWorld.Initialize();
 	target.Load();
-	
+	target.SetWander(true);
 }
 
 bool GameLoop(float deltaTime)
@@ -108,7 +111,7 @@ bool GameLoop(float deltaTime)
 			}
 		}
 		ImGui::SameLine();
-		if (ImGui::DragFloat("seekWeight", &weightSeek, 0.1f, 0.1f, 0.5f))
+		if (ImGui::DragFloat("seekWeight", &weightSeek, 0.1f, 0.1f, 1.0f))
 		{
 			for (auto& agent : scvAgents)
 			{
@@ -124,7 +127,7 @@ bool GameLoop(float deltaTime)
 			}
 		}
 		ImGui::SameLine();
-		if (ImGui::DragFloat("fleeWeight", &weightFlee, 0.1f, 0.1f, 0.5f))
+		if (ImGui::DragFloat("fleeWeight", &weightFlee, 0.1f, 0.1f, 1.0f))
 		{
 			for (auto& agent : scvAgents)
 			{
@@ -141,7 +144,7 @@ bool GameLoop(float deltaTime)
 			}
 		}
 		ImGui::SameLine();
-		if (ImGui::DragFloat("arriveWeight", &weightArrive, 0.1f, 0.1f, 0.5f))
+		if (ImGui::DragFloat("arriveWeight", &weightArrive, 0.1f, 0.1f, 1.0f))
 		{
 			for (auto& agent : scvAgents)
 			{
@@ -174,7 +177,7 @@ bool GameLoop(float deltaTime)
 			}
 		}
 		ImGui::SameLine();
-		if (ImGui::DragFloat("pursuitWeight", &weightPursuit, 0.1f, 0.1f, 0.5f))
+		if (ImGui::DragFloat("pursuitWeight", &weightPursuit, 0.1f, 0.1f, 1.0f))
 		{
 			for (auto& agent : scvAgents)
 			{
@@ -190,7 +193,7 @@ bool GameLoop(float deltaTime)
 			}
 		}
 		ImGui::SameLine();
-		if (ImGui::DragFloat("SeperationWeight", &weightSeperation, 0.1f, 0.1f, 0.5f))
+		if (ImGui::DragFloat("SeperationWeight", &weightSeperation, 0.1f, 0.1f, 1.0f))
 		{
 			for (auto& agent : scvAgents)
 			{
@@ -207,7 +210,7 @@ bool GameLoop(float deltaTime)
 			}
 		}
 		ImGui::SameLine();
-		if (ImGui::DragFloat("alignmentWeight", &weightAlignment, 0.1f, 0.1f, 0.5f))
+		if (ImGui::DragFloat("alignmentWeight", &weightAlignment, 0.1f, 0.1f, 1.0f))
 		{
 			for (auto& agent : scvAgents)
 			{
@@ -222,13 +225,38 @@ bool GameLoop(float deltaTime)
 			}
 		}
 		ImGui::SameLine();
-		if (ImGui::DragFloat("cohesionWeight", &weightCohesion, 0.1f, 0.1f, 0.5f))
+		if (ImGui::DragFloat("cohesionWeight", &weightCohesion, 0.1f, 0.1f, 1.0f))
 		{
 			for (auto& agent : scvAgents)
 			{
 				agent->SetCohesionWeight(weightCohesion);
 			}
 		}
+
+		if (ImGui::Checkbox("Evade", &useEvade))
+		{
+			for (auto& agent : scvAgents)
+			{
+				agent->SetEvade(useEvade);
+			}
+		}
+		ImGui::SameLine();
+		if (ImGui::DragFloat("evadeWeight", &weightEvade, 0.1f, 0.1f, 1.0f))
+		{
+			for (auto& agent : scvAgents)
+			{
+				agent->SetEvadeWeight(weightEvade);
+			}
+		}
+		ImGui::SameLine();
+		if (ImGui::Checkbox("radius", &useEvade))
+		{
+			for (auto& agent : scvAgents)
+			{
+				agent->SetEvade(useEvade);
+			}
+		}
+
 	}
 	ImGui::End();
 
