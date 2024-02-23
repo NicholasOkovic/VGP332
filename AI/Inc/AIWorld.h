@@ -4,18 +4,28 @@
 
 namespace AI
 {
-	using EntityPtrs = std::vector<Entity*>;	///
+	using EntityPtrs = std::vector<Entity*>;	
 
 	class AIWorld
 	{
 		
 	public:
+		using Obstacles = std::vector<X::Math::Circle>;
+		using Walls = std::vector<X::Math::LineSegment>;
+
 
 		void Initialize();
 		void Update();
 
 		void Register(Entity* enitity);
 		void UnRegister(Entity* enitity);
+
+		void AddObstacle(const X::Math::Circle& obstacle);
+		void AddWall(const X::Math::LineSegment& wall);
+
+		const Obstacles& GetObstacles() {};	//////
+		const Walls& GetWalls() {};
+
 
 		EntityPtrs GetEntities() const { return mEntities; }
 
@@ -28,8 +38,12 @@ namespace AI
 		}
 
 	private:
+
 		mutable uint32_t mNextId = 0;
 		EntityPtrs mEntities;
+
+		Obstacles mObstacles;
+		Walls mWalls;
 
 	};
 

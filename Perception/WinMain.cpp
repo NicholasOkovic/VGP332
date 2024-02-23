@@ -6,6 +6,10 @@
 #include "SCV.h"
 #include "Mineral.h"
 
+extern float viewRange;
+extern float viewAngle;
+
+
 using namespace AI;
 
 //--------------------------------------------------
@@ -40,6 +44,11 @@ float wanderJitter = 5.0f;
 float wanderRadius = 20.0f;
 float wanderDistance = 50.0f;
 float radius = 50.0f;
+
+
+float viewRange = 300.0f;
+float viewAngle = 45.0f;
+
 
 void SpawnAgent()
 {
@@ -81,6 +90,18 @@ void GameInit()
 		auto& mineral = minerals.emplace_back(std::make_unique<Mineral>(aiWorld));
 	}
 	
+	aiWorld.AddObstacle({ 230.0f, 300.0f, 50.0f });
+
+	X::Math::Vector2 topLeft(500.0f, 100.0f);
+	X::Math::Vector2 topright(500.0f, 100.0f);
+	X::Math::Vector2 bottomLeft(500.0f, 100.0f);
+	X::Math::Vector2 bottomRight(500.0f, 100.0f);
+	aiWorld.AddWall({ topLeft, topright });
+	aiWorld.AddWall({ topright, bottomLeft });
+	aiWorld.AddWall({ topLeft, topright });/////
+	aiWorld.AddWall({ topLeft, topright });
+
+
 }
 
 bool GameLoop(float deltaTime)
@@ -236,6 +257,12 @@ bool GameLoop(float deltaTime)
 				agent->SetCohesionWeight(weightCohesion);
 			}
 		}
+		if (ImGui::CollapsingHeader("visualSensor", ImGuiTreeNodeFlags_DefaultOpen))
+		{
+			ImGui::DragFloat("viewrange", &viewRange, 1.0f, 10.0f, 100.0f);
+			//something
+
+		}
 	}
 	ImGui::End();
 
@@ -282,6 +309,19 @@ bool GameLoop(float deltaTime)
 	{
 		mineral->Render();
 	}
+
+	const AIWorld::Obstacles& obstacles = aiWorld.GetObstacles();
+	for (const X::Math::Circle& obstacle : obstacles)
+	{
+		X::DrawScreenCircle(obstacle.center, obstacle.radius, X::Colors::Gray);
+	}
+	const AIWorld::Walls& walls = aiWorld.GetWalls();
+	for (const X::Math::LineSegment& wall : walls)
+	{
+		X::DrawScreenLine(wall.from, wall.to, X::Colors::Gray);
+	}
+
+
 	const bool quit = X::IsKeyPressed(X::Keys::ESCAPE);
 	return quit;
 }
@@ -294,7 +334,12 @@ void GameCleanup()
 		agent->Unload();
 		agent.reset();
 	}
+	for (auto& mineral : minerals)
+	{
+		mineral.reset();
+	}
 	scvAgents.clear();
+	minerals.clear();
 }
 
 //--------------------------------------------------

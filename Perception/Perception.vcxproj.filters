@@ -24,6 +24,9 @@
     <ClInclude Include="TypeId.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VisualSensor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mineral.cpp">
@@ -33,6 +36,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WinMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualSensor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

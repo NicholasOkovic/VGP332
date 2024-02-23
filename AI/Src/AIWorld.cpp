@@ -32,6 +32,20 @@ void AIWorld::UnRegister(Entity* entity)
 
 }
 
+void AI::AIWorld::AddObstacle(const X::Math::Circle& obstacle)
+{
+	
+
+}
+
+void AI::AIWorld::AddWall(const X::Math::LineSegment& wall)
+{
+	for (const X::Math::LineSegment)
+	{
+
+	}
+}
+
 
 
 EntityPtrs AIWorld::GetEntitiesInRange(const X::Math::Circle& range, uint32_t typeId)

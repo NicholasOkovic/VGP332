@@ -1,19 +1,48 @@
 
 #include "SCV.h"
 #include "TypeId.h"
+#include 
+
+extern float wanderJitter;
+extern float wanderRadius;
+extern float wanderDistance;
 
 
 namespace
 {
 	float ComputeImportance(const AI::Agent& agent, const AI::MemoryRecord& record)
 	{
-		return 0;
+		AgentType entityType = static_cast<AgentType>(record.GetProperty<int>("type"));
+		switch (entityType)
+		{
+		case AgentType::Invalid:
+		{
+			score = 0.0f;
+			return 0;
+		}
+		case AgentType::SCV:
+		{
+			X::Math::Vector2 lastSeenPos = record.GetProperty<X::Math::Vector2>("lastSeenPosition");
+			float distance = X::Math::Distance(agent.position, lastSeenPos);
+			float distanceScore = std::max(500.0f - distance, 0.0f);
+
+		}
+		break;
+		case AgentType::Mineral:
+		{
+			X::Math::Vector2 lastSeenPos = record.GetProperty<X::Math::Vector2>("lastSeenPosition");
+			float distance = X::Math::Distance(agent.position, lastSeenPos);
+			float distanceScore = std::max(500.0f - distance, 0.0f);
+
+		}
+		break;
+
+		default:
+			break;
+		}
 	}
 }
 
-extern float wanderJitter;
-extern float wanderRadius;
-extern float wanderDistance;
 
 SCV::SCV(AI::AIWorld& world)
 	: Agent(world, static_cast<uint32_t>(AgentType::SCV))
@@ -25,6 +54,9 @@ void SCV::Load()
 {
 	mPerceptionModule = std::make_unique<AI::PerceptionModule>(*this, ComputeImportance);
 	mPerceptionModule->SetMemorySpan(2.0f);
+	mVisualSensor = mPerceptionModule->AddSensor<VisualSensor>();
+	//mVisualSensor->targetType = AgentType::Mineral;
+
 
 	mSteeringModule = std::make_unique<AI::SteeringModule>(*this);
 	mSeekBehavior = mSteeringModule->AddBehavior<AI::SeekBehavior>();
@@ -36,10 +68,6 @@ void SCV::Load()
 	mAlignmentBehavior = mSteeringModule->AddBehavior<AI::AlignmentBehavior>();
 	mCohesionBehavior = mSteeringModule->AddBehavior<AI::CohesionBehavior>();
 	mEvadeBehavior = mSteeringModule->AddBehavior<AI::EvadeBehavior>();
-	//AI::SteeringBehavior* seek = mSteeringModule->AddBehavior<AI::SeekBehavior>();
-	//AI::FleeBehavior* flee = mSteeringModule->AddBehavior<AI::FleeBehavior>();
-	//flee->SetActive(true);
-	//flee->ShowDebug(true);
 
 	const float screenWidth = static_cast<float>(X::GetScreenWidth());
 	const float screenHeight = static_cast<float>(X::GetScreenHeight());
@@ -59,9 +87,11 @@ void SCV::Unload()
 
 void SCV::Update(float deltaTime)
 {
+	
+	mVisualSensor->viewHalfAngle = viewAngle * X::Math::kDegToRad;
+	mVisualSensor->viewRange = viewRange;
+
 	mPerceptionModule->Update(deltaTime);
-
-
 
 	if (mWanderBehavior != nullptr)
 	{
@@ -99,6 +129,15 @@ void SCV::Update(float deltaTime)
 		position.y -= screenHeight;
 	}
 
+	const auto& memoryrecords = mPerceptionModule->GetMemoryRecords();
+	for (auto& memory : memoryrecords)
+	{
+		X::Math::Vector2 pos = memory.GetProperty<X::Math::Vector2>("lastSeenPosition");
+		X::DrawScreenLine(position, pos, X::Colors::White);
+
+		std::string score = std::to_string(memory.importance); //debug
+		//X::DrawScreenText(score.)
+	}
 
 }
 

@@ -28,6 +28,9 @@
     <Filter Include="Src\Perception">
       <UniqueIdentifier>{8ace0262-aa32-4a6f-9cad-613dc15dc204}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inc\GoalBasedDecision">
+      <UniqueIdentifier>{902a9e38-bb0f-4b29-bde3-cb7edf21ac7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\Common.h">
@@ -98,6 +101,18 @@
     </ClInclude>
     <ClInclude Include="Inc\EvadeBehavior.h">
       <Filter>Inc\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Goal.h">
+      <Filter>Inc\GoalBasedDecision</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Strategy.h">
+      <Filter>Inc\GoalBasedDecision</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\GoalComposite.h">
+      <Filter>Inc\GoalBasedDecision</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\DecisionModule.h">
+      <Filter>Inc\GoalBasedDecision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
