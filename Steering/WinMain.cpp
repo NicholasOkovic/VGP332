@@ -248,14 +248,6 @@ bool GameLoop(float deltaTime)
 				agent->SetEvadeWeight(weightEvade);
 			}
 		}
-		ImGui::SameLine();
-		if (ImGui::Checkbox("radius", &useEvade))
-		{
-			for (auto& agent : scvAgents)
-			{
-				agent->SetEvade(useEvade);
-			}
-		}
 
 	}
 	ImGui::End();
