@@ -10,7 +10,7 @@ namespace AI {
 	{
 	public:
 
-		using STatus = Goal<AgentType>::Status;
+		using Status = Goal<AgentType>::Status;
 
 		GoalComposite() = default;
 		virtual ~GoalComposite() = default;
@@ -20,7 +20,7 @@ namespace AI {
 		template<class GoalType>
 		GoalType* AddSubGoal()
 		{
-			static_assert(std::is_base_of < Goal<AgentType>, <GoalType>, "goal composite: subgoal must be..");
+			static_assert(std::is_base_of_v<Goal<AgentType>, GoalType>, "goal composite: subgoal must be of type goal");
 			auto& newGoal = mSubGoals.emplace_back(std::make_unique<GoalType>());
 			return static_cast<GoalType*>(newGoal.get());
 
@@ -33,6 +33,7 @@ namespace AI {
 				goal->Terminate(agent);
 				goal.reset();
 			}
+			mSubGoals.clear();
 		}
 
 		Status ProcessSubGoal(AgentType& agent)
@@ -40,7 +41,8 @@ namespace AI {
 			while (!mSubGoals.empty())
 			{
 				auto& goal = mSubGoals.back();
-				if (goal->GetStatus() != Status::Completed && goal->GetStatus() != Status::Failed)
+				if (goal->GetStatus() != Status::Completed 
+					&& goal->GetStatus() != Status::Failed)
 				{
 					break;
 				}
@@ -48,18 +50,17 @@ namespace AI {
 				goal.reset();
 				mSubGoals.pop_back();
 			}
-		}
-
-
-		if (!mSubGoals.empty())
-		{
-			Status status = mSubGoals.back()->process(agent);	//////
-			if (status)
+			if (!mSubGoals.empty())
 			{
-
+				Status status = mSubGoals.back()->process(agent);	
+				if (status == Status::Completed && mSubGoals.size() > 1)
+				{
+					return Status::Active;
+				}
+				return status;
 			}
+			return Status::Completed;
 		}
-
 		std::vector<std::unique_ptr<Goal<AgentType>>> mSubGoals;
 
 	};

@@ -2,6 +2,8 @@
 
 #include "AI.h"
 
+class VisualSensor;
+
 class SCV : public AI::Agent
 {
 public:
@@ -50,6 +52,8 @@ private:
 	AI::SeparationBehavior* mSeperationBehavior = nullptr;
 	AI::AlignmentBehavior* mAlignmentBehavior = nullptr;
 	AI::CohesionBehavior* mCohesionBehavior = nullptr;
+
+	VisualSensor* mVisualSensor = nullptr;
 
 	std::array<X::TextureId, 16> mTextureIds;
 

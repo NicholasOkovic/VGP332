@@ -22,14 +22,14 @@ namespace AI {
 		template<class NewStrategy>
 		NewStrategy* AddStrategy()
 		{
-			static_assert(std::is_base_of_v<StrategyType, NewStrategy>, "desision";
-			auto& newStrategy = mStrategies.emplace_back(std::make_unique<NewSTrategy>());
+			static_assert(std::is_base_of_v<StrategyType, NewStrategy>, "desisionModule must be type strategy");
+			auto& newStrategy = mStrategies.emplace_back(std::make_unique<NewStrategy>());
 			return static_cast<NewStrategy*>(newStrategy.get());
 		}
 
 		void Update() {
 
-			Arbitrate()
+			Arbitrate();
 
 			if (mCurrentGoal != nullptr)
 			{
@@ -51,7 +51,7 @@ namespace AI {
 				if (desirability > mostDesirable)
 				{
 					mostDesirable = desirability;
-					bestStartegy = strategy.get();
+					bestStrategy = strategy.get();
 				}
 			}
 
@@ -64,17 +64,14 @@ namespace AI {
 				}
 				if (mCurrentStrategy != nullptr)
 				{
-					mCurrentGoal = mCurrentStrategy->CreateGoal()
+					mCurrentGoal = mCurrentStrategy->CreateGoal();
 				}
 
 			}
-
-
-
 		}
 
 		using Strategies = std::vector<std::unique_ptr<StrategyType>>;
-		Strategy mStrategies;
+		Strategies mStrategies;
 		StrategyType* mCurrentStrategy = nullptr;
 		std::unique_ptr<GoalType> mCurrentGoal = nullptr;
 		AgentType& mAgent;

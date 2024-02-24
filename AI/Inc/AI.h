@@ -10,6 +10,8 @@
 #include "GridBasedGraph.h"
 
 #include "BFS.h"
+#include "Entity.h"
+
 #include "DFS.h"
 #include "Dijkstra.h"
 #include "AStar.h"

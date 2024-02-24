@@ -22,9 +22,10 @@ namespace AI
 
 		void AddObstacle(const X::Math::Circle& obstacle);
 		void AddWall(const X::Math::LineSegment& wall);
+		bool HasLineOfSight(const X::Math::LineSegment& lineSegment) const;
 
-		const Obstacles& GetObstacles() {};	//////
-		const Walls& GetWalls() {};
+		const Obstacles& GetObstacles() const { return mObstacles; };
+		const Walls& GetWalls() const { return mWalls; };
 
 
 		EntityPtrs GetEntities() const { return mEntities; }

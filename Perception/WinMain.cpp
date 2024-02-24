@@ -1,22 +1,24 @@
 
 #include <XEngine.h> // <> for external includes, "" for internal includes
-#include <ImGui/Inc/imgui.h>
 #include <AI.h>
+#include <ImGui/Inc/imgui.h>
+
 
 #include "SCV.h"
 #include "Mineral.h"
+
+using namespace AI;
 
 extern float viewRange;
 extern float viewAngle;
 
 
-using namespace AI;
+
 
 //--------------------------------------------------
 AIWorld aiWorld;
-SCV target(aiWorld);
 std::vector<std::unique_ptr<SCV>> scvAgents;
-std::vector<std::unique_ptr<SCV>> minerals;
+std::vector<std::unique_ptr<Mineral>> minerals;
 
 X::Math::Vector2 destination = X::Math::Vector2::Zero();
 
@@ -58,9 +60,9 @@ void SpawnAgent()
 	const float screenWidth = X::GetScreenWidth();
 	const float screenHeight = X::GetScreenHeight();
 
-	agent->position = X::RandomVector2({ 100.0f, 100.0f }, { screenWidth - 100.0f, screenHeight - 100.0f });
+	agent->position = X::RandomVector2({ 100.0f, 100.0f },
+		{ screenWidth - 100.0f, screenHeight - 100.0f });
 	agent->destination = destination;
-	agent->target = &target;
 	agent->radius = radius;
 	agent->ShowDebug(showDebug);
 	agent->SetFlee(useFlee);
@@ -83,23 +85,23 @@ void KillAgent()
 void GameInit()
 {
 	aiWorld.Initialize();
-	target.Load();
 
 	for (uint32_t i = 0; i < 10; ++i)
 	{
 		auto& mineral = minerals.emplace_back(std::make_unique<Mineral>(aiWorld));
+		mineral->Initialize();
 	}
 	
 	aiWorld.AddObstacle({ 230.0f, 300.0f, 50.0f });
 
 	X::Math::Vector2 topLeft(500.0f, 100.0f);
-	X::Math::Vector2 topright(500.0f, 100.0f);
-	X::Math::Vector2 bottomLeft(500.0f, 100.0f);
-	X::Math::Vector2 bottomRight(500.0f, 100.0f);
-	aiWorld.AddWall({ topLeft, topright });
-	aiWorld.AddWall({ topright, bottomLeft });
-	aiWorld.AddWall({ topLeft, topright });/////
-	aiWorld.AddWall({ topLeft, topright });
+	X::Math::Vector2 topRight(600.0f, 100.0f);
+	X::Math::Vector2 bottomLeft(500.0f, 600.0f);
+	X::Math::Vector2 bottomRight(600.0f, 600.0f);
+	aiWorld.AddWall({ topLeft, topRight });
+	aiWorld.AddWall({ topRight, bottomLeft });
+	aiWorld.AddWall({ bottomLeft, bottomRight });/////
+	aiWorld.AddWall({ bottomLeft, topLeft });
 
 
 }
@@ -257,9 +259,11 @@ bool GameLoop(float deltaTime)
 				agent->SetCohesionWeight(weightCohesion);
 			}
 		}
+
 		if (ImGui::CollapsingHeader("visualSensor", ImGuiTreeNodeFlags_DefaultOpen))
 		{
-			ImGui::DragFloat("viewrange", &viewRange, 1.0f, 10.0f, 100.0f);
+			ImGui::DragFloat("viewRange", &viewRange, 1.0f, 100.0f, 1000.0f);
+			ImGui::DragFloat("viewAngle", &viewAngle, 1.0f, 1.0f, 180.0f);
 			//something
 
 		}
@@ -294,13 +298,12 @@ bool GameLoop(float deltaTime)
 	}
 
 
-	target.Update(deltaTime);
 
 	for (auto& agent : scvAgents)
 	{
 		agent->Update(deltaTime);
 	}
-	target.Render();
+
 	for (auto& agent : scvAgents)
 	{
 		agent->Render();
@@ -328,7 +331,6 @@ bool GameLoop(float deltaTime)
 
 void GameCleanup()
 {
-	target.Unload();
 	for (auto& agent : scvAgents)
 	{
 		agent->Unload();

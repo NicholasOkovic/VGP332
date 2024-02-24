@@ -2,7 +2,7 @@
 
 #include "AI.h"
 
-class VisualSensor;
+
 
 class SCV : public AI::Agent
 {
@@ -44,7 +44,7 @@ private:
 
 	std::unique_ptr<AI::PerceptionModule> mPerceptionModule;
 
-	VisualSensor* mVisualSensor = nullptr;
+
 
 
 	std::unique_ptr<AI::SteeringModule> mSteeringModule;

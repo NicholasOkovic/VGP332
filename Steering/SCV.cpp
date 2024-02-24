@@ -1,7 +1,6 @@
 
 #include "SCV.h"
 #include "TypeId.h"
-#include 
 
 extern float wanderJitter;
 extern float wanderRadius;
@@ -12,34 +11,7 @@ namespace
 {
 	float ComputeImportance(const AI::Agent& agent, const AI::MemoryRecord& record)
 	{
-		AgentType entityType = static_cast<AgentType>(record.GetProperty<int>("type"));
-		switch (entityType)
-		{
-		case AgentType::Invalid:
-		{
-			score = 0.0f;
-			return 0;
-		}
-		case AgentType::SCV:
-		{
-			X::Math::Vector2 lastSeenPos = record.GetProperty<X::Math::Vector2>("lastSeenPosition");
-			float distance = X::Math::Distance(agent.position, lastSeenPos);
-			float distanceScore = std::max(500.0f - distance, 0.0f);
-
-		}
-		break;
-		case AgentType::Mineral:
-		{
-			X::Math::Vector2 lastSeenPos = record.GetProperty<X::Math::Vector2>("lastSeenPosition");
-			float distance = X::Math::Distance(agent.position, lastSeenPos);
-			float distanceScore = std::max(500.0f - distance, 0.0f);
-
-		}
-		break;
-
-		default:
-			break;
-		}
+		
 	}
 }
 
@@ -54,7 +26,7 @@ void SCV::Load()
 {
 	mPerceptionModule = std::make_unique<AI::PerceptionModule>(*this, ComputeImportance);
 	mPerceptionModule->SetMemorySpan(2.0f);
-	mVisualSensor = mPerceptionModule->AddSensor<VisualSensor>();
+	
 	//mVisualSensor->targetType = AgentType::Mineral;
 
 
@@ -88,8 +60,7 @@ void SCV::Unload()
 void SCV::Update(float deltaTime)
 {
 	
-	mVisualSensor->viewHalfAngle = viewAngle * X::Math::kDegToRad;
-	mVisualSensor->viewRange = viewRange;
+
 
 	mPerceptionModule->Update(deltaTime);
 
@@ -129,15 +100,7 @@ void SCV::Update(float deltaTime)
 		position.y -= screenHeight;
 	}
 
-	const auto& memoryrecords = mPerceptionModule->GetMemoryRecords();
-	for (auto& memory : memoryrecords)
-	{
-		X::Math::Vector2 pos = memory.GetProperty<X::Math::Vector2>("lastSeenPosition");
-		X::DrawScreenLine(position, pos, X::Colors::White);
-
-		std::string score = std::to_string(memory.importance); //debug
-		//X::DrawScreenText(score.)
-	}
+	
 
 }
 

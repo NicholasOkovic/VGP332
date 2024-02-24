@@ -32,18 +32,33 @@ void AIWorld::UnRegister(Entity* entity)
 
 }
 
-void AI::AIWorld::AddObstacle(const X::Math::Circle& obstacle)
+void AIWorld::AddObstacle(const X::Math::Circle& obstacle)
 {
-	
-
+	mObstacles.push_back(obstacle);
 }
 
-void AI::AIWorld::AddWall(const X::Math::LineSegment& wall)
+void AIWorld::AddWall(const X::Math::LineSegment& wall)
 {
-	for (const X::Math::LineSegment)
-	{
+	mWalls.push_back(wall);
+}
 
+bool AIWorld::HasLineOfSight(const X::Math::LineSegment& lineSegment) const
+{
+	for (const X::Math::LineSegment& wall : mWalls)
+	{
+		if (X::Math::Intersect(lineSegment, wall))
+		{
+			return false;
+		}
 	}
+	for (const X::Math::Circle& obstacle : mObstacles)
+	{
+		if (X::Math::Intersect(lineSegment, obstacle))
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
 

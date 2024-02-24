@@ -29,14 +29,14 @@ namespace AI
 		{
 			if (mStatus == Status::Inactive)
 			{
-				Activate(agent)
+				Activate(agent);
 			}
 		}
 		void ReactivateIfInactive(AgentType& agent)
 		{
 			if (mStatus == Status::Failed)
 			{
-				Activate(agent)
+				Activate(agent);
 			}
 		}
 

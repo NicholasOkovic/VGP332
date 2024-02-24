@@ -4,7 +4,7 @@ using namespace AI;
 void VisualSensor::Update(AI::Agent& agent, AI::MemoryRecords& memory, float deltatime)
 {
 	const float viewRangeSqr = viewRange * viewRange;
-	const AI::EntityPtrs entities = agent.world.GetEntities();
+	const EntityPtrs entities = agent.world.GetEntities();
 
 	for (const Entity* entity : entities)
 	{
@@ -29,8 +29,8 @@ void VisualSensor::Update(AI::Agent& agent, AI::MemoryRecords& memory, float del
 
 		X::Math::Vector2 dirToTarget = X::Math::Normalize(posToTarget);
 		float dot = X::Math::Dot(agent.heading, dirToTarget);
-		float angletoTarget = acos(dot);
-		if (angletoTarget > viewHalfAngle)
+		float angleToTarget = acos(dot);
+		if (angleToTarget > viewHalfAngle)
 		{
 			continue;
 		}
@@ -39,17 +39,16 @@ void VisualSensor::Update(AI::Agent& agent, AI::MemoryRecords& memory, float del
 		if (!agent.world.HasLineOfSight(lineToTarget))
 		{
 			X::DrawScreenLine(agent.position, entity->position, X::Colors::Red);
-				continue;
+			continue;
 		}
 
 
-		auto iter = std::find_if(memory.begin()), memory.end(),
-			[&](const MemoryRecords& m)
+		auto iter = std::find_if(memory.begin(), memory.end(),
+			[&](const MemoryRecord& m)
 			{
-
-			}
+				return entity->GetUniqueId() == m.uniqueId;
+			});
 		
-		//return
 
 		if (iter != memory.end())
 		{
@@ -61,7 +60,7 @@ void VisualSensor::Update(AI::Agent& agent, AI::MemoryRecords& memory, float del
 			auto& newRecord = memory.emplace_back();
 			newRecord.uniqueId = entity->GetUniqueId();
 			newRecord.properties["lastSeenPosition"] = entity->position;
-			newRecord.properties["type"] =static_cast<int> (entity->GetTypeId());
+			newRecord.properties["type"] =static_cast<int>(entity->GetTypeId());
 			newRecord.lastRecordedTime = X::GetTime();
 		}
 
