@@ -11,7 +11,7 @@ namespace
 {
 	float ComputeImportance(const AI::Agent& agent, const AI::MemoryRecord& record)
 	{
-		
+		return 0;
 	}
 }
 
