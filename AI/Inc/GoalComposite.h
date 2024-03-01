@@ -36,7 +36,7 @@ namespace AI {
 			mSubGoals.clear();
 		}
 
-		Status ProcessSubGoal(AgentType& agent)
+		Status ProcessSubGoals(AgentType& agent)
 		{
 			while (!mSubGoals.empty())
 			{
@@ -52,7 +52,7 @@ namespace AI {
 			}
 			if (!mSubGoals.empty())
 			{
-				Status status = mSubGoals.back()->process(agent);	
+				Status status = mSubGoals.back()->Process(agent);	
 				if (status == Status::Completed && mSubGoals.size() > 1)
 				{
 					return Status::Active;

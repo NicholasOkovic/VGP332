@@ -21,7 +21,7 @@ namespace AI
 		virtual Status Process(AgentType& agent) = 0;
 		virtual void Terminate(AgentType& agent) = 0;
 
-		Status GetState() const { return mStatus; }
+		Status GetStatus() const { return mStatus; }
 
 
 	protected:
@@ -32,7 +32,7 @@ namespace AI
 				Activate(agent);
 			}
 		}
-		void ReactivateIfInactive(AgentType& agent)
+		void ReactivateIfFailed(AgentType& agent)
 		{
 			if (mStatus == Status::Failed)
 			{

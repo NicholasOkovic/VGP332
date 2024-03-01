@@ -19,7 +19,7 @@ namespace AI
 		{
 			static_assert(std::is_base_of_v<Sensor, SensorType>, "perception: must be of tyope sensor");
 
-			auto& newSensor = mSensors.emplace_back(std::make_unique<SensorType()>);
+			auto& newSensor = mSensors.emplace_back(std::make_unique<SensorType>());
 			return static_cast<SensorType*>(newSensor.get());
 		}
 		void Update(float deltaTime);

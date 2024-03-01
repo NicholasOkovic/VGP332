@@ -42,7 +42,7 @@ namespace AI {
 
 		void Arbitrate()
 		{
-			StrategyType& bestStrategy = nullptr;
+			StrategyType* bestStrategy = nullptr;
 			float mostDesirable = 0.0f;
 			
 			for (auto& strategy : mStrategies)
