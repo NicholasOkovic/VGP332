@@ -39,7 +39,7 @@ namespace
 		default:
 			break;
 		}
-		return 0.0f;
+		return score;
 	}
 }
 
@@ -72,6 +72,7 @@ void SCV::Load()
 	mPursuitBehavior = mSteeringModule->AddBehavior<AI::PursuitBehavior>();
 	mSeperationBehavior = mSteeringModule->AddBehavior<AI::SeparationBehavior>();
 	mAlignmentBehavior = mSteeringModule->AddBehavior<AI::AlignmentBehavior>();
+	mCohesionBehavior = mSteeringModule->AddBehavior<AI::CohesionBehavior>();
 
 
 	const float screenWidth = static_cast<float>(X::GetScreenWidth());
@@ -92,13 +93,15 @@ void SCV::Unload()
 
 void SCV::Update(float deltaTime)
 {
-	mPerceptionModule->Update(deltaTime);
+	
 
 	mVisualSensor->viewRange = viewRange;
 	mVisualSensor->viewHalfAngle = viewAngle * X::Math::kDegToRad;
 
 	mVisualSensor2->viewRange = viewRange * 1.5f;
 	mVisualSensor2->viewHalfAngle = viewAngle * X::Math::kDegToRad;
+
+	mPerceptionModule->Update(deltaTime);
 
 	if (mWanderBehavior != nullptr)
 	{
@@ -163,6 +166,8 @@ void SCV::ShowDebug(bool debug)
 	mWanderBehavior->ShowDebug(debug);
 	mPursuitBehavior->ShowDebug(debug);
 	mSeperationBehavior->ShowDebug(debug);
+	mAlignmentBehavior->ShowDebug(debug);
+	mCohesionBehavior->ShowDebug(debug);
 }
 void SCV::SetSeek(bool active)
 {
@@ -197,6 +202,9 @@ void SCV::SetCohesion(bool active)
 {
 	mCohesionBehavior->SetActive(active);
 }
+
+
+/////////
 
 void SCV::SetSeekWeight(float weight)
 {

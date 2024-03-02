@@ -39,7 +39,7 @@ namespace
 		default:
 			break;
 		}
-		return 0.0f;
+		return score;
 	}
 }
 

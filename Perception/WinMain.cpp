@@ -9,8 +9,7 @@
 
 using namespace AI;
 
-extern float viewRange;
-extern float viewAngle;
+
 
 
 
@@ -64,14 +63,16 @@ void SpawnAgent()
 		{ screenWidth - 100.0f, screenHeight - 100.0f });
 	agent->destination = destination;
 	agent->radius = radius;
-	agent->ShowDebug(showDebug);
+
+	agent->ShowDebug(showDebug);			
 	agent->SetFlee(useFlee);
 	agent->SetSeek(useSeek);
 	agent->SetArrive(useArrive);
 	agent->SetWander(useWander);
 	agent->SetSeperation(useSeperation);
+	agent->SetPursuit(usePursuit);
 	agent->SetAlignment(useAlignment);
-	agent->SetCohesion(useCohesion);
+	agent->SetCohesion(useCohesion);		
 
 }
 void KillAgent()
@@ -99,8 +100,8 @@ void GameInit()
 	X::Math::Vector2 bottomLeft(500.0f, 600.0f);
 	X::Math::Vector2 bottomRight(600.0f, 600.0f);
 	aiWorld.AddWall({ topLeft, topRight });
-	aiWorld.AddWall({ topRight, bottomLeft });
-	aiWorld.AddWall({ bottomLeft, bottomRight });/////
+	aiWorld.AddWall({ topRight, bottomRight });
+	aiWorld.AddWall({ bottomLeft, bottomRight });
 	aiWorld.AddWall({ bottomLeft, topLeft });
 
 
@@ -108,7 +109,6 @@ void GameInit()
 
 bool GameLoop(float deltaTime)
 {
-	
 
 	ImGui::Begin("Steering", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 	{
@@ -264,8 +264,6 @@ bool GameLoop(float deltaTime)
 		{
 			ImGui::DragFloat("viewRange", &viewRange, 1.0f, 100.0f, 1000.0f);
 			ImGui::DragFloat("viewAngle", &viewAngle, 1.0f, 1.0f, 180.0f);
-			//something
-
 		}
 	}
 	ImGui::End();

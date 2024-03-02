@@ -1,2 +1,17 @@
-﻿  PerceptionModule.cpp
-  AI.vcxproj -> C:\Users\LCv2242596\Documents\GitHub\VGP332\x64\Debug\AI.lib
+﻿  Precompiled.cpp
+  AIWorld.cpp
+  AStar.cpp
+  BFS.cpp
+  DFS.cpp
+  Dijkstra.cpp
+  Entity.cpp
+  EvadeBehavior.cpp
+  GridBasedGraph.cpp
+  GroupBehavior.cpp
+  PerceptionModule.cpp
+  PursuitBehavior.cpp
+  SeekBehavior.cpp
+  SteeringModule.cpp
+  WanderBehavior.cpp
+  Generating Code...
+  AI.vcxproj -> D:\Desktop\artificialInt\x64\Debug\AI.lib

@@ -4,7 +4,7 @@
 
 
 Mineral::Mineral(AI::AIWorld& world)
-	: Entity(world, static_cast<uint32_t>(AgentType::Mineral))
+	: AI::Entity(world, static_cast<uint32_t>(AgentType::Mineral))
 {
 }
 

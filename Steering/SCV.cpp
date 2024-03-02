@@ -123,6 +123,7 @@ void SCV::ShowDebug(bool debug)
 	mAlignmentBehavior->ShowDebug(debug);
 	mCohesionBehavior->ShowDebug(debug);
 	mEvadeBehavior->ShowDebug(debug);
+
 }
 void SCV::SetSeek(bool active)
 {
@@ -161,7 +162,6 @@ void SCV::SetEvade(bool active)
 {
 	mEvadeBehavior->SetActive(active);
 }
-
 
 
 
