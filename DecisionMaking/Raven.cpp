@@ -2,7 +2,7 @@
 
 #include "TypeId.h"
 #include "VisualSensor.h"
-#include"RavenStrategy.h"
+#include "RavenStrategy.h"
 #include "RavenHuntStrategy.h"
 #include "GoToMineralStrategy.h"
 //using namespace AI;
@@ -27,10 +27,7 @@ namespace
 
 		case AgentType::SCV:
 		{
-			X::Math::Vector2 lastSeenPos = record.GetProperty<X::Math::Vector2>("lastSeenPosition");
-			float distance = X::Math::Distance(agent.position, lastSeenPos);
-			float distanceScore = std::max(500.0f - distance, 0.0f);
-			score = distanceScore;
+			score = 0.0f;
 		}
 		break;
 		case AgentType::Mineral:
@@ -68,7 +65,8 @@ void Raven::Load()
 {
 	mPerceptionModule = std::make_unique<AI::PerceptionModule>(*this, ComputeImportance);
 	mPerceptionModule->SetMemorySpan(3.0f);
-	mPerceptionModule->AddSensor<VisualSensor>();
+	mVisualSensor = mPerceptionModule->AddSensor<VisualSensor>();
+	mVisualSensor->targetType = AgentType::Mineral;
 
 
 	mSteeringModule = std::make_unique<AI::SteeringModule>(*this);
@@ -77,10 +75,9 @@ void Raven::Load()
 	mArriveBehavior = mSteeringModule->AddBehavior<AI::ArriveBehavior>();
 
 	mDecisionModule = std::make_unique<AI::DecisionModule<Raven>>(*this);
-	mDecisionModule = AddStrategy<RavenHuntSTrategy>();
+	mDecisionModule->AddStrategy<RavenHuntSTrategy>();
 	auto strategy = mDecisionModule->AddStrategy<GoalToMineralStrategy>();
-	strategy->SetPerception = mDecisionModule->
-
+	strategy->SetPerception(mPerceptionModule.get());
 
 	for (int i = 0; i < mTexturesIds.size(); i++)
 	{
@@ -99,8 +96,8 @@ void Raven::Unload()
 
 void Raven::Update(float deltaTime)
 {
-	mVisualSensor->viewRange
-	mVisualSensor->viewHalfRange
+	mVisualSensor->viewRange = viewRange;
+	mVisualSensor->viewHalfAngle = viewAngle * X::Math::kDegToRad;
 
 	mPerceptionModule->Update(deltaTime);
 	mDecisionModule->Update();
@@ -140,7 +137,7 @@ void Raven::Update(float deltaTime)
 	for (auto& memory : memoryRecords)
 	{
 		X::Math::Vector2 pos = memory.GetProperty<X::Math::Vector2>("lastSeenPosition");
-		X::DrawScreenLine(position, pos, X::Colors::White);
+		X::DrawScreenLine(position, pos, X::Colors::Purple);
 
 		std::string score = std::to_string(memory.importance);
 		X::DrawScreenText(score.c_str(), pos.x, pos.y, 12.0f, X::Colors::Purple);

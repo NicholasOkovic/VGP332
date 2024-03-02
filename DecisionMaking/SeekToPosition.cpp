@@ -14,7 +14,7 @@ void GoalSeekToPosition::Activate(Raven& agent)
 GoalSeekToPosition::Status GoalSeekToPosition::Process(Raven& agent)
 {
 	ActivateIfInactive(agent);
-	if (X::Math::DistanceSqr(agent.position, mDestination) < mDestinationRange * mDestination)
+	if (X::Math::DistanceSqr(agent.position, mDestination) < mDestinationRange * mDestinationRange)
 	{
 		mStatus = GoalSeekToPosition::Status::Completed;
 	}

@@ -21,7 +21,7 @@ public:
 	void SetWander(bool active);
 	void setTargetDestination(const X::Math::Vector2& targetdestination);
 
-	const AI::PerceptionModule* GetPerception() const { return mPerceptionModule.get() }
+	const AI::PerceptionModule* GetPerception() const { return mPerceptionModule.get(); }
 
 
 
@@ -30,7 +30,7 @@ private:
 	std::unique_ptr<AI::SteeringModule> mSteeringModule;
 	std::unique_ptr<AI::DecisionModule<Raven>> mDecisionModule;
 
-	VisualSensor* mVisualSensor = nullptr;////////////
+	VisualSensor* mVisualSensor = nullptr;
 
 	AI::SeekBehavior* mSeekBehavior = nullptr;
 	AI::WanderingBehavior* mWanderBehavior = nullptr;

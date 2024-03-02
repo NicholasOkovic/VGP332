@@ -10,7 +10,7 @@ public:
 
 	void Initialize();
 	void Render();
-	const int GetHealth() { return mHealth; }			//////
+	int GetHealth() const { return mHealth; }			
 	void SetHealth(int health) { mHealth = health; }
 
 

@@ -23,7 +23,7 @@ void VisualSensor::Update(AI::Agent& agent, AI::MemoryRecords& memory, float del
 
 
 		X::Math::Vector2 posToTarget = entity->position - agent.position;
-		if (X::Math::MagnitudeSqr (posToTarget) > viewRangeSqr)
+		if (X::Math::MagnitudeSqr(posToTarget) > viewRangeSqr)
 		{
 			continue;
 		}
@@ -49,7 +49,7 @@ void VisualSensor::Update(AI::Agent& agent, AI::MemoryRecords& memory, float del
 			{
 				return entity->GetUniqueId() == m.uniqueId;
 			});
-		
+
 
 		if (iter != memory.end())
 		{
@@ -57,9 +57,8 @@ void VisualSensor::Update(AI::Agent& agent, AI::MemoryRecords& memory, float del
 			iter->lastRecordedTime = X::GetTime();
 			if (entity->GetTypeId() == static_cast<uint32_t>(AgentType::Mineral))
 			{
-
 				const Mineral* mineral = static_cast<const Mineral*>(entity);
-				iter->properties["health"] = entity->position;
+				iter->properties["health"] = mineral->GetHealth();
 			}
 		}
 		else
@@ -67,10 +66,15 @@ void VisualSensor::Update(AI::Agent& agent, AI::MemoryRecords& memory, float del
 			auto& newRecord = memory.emplace_back();
 			newRecord.uniqueId = entity->GetUniqueId();
 			newRecord.properties["lastSeenPosition"] = entity->position;
-			newRecord.properties["type"] =static_cast<int>(entity->GetTypeId());
+			newRecord.properties["type"] = static_cast<int>(entity->GetTypeId());
 			newRecord.lastRecordedTime = X::GetTime();
+			if (entity->GetTypeId() == static_cast<uint32_t>(AgentType::Mineral))
+			{
+				const Mineral* mineral = static_cast<const Mineral*>(entity);
+				newRecord.properties["health"] = mineral->GetHealth();
+			}
 		}
-
+	}
 
 		X::Math::Vector2 fovStart = X::Math::Rotate(agent.heading * viewRange, -viewHalfAngle);
 		X::Math::Vector2 fovEnd = X::Math::Rotate(agent.heading * viewRange, viewHalfAngle);
@@ -80,7 +84,7 @@ void VisualSensor::Update(AI::Agent& agent, AI::MemoryRecords& memory, float del
 		float angle = atan2(agent.heading.y, agent.heading.x);
 		X::DrawScreenArc(agent.position, viewRange, angle - viewHalfAngle, angle + viewHalfAngle, X::Colors::Cyan);
 
-	}
+	
 
 
 

@@ -123,8 +123,8 @@ void GameInit()
 	X::Math::Vector2 bottomLeft(500.0f, 600.0f);
 	X::Math::Vector2 bottomRight(600.0f, 600.0f);
 	aiWorld.AddWall({ topLeft, topRight });
-	aiWorld.AddWall({ topRight, bottomLeft });
-	aiWorld.AddWall({ bottomLeft, bottomRight });/////
+	aiWorld.AddWall({ topRight, bottomRight });
+	aiWorld.AddWall({ bottomLeft, bottomRight });
 	aiWorld.AddWall({ bottomLeft, topLeft });
 
 

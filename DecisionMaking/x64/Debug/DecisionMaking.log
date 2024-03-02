@@ -1,73 +1,10 @@
-﻿  GoalArriveAtPosition.cpp
-  GoalHarvestMineral.cpp
-D:\Desktop\artificialInt\DecisionMaking\Raven.h(24,85): error C2143: syntax error: missing ';' before '}'
-  (compiling source file 'GoalArriveAtPosition.cpp')
-  
-D:\Desktop\artificialInt\DecisionMaking\Raven.h(24,85): error C2143: syntax error: missing ';' before '}'
-  (compiling source file 'GoalHarvestMineral.cpp')
-  
-  GoalMoveToPosition.cpp
-D:\Desktop\artificialInt\DecisionMaking\Raven.h(24,85): error C2143: syntax error: missing ';' before '}'
-  (compiling source file 'GoalMoveToPosition.cpp')
-  
-  GoalWander.cpp
-D:\Desktop\artificialInt\DecisionMaking\Raven.h(24,85): error C2143: syntax error: missing ';' before '}'
-  (compiling source file 'GoalWander.cpp')
-  
-  GoToMineralStrategy.cpp
-D:\Desktop\artificialInt\DecisionMaking\Raven.h(24,85): error C2143: syntax error: missing ';' before '}'
-  (compiling source file 'GoToMineralStrategy.cpp')
-  
-  Mineral.cpp
-  Raven.cpp
-D:\Desktop\artificialInt\DecisionMaking\Raven.h(24,85): error C2143: syntax error: missing ';' before '}'
-  (compiling source file 'Raven.cpp')
-  
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(80,20): error C2065: 'AddStrategy': undeclared identifier
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(80,32): error C2275: 'RavenHuntSTrategy': expected an expression instead of a type
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(80,51): error C2059: syntax error: ')'
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(85,2): error C2059: syntax error: 'for'
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(85,18): error C2065: 'i': undeclared identifier
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(85,43): error C2065: 'i': undeclared identifier
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(85,46): error C2059: syntax error: ')'
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(87,3): error C2062: type 'char' unexpected
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(88,13): error C2065: 'name': undeclared identifier
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(88,43): error C2065: 'i': undeclared identifier
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(89,16): error C2065: 'i': undeclared identifier
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(89,36): error C2065: 'name': undeclared identifier
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(94,1): error C2059: syntax error: '}'
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(94,1): error C2143: syntax error: missing ';' before '}'
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(97,1): error C2143: syntax error: missing ';' before '{'
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(97,1): error C2447: '{': missing function header (old-style formal list?)
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(103,2): error C2146: syntax error: missing ';' before identifier 'mVisualSensor'
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(103,17): error C2039: 'viewHalfRange': is not a member of 'VisualSensor'
-  D:\Desktop\artificialInt\DecisionMaking\VisualSensor.h(8,7):
-  see declaration of 'VisualSensor'
-  
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(105,2): error C2146: syntax error: missing ';' before identifier 'mPerceptionModule'
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(119,45): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(119,26): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(120,47): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(120,27): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
+﻿  Raven.cpp
+D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(116,45): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
+D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(116,26): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
+D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(117,47): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
+D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(117,27): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
   RavenHuntStrategy.cpp
-D:\Desktop\artificialInt\DecisionMaking\Raven.h(24,85): error C2143: syntax error: missing ';' before '}'
-  (compiling source file 'RavenHuntStrategy.cpp')
-  
-  RavenStrategy.cpp
-D:\Desktop\artificialInt\DecisionMaking\Raven.h(24,85): error C2143: syntax error: missing ';' before '}'
-  (compiling source file 'RavenStrategy.cpp')
-  
-  SCV.cpp
-  SeekToPosition.cpp
-D:\Desktop\artificialInt\DecisionMaking\Raven.h(24,85): error C2143: syntax error: missing ';' before '}'
-  (compiling source file 'SeekToPosition.cpp')
-  
-D:\Desktop\artificialInt\DecisionMaking\SeekToPosition.cpp(17,77): error C2677: binary '*': no global operator found which takes type 'X::Math::Vector2' (or there is no acceptable conversion)
-  VisualSensor.cpp
   WinMain.cpp
-D:\Desktop\artificialInt\DecisionMaking\Raven.h(24,85): error C2143: syntax error: missing ';' before '}'
-  (compiling source file 'WinMain.cpp')
-  
 D:\Desktop\artificialInt\DecisionMaking\WinMain.cpp(63,45): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
 D:\Desktop\artificialInt\DecisionMaking\WinMain.cpp(63,26): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
 D:\Desktop\artificialInt\DecisionMaking\WinMain.cpp(64,47): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
@@ -77,3 +14,5 @@ D:\Desktop\artificialInt\DecisionMaking\WinMain.cpp(88,26): warning C4244: 'init
 D:\Desktop\artificialInt\DecisionMaking\WinMain.cpp(89,47): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
 D:\Desktop\artificialInt\DecisionMaking\WinMain.cpp(89,27): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
   Generating Code...
+     Creating library D:\Desktop\artificialInt\x64\Debug\DecisionMaking.lib and object D:\Desktop\artificialInt\x64\Debug\DecisionMaking.exp
+  DecisionMaking.vcxproj -> D:\Desktop\artificialInt\x64\Debug\DecisionMaking.exe
