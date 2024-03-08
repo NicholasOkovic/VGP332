@@ -1,10 +1,10 @@
-#include "GoToMineralStrategy.h"
+#include "RavenHarvestStrategy.h"
 
 #include "TypeId.h"
-#include "GoalMoveToPosition.h"
+#include "GoalHarvestMineral.h"
 #include "Mineral.h"
 
-float GoalToMineralStrategy::CalculateDesirability(Raven& agent) const
+float RavenHarvestStrategy::CalculateDesirability(Raven& agent) const
 {
 	Mineral* mineral = nullptr;
 	AI::EntityPtrs minerals = agent.world.GetEntitiesInRange({ agent.destination, 1.0f }, static_cast<uint32_t>(AgentType::Mineral));
@@ -26,9 +26,9 @@ float GoalToMineralStrategy::CalculateDesirability(Raven& agent) const
 }
 
 
-std::unique_ptr<AI::Goal<Raven>> GoalToMineralStrategy::CreateGoal() const
+std::unique_ptr<AI::Goal<Raven>> RavenHarvestStrategy::CreateGoal() const
 {
 
-	auto newGoal = std::make_unique<GoalMoveToPosition>();
+	auto newGoal = std::make_unique<GoalHarvestMineral>();
 	return newGoal;
 }

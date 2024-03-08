@@ -33,8 +33,8 @@ GoalHarvestMineral::Status GoalHarvestMineral::Process(Raven& agent)
 	else if (mStartTime + 5.0f < X::GetTime())
 	{
 		
-			mineral->SetHealth(0);
-			agent.target = nullptr;
+		mineral->SetHealth(0);
+		agent.target = nullptr;
 		mStatus = GoalHarvestMineral::Status::Completed;
 
 	}
