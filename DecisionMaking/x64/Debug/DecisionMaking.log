@@ -1,18 +1,20 @@
-﻿  Raven.cpp
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(116,45): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(116,26): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(117,47): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
-D:\Desktop\artificialInt\DecisionMaking\Raven.cpp(117,27): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
+﻿  GoalHarvestMineral.cpp
+  GoalMoveToPosition.cpp
+  RavenHarvestStrategy.cpp
   RavenHuntStrategy.cpp
   WinMain.cpp
-D:\Desktop\artificialInt\DecisionMaking\WinMain.cpp(63,45): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
-D:\Desktop\artificialInt\DecisionMaking\WinMain.cpp(63,26): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
-D:\Desktop\artificialInt\DecisionMaking\WinMain.cpp(64,47): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
-D:\Desktop\artificialInt\DecisionMaking\WinMain.cpp(64,27): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
-D:\Desktop\artificialInt\DecisionMaking\WinMain.cpp(88,45): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
-D:\Desktop\artificialInt\DecisionMaking\WinMain.cpp(88,26): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
-D:\Desktop\artificialInt\DecisionMaking\WinMain.cpp(89,47): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
-D:\Desktop\artificialInt\DecisionMaking\WinMain.cpp(89,27): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
+C:\Users\LCv2242596\Documents\GitHub\VGP332\DecisionMaking\WinMain.cpp(63,45): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
+C:\Users\LCv2242596\Documents\GitHub\VGP332\DecisionMaking\WinMain.cpp(63,26): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
+C:\Users\LCv2242596\Documents\GitHub\VGP332\DecisionMaking\WinMain.cpp(64,47): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
+C:\Users\LCv2242596\Documents\GitHub\VGP332\DecisionMaking\WinMain.cpp(64,27): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
+C:\Users\LCv2242596\Documents\GitHub\VGP332\DecisionMaking\WinMain.cpp(88,45): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
+C:\Users\LCv2242596\Documents\GitHub\VGP332\DecisionMaking\WinMain.cpp(88,26): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
+C:\Users\LCv2242596\Documents\GitHub\VGP332\DecisionMaking\WinMain.cpp(89,47): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
+C:\Users\LCv2242596\Documents\GitHub\VGP332\DecisionMaking\WinMain.cpp(89,27): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
   Generating Code...
-     Creating library D:\Desktop\artificialInt\x64\Debug\DecisionMaking.lib and object D:\Desktop\artificialInt\x64\Debug\DecisionMaking.exp
-  DecisionMaking.vcxproj -> D:\Desktop\artificialInt\x64\Debug\DecisionMaking.exe
+RavenHarvestStrategy.obj : error LNK2005: "public: virtual float __cdecl GoalToMineralStrategy::CalculateDesirability(class Raven &)const " (?CalculateDesirability@GoalToMineralStrategy@@UEBAMAEAVRaven@@@Z) already defined in GoToMineralStrategy.obj
+RavenHarvestStrategy.obj : error LNK2005: "public: virtual class std::unique_ptr<class AI::Goal<class Raven>,struct std::default_delete<class AI::Goal<class Raven> > > __cdecl GoalToMineralStrategy::CreateGoal(void)const " (?CreateGoal@GoalToMineralStrategy@@UEBA?AV?$unique_ptr@V?$Goal@VRaven@@@AI@@U?$default_delete@V?$Goal@VRaven@@@AI@@@std@@@std@@XZ) already defined in GoToMineralStrategy.obj
+     Creating library C:\Users\LCv2242596\Documents\GitHub\VGP332\x64\Debug\DecisionMaking.lib and object C:\Users\LCv2242596\Documents\GitHub\VGP332\x64\Debug\DecisionMaking.exp
+Raven.obj : error LNK2001: unresolved external symbol "public: virtual float __cdecl RavenHarvestStrategy::CalculateDesirability(class Raven &)const " (?CalculateDesirability@RavenHarvestStrategy@@UEBAMAEAVRaven@@@Z)
+Raven.obj : error LNK2001: unresolved external symbol "public: virtual class std::unique_ptr<class AI::Goal<class Raven>,struct std::default_delete<class AI::Goal<class Raven> > > __cdecl RavenHarvestStrategy::CreateGoal(void)const " (?CreateGoal@RavenHarvestStrategy@@UEBA?AV?$unique_ptr@V?$Goal@VRaven@@@AI@@U?$default_delete@V?$Goal@VRaven@@@AI@@@std@@@std@@XZ)
+C:\Users\LCv2242596\Documents\GitHub\VGP332\x64\Debug\DecisionMaking.exe : fatal error LNK1120: 2 unresolved externals

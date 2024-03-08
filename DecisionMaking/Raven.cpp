@@ -4,6 +4,7 @@
 #include "VisualSensor.h"
 #include "RavenStrategy.h"
 #include "RavenHuntStrategy.h"
+#include "RavenHarvestStrategy.h"
 #include "GoToMineralStrategy.h"
 //using namespace AI;
 
@@ -76,6 +77,7 @@ void Raven::Load()
 
 	mDecisionModule = std::make_unique<AI::DecisionModule<Raven>>(*this);
 	mDecisionModule->AddStrategy<RavenHuntSTrategy>();
+	mDecisionModule->AddStrategy<RavenHarvestStrategy>();
 	auto strategy = mDecisionModule->AddStrategy<GoalToMineralStrategy>();
 	strategy->SetPerception(mPerceptionModule.get());
 

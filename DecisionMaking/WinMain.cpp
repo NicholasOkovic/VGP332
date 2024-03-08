@@ -99,10 +99,10 @@ void SpawnRaven()
 }
 void KillRaven()
 {
-	auto& agent = scvAgents.back();
+	auto& agent = ravenAgents.back();
 	agent->Unload();
 
-	scvAgents.pop_back();
+	ravenAgents.pop_back();
 }
 
 
@@ -270,6 +270,20 @@ bool GameLoop(float deltaTime)
 	for (auto& agent : ravenAgents)
 	{
 		agent->Render();
+	}
+	
+	auto iter = minerals.begin();
+	while (iter != minerals.end())
+	{
+		if (iter->get()->GetHealth() == 0)
+		{
+			iter->reset();
+			iter = minerals.erase(iter);
+		}
+		else
+		{
+			++iter;
+		}
 	}
 	for (auto& mineral : minerals)
 	{

@@ -47,6 +47,8 @@ std::unique_ptr<AI::Goal<Raven>> GoalToMineralStrategy::CreateGoal() const
 			}
 		}
 	}
+
+
 	auto newGoal = std::make_unique<GoalMoveToPosition>();
 	newGoal->SetDestination(targetDestination);
 	return newGoal;
