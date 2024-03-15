@@ -131,10 +131,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GoalArriveAtPosition.h" />
+    <ClInclude Include="GoalMoveToPosition.h" />
+    <ClInclude Include="GoalSeekToPosition.h" />
+    <ClInclude Include="Mineral.h" />
+    <ClInclude Include="Raven.h" />
+    <ClInclude Include="RavenStrategy.h" />
+    <ClInclude Include="SCV.h" />
     <ClInclude Include="TileMap.h" />
+    <ClInclude Include="TypeId.h" />
+    <ClInclude Include="VisualSensor.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GoalArriveAtPosition.cpp" />
+    <ClCompile Include="GoalMoveToPosition.cpp" />
+    <ClCompile Include="GoalSeekToPosition.cpp" />
+    <ClCompile Include="Mineral.cpp" />
+    <ClCompile Include="Raven.cpp" />
+    <ClCompile Include="RavenStrategy.cpp" />
+    <ClCompile Include="SCV.cpp" />
     <ClCompile Include="TileMap.cpp" />
+    <ClCompile Include="VisualSensor.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>

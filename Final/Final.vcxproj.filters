@@ -13,10 +13,46 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="RavenStrategy">
+      <UniqueIdentifier>{5c39036c-a36a-4119-bb60-751a19864597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Goals Atomic">
+      <UniqueIdentifier>{8f9b7e37-e6b3-4d12-8b7a-fd608f3c785c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Goals Composite">
+      <UniqueIdentifier>{4802a199-55b3-4cbc-b4a8-471aa2a238cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TileMap.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mineral.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Raven.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SCV.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeId.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VisualSensor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RavenStrategy.h">
+      <Filter>RavenStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="GoalMoveToPosition.h">
+      <Filter>Goals Composite</Filter>
+    </ClInclude>
+    <ClInclude Include="GoalArriveAtPosition.h">
+      <Filter>Goals Atomic</Filter>
+    </ClInclude>
+    <ClInclude Include="GoalSeekToPosition.h">
+      <Filter>Goals Atomic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -25,6 +61,30 @@
     </ClCompile>
     <ClCompile Include="TileMap.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mineral.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Raven.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SCV.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualSensor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RavenStrategy.cpp">
+      <Filter>RavenStrategy</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalMoveToPosition.cpp">
+      <Filter>Goals Composite</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalArriveAtPosition.cpp">
+      <Filter>Goals Atomic</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalSeekToPosition.cpp">
+      <Filter>Goals Atomic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

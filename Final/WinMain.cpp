@@ -2,6 +2,17 @@
 #include <XEngine.h> // <> for external includes, "" for internal includes
 #include <ImGui/Inc/imgui.h>
 
+
+#include "SCV.h"
+#include "Mineral.h"
+#include "Raven.h"
+
+using namespace AI;
+
+extern float viewRange;
+extern float viewAngle;
+
+
 TileMap tileMap;
 X::TextureId textureId;
 X::Math::Vector2 position;
@@ -12,12 +23,73 @@ int endX = 20;
 int endY = 12;
 
 
+float wanderJitter = 5.0f;
+float wanderRadius = 20.0f;
+float wanderDistance = 50.0f;
+float radius = 50.0f;
+
+
+float viewRange = 300.0f;
+float viewAngle = 45.0f;
+
+
+
+
+
+AIWorld aiWorld;
+std::vector<std::unique_ptr<Raven>> ravenAgents;
+std::vector<std::unique_ptr<SCV>> scvAgents;
+std::vector<std::unique_ptr<Mineral>> minerals;
+
+X::Math::Vector2 destination = X::Math::Vector2::Zero();
+
 //--------------------------------------------------
+
+bool showDebug = false;
+bool useSeek = false;
+bool useWander = false;
+bool useArrive = false;
+
+
+void SpawnRaven()
+{
+	auto& agent = ravenAgents.emplace_back(std::make_unique<Raven>(aiWorld));
+	agent->Load();
+
+	const float screenWidth = X::GetScreenWidth();
+	const float screenHeight = X::GetScreenHeight();
+
+	agent->position = X::RandomVector2({ 100.0f, 100.0f },
+		{ screenWidth - 100.0f, screenHeight - 100.0f });
+	agent->destination = destination;
+	agent->radius = radius;
+	agent->ShowDebug(showDebug);
+	agent->SetSeek(useSeek);
+	//agent->SetWander(useWander);
+	
+
+}
+void KillRaven()
+{
+	auto& agent = ravenAgents.back();
+	agent->Unload();
+
+	ravenAgents.pop_back();
+}
 
 void GameInit()
 {
+	aiWorld.Initialize();
+	for (uint32_t i = 0; i < 10; ++i)
+	{
+		auto& mineral = minerals.emplace_back(std::make_unique<Mineral>(aiWorld));
+		mineral->Initialize();
+	}
 	tileMap.LoadTiles("tiles.txt");
 	tileMap.LoadMap("map.txt");
+
+
+
 
 	textureId = X::LoadTexture("bird1.png");
 	position = { 100.0f, 100.0f };
@@ -60,11 +132,44 @@ bool GameLoop(float deltaTime)
 			path = tileMap.FindPathAStar(startX, startY, endX, endY);
 		}
 
-		int test = 0;
-		ImGui::DragInt("TestValue", &test);
-		ImGui::Button("Press");
+		if (ImGui::Button("SpawnRaven"))
+		{
+			SpawnRaven();
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("KillRaven") && !ravenAgents.empty())
+		{
+			KillRaven();
+		}
+		
+
+		if (ImGui::Checkbox("ShowDebug", &showDebug))
+		{
+			for (auto& agent : ravenAgents)
+			{
+				agent->ShowDebug(showDebug);		//spawn raven
+			}
+		}
+		
 	}
 	ImGui::End();
+
+	if (X::IsMousePressed(X::Mouse::LBUTTON))
+	{
+		const float mouseX = static_cast<float>(X::GetMouseScreenX());
+		const float mouseY = static_cast<float>(X::GetMouseScreenY());
+		destination = { mouseX, mouseY };
+		
+
+		for (auto& agent : ravenAgents)
+		{
+			agent->setTargetDestination(destination);
+		}
+	}
+
+	//rendering
+
+	aiWorld.Update();
 
 	tileMap.Render();
 
@@ -75,8 +180,38 @@ bool GameLoop(float deltaTime)
 	{
 		X::DrawScreenLine(path[i - 1], path[i], X::Colors::Red);
 	}
-	X::DrawScreenCircle(tileMap.GetPixelPosition(startX, startY), startY, X::Colors::Pink);
-	X::DrawScreenCircle(tileMap.GetPixelPosition(endX, endY), endY, X::Colors::Yellow);
+	X::DrawScreenCircle(tileMap.GetPixelPosition(startX, startY), 10.0f, X::Colors::Pink);
+	X::DrawScreenCircle(tileMap.GetPixelPosition(endX, endY), 10.0f, X::Colors::Yellow);
+
+	
+
+
+	for (auto& agent : ravenAgents)
+	{
+		agent->Update(deltaTime);		
+	}
+	for (auto& agent : ravenAgents)
+	{
+		agent->Render();		
+	}
+
+	auto iter = minerals.begin();
+	while (iter != minerals.end())
+	{
+		if (iter->get()->GetHealth() == 0)
+		{
+			iter->reset();
+			iter = minerals.erase(iter);
+		}
+		else
+		{
+			++iter;
+		}
+	}
+	for (auto& mineral : minerals)
+	{
+		mineral->Render();
+	}
 
 
 	const bool quit = X::IsKeyPressed(X::Keys::ESCAPE);
@@ -85,7 +220,17 @@ bool GameLoop(float deltaTime)
 
 void GameCleanup()
 {
-
+	for (auto& agent : ravenAgents)
+	{
+		agent->Unload();
+		agent.reset();
+	}
+	for (auto& mineral : minerals)
+	{
+		mineral.reset();
+	}
+	ravenAgents.clear();
+	minerals.clear();
 }
 
 //--------------------------------------------------
