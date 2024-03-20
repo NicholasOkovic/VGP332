@@ -16,11 +16,17 @@
     <Filter Include="RavenStrategy">
       <UniqueIdentifier>{5c39036c-a36a-4119-bb60-751a19864597}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Goals Atomic">
-      <UniqueIdentifier>{8f9b7e37-e6b3-4d12-8b7a-fd608f3c785c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Goals Composite">
       <UniqueIdentifier>{4802a199-55b3-4cbc-b4a8-471aa2a238cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CrowStrategy">
+      <UniqueIdentifier>{6912dc1a-682e-4a7c-a238-d5526ce6fde2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Goals Atomic Raven">
+      <UniqueIdentifier>{8f9b7e37-e6b3-4d12-8b7a-fd608f3c785c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Goals Atomic Crow">
+      <UniqueIdentifier>{34e9c4b7-e706-4adb-9afd-2a23dcd5f6fd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -49,10 +55,34 @@
       <Filter>Goals Composite</Filter>
     </ClInclude>
     <ClInclude Include="GoalArriveAtPosition.h">
-      <Filter>Goals Atomic</Filter>
+      <Filter>Goals Atomic Raven</Filter>
     </ClInclude>
     <ClInclude Include="GoalSeekToPosition.h">
-      <Filter>Goals Atomic</Filter>
+      <Filter>Goals Atomic Raven</Filter>
+    </ClInclude>
+    <ClInclude Include="RavenHarvestStrategy.h">
+      <Filter>RavenStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="RavenHuntStrategy.h">
+      <Filter>RavenStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="RavenGoToMineralStrategy.h">
+      <Filter>RavenStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="GoalHarvestMineral.h">
+      <Filter>Goals Atomic Raven</Filter>
+    </ClInclude>
+    <ClInclude Include="GoalDepositeMineral.h">
+      <Filter>Goals Atomic Raven</Filter>
+    </ClInclude>
+    <ClInclude Include="Crow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CrowHuntStrategy.h">
+      <Filter>CrowStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="GoalWander.h">
+      <Filter>Goals Atomic Crow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -81,10 +111,34 @@
       <Filter>Goals Composite</Filter>
     </ClCompile>
     <ClCompile Include="GoalArriveAtPosition.cpp">
-      <Filter>Goals Atomic</Filter>
+      <Filter>Goals Atomic Raven</Filter>
     </ClCompile>
     <ClCompile Include="GoalSeekToPosition.cpp">
-      <Filter>Goals Atomic</Filter>
+      <Filter>Goals Atomic Raven</Filter>
+    </ClCompile>
+    <ClCompile Include="RavenHarvestStrategy.cpp">
+      <Filter>RavenStrategy</Filter>
+    </ClCompile>
+    <ClCompile Include="RavenHuntStrategy.cpp">
+      <Filter>RavenStrategy</Filter>
+    </ClCompile>
+    <ClCompile Include="RavenGoToMineralStrategy.cpp">
+      <Filter>RavenStrategy</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalHarvestMineral.cpp">
+      <Filter>Goals Atomic Raven</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalDepositeMineral.cpp">
+      <Filter>Goals Atomic Raven</Filter>
+    </ClCompile>
+    <ClCompile Include="Crow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CrowHuntStrategy.cpp">
+      <Filter>CrowStrategy</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalWander.cpp">
+      <Filter>Goals Atomic Crow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

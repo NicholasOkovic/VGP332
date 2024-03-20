@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Ai.h>
-
+#include "TileMap.h"
 #include "Raven.h"
 
 class GoalMoveToPosition : public AI::GoalComposite<Raven>
@@ -17,9 +17,9 @@ public:
 
 	void SetDestination(const X::Math::Vector2& destination);
 
-
+	//void SetTileMap(TileMap& tileMap);
 
 private:
-
+	//TileMap mTileMap;
 	X::Math::Vector2 mDestination;
 };

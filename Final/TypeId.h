@@ -5,7 +5,8 @@ enum class AgentType
 	Invalid = 0,
 	SCV = 1,
 	Mineral = 2,
-	Raven = 3
+	Raven = 3,
+	Crow = 4
 };
 
 

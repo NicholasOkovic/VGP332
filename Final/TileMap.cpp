@@ -256,7 +256,7 @@ Path TileMap::FindPathAStar(int startX, int startY, int endX, int endY)
 			{
 				return 1.0f; 
 			}
-			return 5.0f;	
+			return 1.0f;	
 		};
 	auto manhattanHeuristic = [](const GridBasedGraph::Node* neighbor, const GridBasedGraph::Node* endNode)
 		{

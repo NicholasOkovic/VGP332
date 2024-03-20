@@ -35,7 +35,7 @@ GoalHarvestMineral::Status GoalHarvestMineral::Process(Raven& agent)
 		
 		mineral->SetHealth(0);
 		agent.target = nullptr;
-		mStatus = GoalHarvestMineral::Status::Completed;
+		mStatus = GoalHarvestMineral::Status::Completed;		///make the player go back to spawn
 
 	}
 	return mStatus;

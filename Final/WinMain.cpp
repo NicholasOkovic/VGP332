@@ -6,6 +6,7 @@
 #include "SCV.h"
 #include "Mineral.h"
 #include "Raven.h"
+#include "Crow.h"
 
 using namespace AI;
 
@@ -17,10 +18,10 @@ TileMap tileMap;
 X::TextureId textureId;
 X::Math::Vector2 position;
 Path path;
-int startX = 5;
-int startY = 9;
-int endX = 20;
-int endY = 12;
+int startX = 9;
+int startY = 10;
+int endX = 18; //13
+int endY = 18; //15
 
 
 float wanderJitter = 5.0f;
@@ -38,6 +39,7 @@ float viewAngle = 45.0f;
 
 AIWorld aiWorld;
 std::vector<std::unique_ptr<Raven>> ravenAgents;
+std::vector<std::unique_ptr<Crow>> crowAgents;
 std::vector<std::unique_ptr<SCV>> scvAgents;
 std::vector<std::unique_ptr<Mineral>> minerals;
 
@@ -59,14 +61,15 @@ void SpawnRaven()
 	const float screenWidth = X::GetScreenWidth();
 	const float screenHeight = X::GetScreenHeight();
 
-	agent->position = X::RandomVector2({ 100.0f, 100.0f },
-		{ screenWidth - 100.0f, screenHeight - 100.0f });
+	agent->position = X::RandomVector2({ 10.0f, 10.0f },
+		{ 100.0f, 100.0f });
 	agent->destination = destination;
 	agent->radius = radius;
 	agent->ShowDebug(showDebug);
 	agent->SetSeek(useSeek);
 	//agent->SetWander(useWander);
-	
+
+	agent->SetTileMap(&tileMap);
 
 }
 void KillRaven()
@@ -75,6 +78,33 @@ void KillRaven()
 	agent->Unload();
 
 	ravenAgents.pop_back();
+}
+
+void SpawnCrow()
+{
+	auto& agent = crowAgents.emplace_back(std::make_unique<Crow>(aiWorld));
+	agent->Load();
+
+	const float screenWidth = X::GetScreenWidth();
+	const float screenHeight = X::GetScreenHeight();
+
+	agent->position = X::RandomVector2({ 100.0f, 100.0f },
+		{ 200.0f, 200.0f });
+	agent->destination = destination;
+	agent->radius = radius;
+	agent->ShowDebug(showDebug);
+	agent->SetSeek(useSeek);
+	agent->SetWander(useWander);
+
+	agent->SetTileMap(&tileMap);
+
+}
+void KillCrow()
+{
+	auto& agent = crowAgents.back();
+	agent->Unload();
+
+	crowAgents.pop_back();
 }
 
 void GameInit()
@@ -131,6 +161,16 @@ bool GameLoop(float deltaTime)
 		{
 			path = tileMap.FindPathAStar(startX, startY, endX, endY);
 		}
+		/*if (ImGui::Button("Raven go to point"))
+		{
+			path = tileMap.FindPathAStar(startX, startY, endX, endY);
+
+			for (auto& agent : ravenAgents)
+			{
+				agent->setTargetDestination(path.front());
+			}
+
+		}*/
 
 		if (ImGui::Button("SpawnRaven"))
 		{
@@ -142,6 +182,15 @@ bool GameLoop(float deltaTime)
 			KillRaven();
 		}
 		
+		if (ImGui::Button("SpawnCrow"))
+		{
+			SpawnCrow();
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("KillCrow") && !crowAgents.empty())
+		{
+			KillCrow();
+		}
 
 		if (ImGui::Checkbox("ShowDebug", &showDebug))
 		{
@@ -195,6 +244,15 @@ bool GameLoop(float deltaTime)
 		agent->Render();		
 	}
 
+	for (auto& agent : crowAgents)
+	{
+		agent->Update(deltaTime);
+	}
+	for (auto& agent : crowAgents)
+	{
+		agent->Render();
+	}
+
 	auto iter = minerals.begin();
 	while (iter != minerals.end())
 	{
@@ -225,11 +283,17 @@ void GameCleanup()
 		agent->Unload();
 		agent.reset();
 	}
+	for (auto& agent : crowAgents)
+	{
+		agent->Unload();
+		agent.reset();
+	}
 	for (auto& mineral : minerals)
 	{
 		mineral.reset();
 	}
 	ravenAgents.clear();
+	crowAgents.clear();
 	minerals.clear();
 }
 

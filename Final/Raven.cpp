@@ -3,9 +3,9 @@
 #include "TypeId.h"
 #include "VisualSensor.h"
 #include "RavenStrategy.h"
-//#include "RavenHuntStrategy.h"
-//#include "RavenHarvestStrategy.h"
-//#include "GoToMineralStrategy.h"
+#include "RavenHuntStrategy.h"
+#include "RavenHarvestStrategy.h"
+#include "RavenGoToMineralStrategy.h"
 using namespace AI;
 
 extern float wanderJitter;
@@ -76,10 +76,11 @@ void Raven::Load()
 	mArriveBehavior = mSteeringModule->AddBehavior<AI::ArriveBehavior>();
 
 	mDecisionModule = std::make_unique<AI::DecisionModule<Raven>>(*this);
-	//mDecisionModule->AddStrategy<RavenHuntSTrategy>();
-	//mDecisionModule->AddStrategy<RavenHarvestStrategy>();
-	//auto strategy = mDecisionModule->AddStrategy<GoalToMineralStrategy>();
-	//strategy->SetPerception(mPerceptionModule.get());
+	mDecisionModule->AddStrategy<RavenHuntStrategy>();
+	mDecisionModule->AddStrategy<RavenHarvestStrategy>();
+	
+	auto strategy = mDecisionModule->AddStrategy<RavenGoToMineralStrategy>();
+	strategy->SetPerception(mPerceptionModule.get());
 
 	for (int i = 0; i < mTexturesIds.size(); i++)
 	{
@@ -114,7 +115,7 @@ void Raven::Update(float deltaTime)
 		heading = X::Math::Normalize(velocity);
 	}
 	position += velocity * deltaTime;
-
+/*
 	const float screenWidth = X::GetScreenWidth();
 	const float screenHeight = X::GetScreenHeight();
 
@@ -133,7 +134,7 @@ void Raven::Update(float deltaTime)
 	if (position.y >= screenHeight)
 	{
 		position.y -= screenHeight;
-	}
+	}*/
 
 	const auto& memoryRecords = mPerceptionModule->GetMemoryRecords();
 	for (auto& memory : memoryRecords)
@@ -175,6 +176,7 @@ void Raven::SetArrive(bool active)
 //{
 //	mWanderBehavior->SetActive(active);
 //}
+
 
 void Raven::setTargetDestination(const X::Math::Vector2& targetdestination)
 {

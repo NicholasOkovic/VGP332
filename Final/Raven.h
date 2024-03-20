@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AI.h"
+#include "TileMap.h"
 class VisualSensor;
 
 class Raven : public AI::Agent
@@ -23,7 +24,8 @@ public:
 
 	const AI::PerceptionModule* GetPerception() const { return mPerceptionModule.get(); }
 
-
+	void SetTileMap(TileMap* tileMap) { mTileMap = tileMap; }
+	TileMap GetTileMap() { return *mTileMap; }
 
 private:
 	std::unique_ptr<AI::PerceptionModule> mPerceptionModule;
@@ -39,5 +41,5 @@ private:
 
 	std::array<X::TextureId, 32> mTexturesIds;
 
-
+	TileMap* mTileMap = nullptr;
 };
