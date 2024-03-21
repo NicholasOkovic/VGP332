@@ -28,7 +28,7 @@ public:
 	TileMap GetTileMap() { return *mTileMap; }
 
 	void SetMineral(bool hasMineral) { mHasMineral = hasMineral; }
-	int HasMineral() const { return mHasMineral; }
+	bool HasMineral() const { return mHasMineral; }
 
 private:
 	std::unique_ptr<AI::PerceptionModule> mPerceptionModule;
@@ -46,5 +46,5 @@ private:
 
 	TileMap* mTileMap = nullptr;
 
-	int mHasMineral = 0;
+	bool mHasMineral = true;
 };

@@ -30,7 +30,7 @@ namespace
 
 		case AgentType::Raven:
 		{
-			int hasMineral = record.GetProperty<int>("hasMineral", 0);				//should work but not sure, make sure to check
+			bool hasMineral = record.GetProperty<bool>("hasMineral", false);				//should work but not sure, make sure to check
 			if (hasMineral == 1)											///needs to check if already has food
 			{
 				X::Math::Vector2 lastSeenPos = record.GetProperty<X::Math::Vector2>("lastSeenPosition");

@@ -5,7 +5,7 @@
 
 float CrowHuntStrategy::CalculateDesirability(Crow& agent) const			
 {
-	return 10.0f;
+	return 5.0f;
 }
 
 std::unique_ptr<AI::Goal<Crow>> CrowHuntStrategy::CreateGoal() const		

@@ -132,7 +132,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Crow.h" />
+    <ClInclude Include="CrowGoToRavenStrategy.h" />
     <ClInclude Include="CrowHuntStrategy.h" />
+    <ClInclude Include="CrowStates.h" />
     <ClInclude Include="GoalArriveAtPosition.h" />
     <ClInclude Include="GoalArriveAtPositionCrow.h" />
     <ClInclude Include="GoalDepositeMineral.h" />
@@ -146,6 +148,7 @@
     <ClInclude Include="RavenGoToMineralStrategy.h" />
     <ClInclude Include="RavenHarvestStrategy.h" />
     <ClInclude Include="RavenHuntStrategy.h" />
+    <ClInclude Include="RavenStates.h" />
     <ClInclude Include="RavenStrategy.h" />
     <ClInclude Include="SCV.h" />
     <ClInclude Include="TileMap.h" />
@@ -155,7 +158,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Crow.cpp" />
+    <ClCompile Include="CrowGoToRavenStrategy.cpp" />
     <ClCompile Include="CrowHuntStrategy.cpp" />
+    <ClCompile Include="CrowStates.cpp" />
     <ClCompile Include="GoalArriveAtPosition.cpp" />
     <ClCompile Include="GoalArriveAtPositionCrow.cpp" />
     <ClCompile Include="GoalDepositeMineral.cpp" />
@@ -169,6 +174,7 @@
     <ClCompile Include="RavenGoToMineralStrategy.cpp" />
     <ClCompile Include="RavenHarvestStrategy.cpp" />
     <ClCompile Include="RavenHuntStrategy.cpp" />
+    <ClCompile Include="RavenStates.cpp" />
     <ClCompile Include="RavenStrategy.cpp" />
     <ClCompile Include="SCV.cpp" />
     <ClCompile Include="TileMap.cpp" />

@@ -61,8 +61,8 @@ void SpawnRaven()
 	const float screenWidth = X::GetScreenWidth();
 	const float screenHeight = X::GetScreenHeight();
 
-	agent->position = X::RandomVector2({ 10.0f, 10.0f },
-		{ 100.0f, 100.0f });
+	agent->position = X::RandomVector2({ 80.0f, 80.0f },
+		{ 120.0f, 120.0f });
 	agent->destination = destination;
 	agent->radius = radius;
 	agent->ShowDebug(showDebug);
@@ -161,16 +161,8 @@ bool GameLoop(float deltaTime)
 		{
 			path = tileMap.FindPathAStar(startX, startY, endX, endY);
 		}
-		/*if (ImGui::Button("Raven go to point"))
-		{
-			path = tileMap.FindPathAStar(startX, startY, endX, endY);
+	
 
-			for (auto& agent : ravenAgents)
-			{
-				agent->setTargetDestination(path.front());
-			}
-
-		}*/
 
 		if (ImGui::Button("SpawnRaven"))
 		{

@@ -1,5 +1,7 @@
 D:\Desktop\artificialInt\Final\Crow.cpp;D:\Desktop\artificialInt\Final\x64\Debug\Crow.obj
+D:\Desktop\artificialInt\Final\CrowGoToRavenStrategy.cpp;D:\Desktop\artificialInt\Final\x64\Debug\CrowGoToRavenStrategy.obj
 D:\Desktop\artificialInt\Final\CrowHuntStrategy.cpp;D:\Desktop\artificialInt\Final\x64\Debug\CrowHuntStrategy.obj
+D:\Desktop\artificialInt\Final\CrowStates.cpp;D:\Desktop\artificialInt\Final\x64\Debug\CrowStates.obj
 D:\Desktop\artificialInt\Final\GoalArriveAtPosition.cpp;D:\Desktop\artificialInt\Final\x64\Debug\GoalArriveAtPosition.obj
 D:\Desktop\artificialInt\Final\GoalArriveAtPositionCrow.cpp;D:\Desktop\artificialInt\Final\x64\Debug\GoalArriveAtPositionCrow.obj
 D:\Desktop\artificialInt\Final\GoalDepositeMineral.cpp;D:\Desktop\artificialInt\Final\x64\Debug\GoalDepositeMineral.obj
@@ -13,6 +15,7 @@ D:\Desktop\artificialInt\Final\Raven.cpp;D:\Desktop\artificialInt\Final\x64\Debu
 D:\Desktop\artificialInt\Final\RavenGoToMineralStrategy.cpp;D:\Desktop\artificialInt\Final\x64\Debug\RavenGoToMineralStrategy.obj
 D:\Desktop\artificialInt\Final\RavenHarvestStrategy.cpp;D:\Desktop\artificialInt\Final\x64\Debug\RavenHarvestStrategy.obj
 D:\Desktop\artificialInt\Final\RavenHuntStrategy.cpp;D:\Desktop\artificialInt\Final\x64\Debug\RavenHuntStrategy.obj
+D:\Desktop\artificialInt\Final\RavenStates.cpp;D:\Desktop\artificialInt\Final\x64\Debug\RavenStates.obj
 D:\Desktop\artificialInt\Final\RavenStrategy.cpp;D:\Desktop\artificialInt\Final\x64\Debug\RavenStrategy.obj
 D:\Desktop\artificialInt\Final\SCV.cpp;D:\Desktop\artificialInt\Final\x64\Debug\SCV.obj
 D:\Desktop\artificialInt\Final\TileMap.cpp;D:\Desktop\artificialInt\Final\x64\Debug\TileMap.obj

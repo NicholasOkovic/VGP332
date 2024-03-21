@@ -186,7 +186,7 @@ X::Math::Vector2 TileMap::GetTilePosition(const X::Math::Vector2& pos) const
 	float x = floor(pos.x / static_cast<float>(mTileWidth));
 	float y = floor(pos.y / static_cast<float>(mTileHeight));
 
-	return (x, y);
+	return { x, y };
 }
 
 X::Math::Vector2 TileMap::GetPixelPosition(int x, int y) const

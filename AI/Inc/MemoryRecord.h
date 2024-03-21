@@ -4,7 +4,7 @@
 
 namespace AI
 {
-	using Property = std::variant<int, float, X::Math::Vector2>;
+	using Property = std::variant<int, float, X::Math::Vector2, bool>;
 
 
 	struct MemoryRecord

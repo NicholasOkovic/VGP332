@@ -5,7 +5,7 @@
 
 float RavenHuntStrategy::CalculateDesirability(Raven& agent) const			//chnaged hunt strat
 {
-	return 10.0f;
+	return 5.0f;
 }
 
 std::unique_ptr<AI::Goal<Raven>> RavenHuntStrategy::CreateGoal() const		//chnage wander to follow set path/ go to farming area
