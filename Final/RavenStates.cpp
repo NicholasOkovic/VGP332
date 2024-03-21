@@ -2,111 +2,118 @@
 #include "RavenStates.h"
 #include <ImGui/Inc/ImGui.h>
 
-void GoHomeAndSleepUntilRestedState::Enter(Raven& agent)
+void RavenGoHome::Enter(Raven& agent)
 {
-	//agent.SetLocation(Location::Home);
+	agent.setTargetDestination(X::Math::Vector2(100, 100));
 }
 
-void GoHomeAndSleepUntilRestedState::Update(Raven& agent, float deltaTime)
-{
-	//agent.ResetFatigue();
-	//if (agent.IsRested())
-	//{
-	//	if (!agent.IsWealthy())
-	//	{
-	//		agent.ChangeState(RavenState::EnterMineAndDigForNugget);
-	//	}
-	//	else
-	//	{
-	//		//done
-	//	}
-	//}
-}
-
-void GoHomeAndSleepUntilRestedState::Exit(Raven& agent)
+void RavenGoHome::Update(Raven& agent, float deltaTime)
 {
 
-}
-
-void GoHomeAndSleepUntilRestedState::DebugUI()
-{
-	//ImGui::Text("GoHomeAndSleepUntilRestedState: Raven is resting");
-}
-
-void EnterMineAndDigForNuggetState::Enter(Raven& agent)
-{
-	//agent.SetLocation(Location::Mine);
-}
-
-void EnterMineAndDigForNuggetState::Update(Raven& agent, float deltaTime)
-{
-	/*agent.IncreaseFatigue();
-	agent.AddGoldCarried(1);
-	if (agent.IsPocketFull())
+	if (!agent.HasMineral())
 	{
-		agent.ChangeState(RavenState::VisitBankAndDepositGold);
+		agent.ChangeState(RavenState::GoToGatherSpot);
 	}
-	else if (agent.IsThirsty())
+	else if (agent.position.x <= 20 && agent.position.y <= 20)
 	{
-		agent.ChangeState(RavenState::QuenchThirst);
-	}*/
-}
-
-void EnterMineAndDigForNuggetState::Exit(Raven& agent)
-{
-}
-
-void EnterMineAndDigForNuggetState::DebugUI()
-{
-	//ImGui::Text("EnterMineAndDigForNuggetState: Raven is digging for gold");
-}
-
-void QuenchThirstState::Enter(Raven& agent)
-{
-	//agent.SetLocation(Location::Saloon);
-}
-
-void QuenchThirstState::Update(Raven& agent, float deltaTime)
-{
-	/*agent.ResetThirst();
-	if (!agent.IsThirsty())
-	{
-		agent.ChangeState(RavenState::EnterMineAndDigForNugget);
-	}*/
-}
-
-void QuenchThirstState::Exit(Raven& agent)
-{
-}
-
-void QuenchThirstState::DebugUI()
-{
-	//ImGui::Text("QuenchThirstState: Raven is drinking");
-}
-
-void VisitBankAndDepositGoldState::Enter(Raven& agent)
-{
-	//agent.SetLocation(Location::Bank);
-}
-
-void VisitBankAndDepositGoldState::Update(Raven& agent, float deltaTime)
-{
-	/*agent.AddGoldToBank();
-	if (!agent.IsRested())
-	{
-		agent.ChangeState(RavenState::GoHomeAndSleepTillRested);
+		agent.ChangeState(RavenState::Deposite);
 	}
-	else
+
+}
+
+void RavenGoHome::Exit(Raven& agent)
+{
+}
+
+void RavenGoHome::DebugUI()
+{
+}
+
+
+
+void RavenHarvestMineral::Enter(Raven& agent)
+{
+}
+
+void RavenHarvestMineral::Update(Raven& agent, float deltaTime)
+{
+
+
+}
+
+void RavenHarvestMineral::Exit(Raven& agent)
+{
+}
+
+void RavenHarvestMineral::DebugUI()
+{
+}
+
+
+
+
+void RavenDeposite::Enter(Raven& agent)
+{
+}
+
+void RavenDeposite::Update(Raven& agent, float deltaTime)
+{
+	if (!agent.HasMineral())
 	{
-		agent.ChangeState(RavenState::EnterMineAndDigForNugget);
+		agent.ChangeState(RavenState::GoToGatherSpot);
+	}
+
+}
+
+void RavenDeposite::Exit(Raven& agent)
+{
+}
+
+void RavenDeposite::DebugUI()
+{
+}
+
+
+
+
+void RavenGoToGatherSpot::Enter(Raven& agent)
+{
+	agent.setTargetDestination(X::Math::Vector2(500, 500));
+}
+
+void RavenGoToGatherSpot::Update(Raven& agent, float deltaTime)
+{
+	
+
+}
+
+void RavenGoToGatherSpot::Exit(Raven& agent)
+{
+}
+
+void RavenGoToGatherSpot::DebugUI()
+{
+}
+
+
+
+void RavenGoToMineral::Enter(Raven& agent)
+{
+}
+
+void RavenGoToMineral::Update(Raven& agent, float deltaTime)
+{
+	/*if (agent.)
+	{
+
 	}*/
+
 }
 
-void VisitBankAndDepositGoldState::Exit(Raven& agent)
+void RavenGoToMineral::Exit(Raven& agent)
 {
 }
 
-void VisitBankAndDepositGoldState::DebugUI()
+void RavenGoToMineral::DebugUI()
 {
-	//ImGui::Text("VisitBankAndDepositGoldState: Raven is depositing gold in the bank");
 }

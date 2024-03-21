@@ -16,9 +16,9 @@ float RavenHarvestStrategy::CalculateDesirability(Raven& agent) const
 	if (mineral != nullptr && mineral->GetHealth() > 0)
 	{
 		const Mineral* mineral = (const Mineral*)(agent.target);
-		if (X::Math::DistanceSqr(agent.position, agent.destination) < 25.0f)
+		if (X::Math::DistanceSqr(agent.position, agent.destination) < 100.0f)
 		{
-			return 1000;
+			return 10000;
 		}
 	}
 	

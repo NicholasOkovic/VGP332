@@ -3,7 +3,7 @@
 #include <AI.h>
 #include "Crow.h"
 
-class CrowGoHomeAndSleepUntilRestedState : public AI::State<Crow>
+class CrowGoHome : public AI::State<Crow>
 {
 public:
 	void Enter(Crow& agent) override;
@@ -14,7 +14,7 @@ private:
 
 };
 
-class CrowEnterMineAndDigForNuggetState : public AI::State<Crow>
+class CrowChaseRaven : public AI::State<Crow>
 {
 public:
 	void Enter(Crow& agent) override;
@@ -25,7 +25,7 @@ private:
 
 };
 
-class CrowQuenchThirstState : public AI::State<Crow>
+class CrowDeposite : public AI::State<Crow>
 {
 public:
 	void Enter(Crow& agent) override;
@@ -35,7 +35,7 @@ public:
 private:
 
 };
-class CrowVisitBankAndDepositGoldState : public AI::State<Crow>
+class CrowWander : public AI::State<Crow>
 {
 public:
 	void Enter(Crow& agent) override;

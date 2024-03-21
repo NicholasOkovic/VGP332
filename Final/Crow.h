@@ -4,6 +4,16 @@
 #include "TileMap.h"
 class VisualSensor;
 
+
+enum class CrowState
+{
+	GoHome,
+	ChaseRaven,
+	Deposite,
+	Wander,
+};
+
+
 class Crow : public AI::Agent
 {
 public:
@@ -29,6 +39,12 @@ public:
 	void SetMineral(bool hasMineral) { mHasMineral = hasMineral; }
 	int HasMineral() const { return mHasMineral; }
 
+
+	//states & stuff
+	void ChangeState(CrowState newState);
+	CrowState GetState() { return mCrowState; }
+
+
 private:
 	std::unique_ptr<AI::PerceptionModule> mPerceptionModule;
 	std::unique_ptr<AI::SteeringModule> mSteeringModule;
@@ -44,6 +60,8 @@ private:
 	std::array<X::TextureId, 32> mTexturesIds;
 
 	TileMap* mTileMap = nullptr;
+	AI::StateMachine<Crow> mStateMachine;
+	CrowState mCrowState;
 	int mHasMineral = 0;
 
 };

@@ -34,7 +34,7 @@ void GoalMoveToPosition::Activate(Raven& agent)
 
 	for (int i = 0; i < path.size(); i++)
 	{
-		//X::DrawScreenLine(path[i].x, path[i].y, path[i + 1].x, path[i + 1].y, X::Colors::Black);
+		
 		if (i == path.size())
 		{
 			GoalArriveAtPosition* arrive = AddSubGoal<GoalArriveAtPosition>();

@@ -16,5 +16,5 @@ public:
 
 private:
 	X::TextureId mTextureId;
-	int mHealth = 1000;
+	int mHealth = 100;
 };

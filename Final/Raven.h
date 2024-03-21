@@ -4,9 +4,20 @@
 #include "TileMap.h"
 class VisualSensor;
 
+enum class RavenState
+{
+	GoHome,
+	HarvestMineral,
+	Deposite,
+	GoToGatherSpot,
+	GoToMineral
+};
+
+
 class Raven : public AI::Agent
 {
 public:
+
 	Raven(AI::AIWorld& world);
 
 	void Load();
@@ -30,6 +41,13 @@ public:
 	void SetMineral(bool hasMineral) { mHasMineral = hasMineral; }
 	bool HasMineral() const { return mHasMineral; }
 
+
+	//states & stuff
+	void ChangeState(RavenState newState);
+	//RavenState GetState() { return ((int)mStateMachine); };
+	RavenState GetState() { return mRavenState; }
+	
+
 private:
 	std::unique_ptr<AI::PerceptionModule> mPerceptionModule;
 	std::unique_ptr<AI::SteeringModule> mSteeringModule;
@@ -46,5 +64,7 @@ private:
 
 	TileMap* mTileMap = nullptr;
 
-	bool mHasMineral = true;
+	AI::StateMachine<Raven> mStateMachine;
+	RavenState mRavenState;
+	bool mHasMineral = false;
 };

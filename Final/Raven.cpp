@@ -1,4 +1,5 @@
 #include "Raven.h"
+#include "RavenStates.h"
 
 #include "TypeId.h"
 #include "VisualSensor.h"
@@ -64,23 +65,36 @@ Raven::Raven(AI::AIWorld& world)
 
 void Raven::Load()
 {
+	//perception
 	mPerceptionModule = std::make_unique<AI::PerceptionModule>(*this, ComputeImportance);
 	mPerceptionModule->SetMemorySpan(3.0f);
 	mVisualSensor = mPerceptionModule->AddSensor<VisualSensor>();
 	mVisualSensor->targetType = AgentType::Mineral;
 
-
+	//steering
 	mSteeringModule = std::make_unique<AI::SteeringModule>(*this);
 	mSeekBehavior = mSteeringModule->AddBehavior<AI::SeekBehavior>();
 	//mWanderBehavior = mSteeringModule->AddBehavior<AI::WanderingBehavior>();
 	mArriveBehavior = mSteeringModule->AddBehavior<AI::ArriveBehavior>();
 
+	//decision & strat
 	mDecisionModule = std::make_unique<AI::DecisionModule<Raven>>(*this);
 	mDecisionModule->AddStrategy<RavenHuntStrategy>();
 	mDecisionModule->AddStrategy<RavenHarvestStrategy>();
 	
 	auto strategy = mDecisionModule->AddStrategy<RavenGoToMineralStrategy>();
 	strategy->SetPerception(mPerceptionModule.get());
+
+	//stateMachines
+	mStateMachine.Initialize(this);
+	mStateMachine.AddState<RavenGoHome>();
+	mStateMachine.AddState<RavenHarvestMineral>();
+	mStateMachine.AddState<RavenDeposite>();
+	mStateMachine.AddState<RavenGoToGatherSpot>();
+	mStateMachine.AddState<RavenGoToMineral>();
+	ChangeState(RavenState::GoHome);
+
+
 
 	for (int i = 0; i < mTexturesIds.size(); i++)
 	{
@@ -115,26 +129,7 @@ void Raven::Update(float deltaTime)
 		heading = X::Math::Normalize(velocity);
 	}
 	position += velocity * deltaTime;
-/*
-	const float screenWidth = X::GetScreenWidth();
-	const float screenHeight = X::GetScreenHeight();
 
-	if (position.x < 0.0f)
-	{
-		position.x += screenWidth;
-	}
-	if (position.x >= screenWidth)
-	{
-		position.x -= screenWidth;
-	}
-	if (position.y < 0.0f)
-	{
-		position.y += screenHeight;
-	}
-	if (position.y >= screenHeight)
-	{
-		position.y -= screenHeight;
-	}*/
 
 	const auto& memoryRecords = mPerceptionModule->GetMemoryRecords();
 	for (auto& memory : memoryRecords)
@@ -183,4 +178,10 @@ void Raven::setTargetDestination(const X::Math::Vector2& targetdestination)
 	RavenStrategy* strategy = mDecisionModule->AddStrategy<RavenStrategy>();
 	strategy->SetTargetDestination(targetdestination);
 
+}
+
+void Raven::ChangeState(RavenState newState)
+{
+	mStateMachine.ChangeState((int)newState);
+	mRavenState = newState;
 }

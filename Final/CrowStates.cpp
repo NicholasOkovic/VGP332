@@ -2,111 +2,94 @@
 #include "CrowStates.h"
 #include <ImGui/Inc/ImGui.h>
 
-void CrowGoHomeAndSleepUntilRestedState::Enter(Crow& agent)
+void CrowGoHome::Enter(Crow& agent)
 {
-	//agent.SetLocation(Location::Home);
+	const float screenWidth = X::GetScreenWidth();
+	const float screenHeight = X::GetScreenHeight();
+
+	agent.setTargetDestination(X::Math::Vector2(screenWidth - 250.0f, screenHeight / 1.2f));	///maybe add strat so no need to write stuff here except ifs
 }
 
-void CrowGoHomeAndSleepUntilRestedState::Update(Crow& agent, float deltaTime)
+void CrowGoHome::Update(Crow& agent, float deltaTime)
 {
-	//agent.ResetFatigue();
-	//if (agent.IsRested())
-	//{
-	//	if (!agent.IsWealthy())
-	//	{
-	//		agent.ChangeState(CrowState::EnterMineAndDigForNugget);
-	//	}
-	//	else
-	//	{
-	//		//done
-	//	}
-	//}
-}
-
-void CrowGoHomeAndSleepUntilRestedState::Exit(Crow& agent)
-{
-
-}
-
-void CrowGoHomeAndSleepUntilRestedState::DebugUI()
-{
-	ImGui::Text("GoHomeAndSleepUntilRestedState: Crow is resting");
-}
-
-void CrowEnterMineAndDigForNuggetState::Enter(Crow& agent)
-{
-	//agent.SetLocation(Location::Mine);
-}
-
-void CrowEnterMineAndDigForNuggetState::Update(Crow& agent, float deltaTime)
-{
-	/*agent.IncreaseFatigue();
-	agent.AddGoldCarried(1);
-	if (agent.IsPocketFull())
+	if (!agent.HasMineral())
 	{
-		agent.ChangeState(CrowState::VisitBankAndDepositGold);
+		agent.ChangeState(CrowState::Wander);
 	}
-	else if (agent.IsThirsty())
+	else if (agent.position.x <= 20 && agent.position.y <= 20)			///needs to be changed, wrong pos
 	{
-		agent.ChangeState(CrowState::QuenchThirst);
-	}*/
-}
-
-void CrowEnterMineAndDigForNuggetState::Exit(Crow& agent)
-{
-}
-
-void CrowEnterMineAndDigForNuggetState::DebugUI()
-{
-	ImGui::Text("EnterMineAndDigForNuggetState: Crow is digging for gold");
-}
-
-void CrowQuenchThirstState::Enter(Crow& agent)
-{
-	//agent.SetLocation(Location::Saloon);
-}
-
-void CrowQuenchThirstState::Update(Crow& agent, float deltaTime)
-{
-	/*agent.ResetThirst();
-	if (!agent.IsThirsty())
-	{
-		agent.ChangeState(CrowState::EnterMineAndDigForNugget);
-	}*/
-}
-
-void CrowQuenchThirstState::Exit(Crow& agent)
-{
-}
-
-void CrowQuenchThirstState::DebugUI()
-{
-	ImGui::Text("QuenchThirstState: Crow is drinking");
-}
-
-void CrowVisitBankAndDepositGoldState::Enter(Crow& agent)
-{
-	//agent.SetLocation(Location::Bank);
-}
-
-void CrowVisitBankAndDepositGoldState::Update(Crow& agent, float deltaTime)
-{
-	/*agent.AddGoldToBank();
-	if (!agent.IsRested())
-	{
-		agent.ChangeState(CrowState::GoHomeAndSleepTillRested);
+		agent.ChangeState(CrowState::Deposite);
 	}
-	else
+}
+
+void CrowGoHome::Exit(Crow& agent)
+{
+}
+
+void CrowGoHome::DebugUI()
+{
+}
+
+
+
+void CrowChaseRaven::Enter(Crow& agent)
+{
+}
+
+void CrowChaseRaven::Update(Crow& agent, float deltaTime)		//create strat for 
+{
+
+}
+
+void CrowChaseRaven::Exit(Crow& agent)
+{
+}
+
+void CrowChaseRaven::DebugUI()
+{
+}
+
+
+
+void CrowDeposite::Enter(Crow& agent)
+{
+}
+
+void CrowDeposite::Update(Crow& agent, float deltaTime)
+{
+	if (!agent.HasMineral())
 	{
-		agent.ChangeState(CrowState::EnterMineAndDigForNugget);
-	}*/
+		agent.ChangeState(CrowState::Wander);
+	}
 }
 
-void CrowVisitBankAndDepositGoldState::Exit(Crow& agent)
+void CrowDeposite::Exit(Crow& agent)
 {
 }
 
-void CrowVisitBankAndDepositGoldState::DebugUI()
+void CrowDeposite::DebugUI()
 {
-	//ImGui::Text("VisitBankAndDepositGoldState: Crow is depositing gold in the bank");
+}
+
+
+
+
+void CrowWander::Enter(Crow& agent)
+{
+}
+
+void CrowWander::Update(Crow& agent, float deltaTime)
+{
+	if (agent.HasMineral())
+	{
+		agent.ChangeState(CrowState::GoHome);
+	}
+}
+
+void CrowWander::Exit(Crow& agent)
+{
+}
+
+void CrowWander::DebugUI()
+{
 }

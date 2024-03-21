@@ -5,7 +5,11 @@
 
 float RavenHuntStrategy::CalculateDesirability(Raven& agent) const			//chnaged hunt strat
 {
-	return 5.0f;
+	if (agent.GetState() == RavenState::GoToGatherSpot)
+	{
+		return 1000.0f;
+	}
+	return 10.0f;
 }
 
 std::unique_ptr<AI::Goal<Raven>> RavenHuntStrategy::CreateGoal() const		//chnage wander to follow set path/ go to farming area
@@ -19,7 +23,7 @@ std::unique_ptr<AI::Goal<Raven>> RavenHuntStrategy::CreateGoal() const		//chnage
 
 	auto newGoal = std::make_unique<GoalMoveToPosition>();
 	
-	newGoal->SetDestination(X::Math::Vector2( 100.0f, 100.0f));
+	newGoal->SetDestination(X::Math::Vector2( 200.0f, 200.0f));
 
 	return newGoal;
 }

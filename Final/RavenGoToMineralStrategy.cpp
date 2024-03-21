@@ -10,7 +10,7 @@ void RavenGoToMineralStrategy::SetPerception(const AI::PerceptionModule* percept
 
 float RavenGoToMineralStrategy::CalculateDesirability(Raven& agent) const
 {
-
+	////if in certain state incvrease desireablility
 	const auto& memoryRecords = mPerception->GetMemoryRecords();
 	float highestImportance = 0.0f;
 	X::Math::Vector2 targetDestination = X::Math::Vector2::Zero();

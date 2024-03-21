@@ -1,4 +1,5 @@
 #include "Crow.h"
+#include "CrowStates.h"
 
 #include "TypeId.h"
 #include "VisualSensor.h"
@@ -94,6 +95,14 @@ void Crow::Load()
 
 	//auto strategy = mDecisionModule->AddStrategy<RavenGoToMineralStrategy>();
 	//strategy->SetPerception(mPerceptionModule.get());
+
+	//stateMachines
+	mStateMachine.Initialize(this);
+	mStateMachine.AddState<CrowGoHome>();
+	mStateMachine.AddState<CrowChaseRaven>();
+	mStateMachine.AddState<CrowDeposite>();
+	mStateMachine.AddState<CrowWander>();
+	ChangeState(CrowState::GoHome);
 
 	for (int i = 0; i < mTexturesIds.size(); i++)
 	{
