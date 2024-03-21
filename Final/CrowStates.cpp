@@ -7,7 +7,7 @@ void CrowGoHome::Enter(Crow& agent)
 	const float screenWidth = X::GetScreenWidth();
 	const float screenHeight = X::GetScreenHeight();
 
-	agent.setTargetDestination(X::Math::Vector2(screenWidth - 250.0f, screenHeight / 1.2f));	///maybe add strat so no need to write stuff here except ifs
+	//agent.setTargetDestination(X::Math::Vector2(screenWidth - 250.0f, screenHeight / 1.2f));	///maybe add strat so no need to write stuff here except ifs
 }
 
 void CrowGoHome::Update(Crow& agent, float deltaTime)

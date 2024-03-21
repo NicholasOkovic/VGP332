@@ -10,22 +10,30 @@ void RavenGoToMineralStrategy::SetPerception(const AI::PerceptionModule* percept
 
 float RavenGoToMineralStrategy::CalculateDesirability(Raven& agent) const
 {
-	////if in certain state incvrease desireablility
-	const auto& memoryRecords = mPerception->GetMemoryRecords();
-	float highestImportance = 0.0f;
-	X::Math::Vector2 targetDestination = X::Math::Vector2::Zero();
-	for (auto& record : memoryRecords)
+	if (agent.GetState() == RavenState::GoToMineral)
 	{
-		AgentType agentType = static_cast<AgentType>(record.GetProperty<int>("type", 0));
-		if (agentType == AgentType::Mineral)
+		////if in certain state incvrease desireablility
+		const auto& memoryRecords = mPerception->GetMemoryRecords();
+		float highestImportance = 0.0f;
+		X::Math::Vector2 targetDestination = X::Math::Vector2::Zero();
+		for (auto& record : memoryRecords)
 		{
-			if (record.importance > highestImportance)
+			AgentType agentType = static_cast<AgentType>(record.GetProperty<int>("type", 0));
+			if (agentType == AgentType::Mineral)
 			{
-				highestImportance = record.importance;
+				if (record.importance > highestImportance)
+				{
+					highestImportance = record.importance;
+				}
 			}
 		}
+
+		return highestImportance;
 	}
-	return highestImportance;
+	else
+	{
+		return 0.0f;
+	}
 }
 
 std::unique_ptr<AI::Goal<Raven>> RavenGoToMineralStrategy::CreateGoal() const

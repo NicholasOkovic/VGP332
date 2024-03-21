@@ -117,6 +117,12 @@
     <ClInclude Include="CrowStates.h">
       <Filter>Crow\CrowStates</Filter>
     </ClInclude>
+    <ClInclude Include="RavenDepositeStrategy.h">
+      <Filter>Raven\RavenStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="RavenGoHomeStrategy.h">
+      <Filter>Raven\RavenStrategy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -190,6 +196,12 @@
     </ClCompile>
     <ClCompile Include="CrowStates.cpp">
       <Filter>Crow\CrowStates</Filter>
+    </ClCompile>
+    <ClCompile Include="RavenDepositeStrategy.cpp">
+      <Filter>Raven\RavenStrategy</Filter>
+    </ClCompile>
+    <ClCompile Include="RavenGoHomeStrategy.cpp">
+      <Filter>Raven\RavenStrategy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

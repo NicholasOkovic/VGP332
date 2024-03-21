@@ -28,7 +28,7 @@ team 2 tries to run into team 1 to steal their mineral to deposite at their own 
 
 
 bugs:
-raven wont switch states
+raven wont switch states, stays at go home
 
 decrease size of crow carrier
 

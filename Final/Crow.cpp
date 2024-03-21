@@ -181,6 +181,11 @@ void Crow::SetWander(bool active)
 	mWanderBehavior->SetActive(active);
 }
 
+void Crow::ChangeState(CrowState newState)
+{
+	mStateMachine.ChangeState((int)newState);
+	mCrowState = newState;
+}
 
 //void Crow::setTargetDestination(const X::Math::Vector2& targetdestination)
 //{
