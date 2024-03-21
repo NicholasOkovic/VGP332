@@ -134,10 +134,12 @@
     <ClInclude Include="Crow.h" />
     <ClInclude Include="CrowHuntStrategy.h" />
     <ClInclude Include="GoalArriveAtPosition.h" />
+    <ClInclude Include="GoalArriveAtPositionCrow.h" />
     <ClInclude Include="GoalDepositeMineral.h" />
     <ClInclude Include="GoalHarvestMineral.h" />
     <ClInclude Include="GoalMoveToPosition.h" />
     <ClInclude Include="GoalSeekToPosition.h" />
+    <ClInclude Include="GoalSeekToPositionCrow.h" />
     <ClInclude Include="GoalWander.h" />
     <ClInclude Include="Mineral.h" />
     <ClInclude Include="Raven.h" />
@@ -149,15 +151,18 @@
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="TypeId.h" />
     <ClInclude Include="VisualSensor.h" />
+    <ClInclude Include="GoalWanderToPosition.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Crow.cpp" />
     <ClCompile Include="CrowHuntStrategy.cpp" />
     <ClCompile Include="GoalArriveAtPosition.cpp" />
+    <ClCompile Include="GoalArriveAtPositionCrow.cpp" />
     <ClCompile Include="GoalDepositeMineral.cpp" />
     <ClCompile Include="GoalHarvestMineral.cpp" />
     <ClCompile Include="GoalMoveToPosition.cpp" />
     <ClCompile Include="GoalSeekToPosition.cpp" />
+    <ClCompile Include="GoalSeekToPositionCrow.cpp" />
     <ClCompile Include="GoalWander.cpp" />
     <ClCompile Include="Mineral.cpp" />
     <ClCompile Include="Raven.cpp" />
@@ -168,6 +173,7 @@
     <ClCompile Include="SCV.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="VisualSensor.cpp" />
+    <ClCompile Include="GoalWanderToPosition.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>

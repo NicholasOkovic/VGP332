@@ -1,5 +1,6 @@
 #include "VisualSensor.h"
 #include "Mineral.h"
+#include "Raven.h"
 
 using namespace AI;
 void VisualSensor::Update(AI::Agent& agent, AI::MemoryRecords& memory, float deltatime)
@@ -60,6 +61,11 @@ void VisualSensor::Update(AI::Agent& agent, AI::MemoryRecords& memory, float del
 				const Mineral* mineral = static_cast<const Mineral*>(entity);
 				iter->properties["health"] = mineral->GetHealth();
 			}
+			else if (entity->GetTypeId() == static_cast<uint32_t>(AgentType::Raven))
+			{
+				const Raven* raven = static_cast<const Raven*>(entity);
+				iter->properties["hasMineral"] = raven->HasMineral();
+			}
 		}
 		else
 		{
@@ -72,6 +78,11 @@ void VisualSensor::Update(AI::Agent& agent, AI::MemoryRecords& memory, float del
 			{
 				const Mineral* mineral = static_cast<const Mineral*>(entity);
 				newRecord.properties["health"] = mineral->GetHealth();
+			}
+			else if (entity->GetTypeId() == static_cast<uint32_t>(AgentType::Raven))
+			{
+				const Raven* raven = static_cast<const Raven*>(entity);
+				newRecord.properties["hasMineral"] = raven->HasMineral();
 			}
 		}
 	}

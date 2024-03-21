@@ -21,21 +21,18 @@ void GoalMoveToPosition::Activate(Raven& agent)
 
 	
 	mStatus = GoalMoveToPosition::Status::Active;
-	RemoveAllSubGoals(agent);
-
-	//X::Math::Vector2 startPos = (agent.position.x, agent.position.y);					///get the easy player pos code from leah
-	X::Math::Vector2 startPos = (mTileMap.GetColumns() - 1, mTileMap.GetRows() - 1);
-
-	X::Math::Vector2 endPos = (0, 0);
+	RemoveAllSubGoals(agent);				
+	X::Math::Vector2 startPos = mTileMap.GetTilePosition(agent.position);
+	X::Math::Vector2 endPos = mTileMap.GetTilePosition(mDestination);
 
 
-	Path path = mTileMap.FindPathAStar(startPos.x, startPos.y, endPos.x, endPos.y);		//prolly just need get tile position to input mDestination
+	Path path = mTileMap.FindPathAStar(endPos.x, endPos.y, startPos.x, startPos.y);		//prolly just need get tile position to input mDestination
 
 	float seekDistance = 30;
 	
 
 
-	for (int i = 0; i < path.size()-1; i++)
+	for (int i = 0; i < path.size(); i++)
 	{
 		//X::DrawScreenLine(path[i].x, path[i].y, path[i + 1].x, path[i + 1].y, X::Colors::Black);
 		if (i == path.size())

@@ -20,6 +20,7 @@ namespace
 	float ComputeImportance(const AI::Agent& agent, const AI::MemoryRecord& record)
 	{
 		float score = 0.0f;
+		
 		AgentType entityType = static_cast<AgentType>(record.GetProperty<int>("type"));
 		switch (entityType)
 		{
@@ -27,15 +28,10 @@ namespace
 			score = 0.0f;
 			break;
 
-		case AgentType::SCV:
+		case AgentType::Raven:
 		{
-			score = 0.0f;
-		}
-		break;
-		case AgentType::Mineral:
-		{
-			int health = record.GetProperty<int>("health", 0);
-			if (health > 0)
+			int hasMineral = record.GetProperty<int>("hasMineral", 0);				//should work but not sure, make sure to check
+			if (hasMineral == 1)											///needs to check if already has food
 			{
 				X::Math::Vector2 lastSeenPos = record.GetProperty<X::Math::Vector2>("lastSeenPosition");
 				float distance = X::Math::Distance(agent.position, lastSeenPos);
@@ -46,6 +42,22 @@ namespace
 			{
 				score = 0.0f;
 			}
+		}
+		break;
+		case AgentType::Mineral:
+		{
+			//int health = record.GetProperty<int>("health", 0);
+			//if (health > 0)
+			//{
+			//	X::Math::Vector2 lastSeenPos = record.GetProperty<X::Math::Vector2>("lastSeenPosition");
+			//	float distance = X::Math::Distance(agent.position, lastSeenPos);
+			//	float distanceScore = std::max(1000.0f - distance, 0.0f);
+			//	score = distanceScore;
+			//}
+			//else
+			//{
+				score = 0.0f;
+			//}
 
 		}
 		break;
@@ -68,8 +80,8 @@ void Crow::Load()
 	mPerceptionModule = std::make_unique<AI::PerceptionModule>(*this, ComputeImportance);
 	mPerceptionModule->SetMemorySpan(3.0f);
 	mVisualSensor = mPerceptionModule->AddSensor<VisualSensor>();
-	mVisualSensor->targetType = AgentType::Mineral;
-
+	mVisualSensor->targetType = AgentType::Raven;
+	
 
 	mSteeringModule = std::make_unique<AI::SteeringModule>(*this);
 	mSeekBehavior = mSteeringModule->AddBehavior<AI::SeekBehavior>();
@@ -116,6 +128,7 @@ void Crow::Update(float deltaTime)
 		heading = X::Math::Normalize(velocity);
 	}
 	position += velocity * deltaTime;
+
 
 
 	const auto& memoryRecords = mPerceptionModule->GetMemoryRecords();

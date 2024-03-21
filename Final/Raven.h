@@ -27,6 +27,9 @@ public:
 	void SetTileMap(TileMap* tileMap) { mTileMap = tileMap; }
 	TileMap GetTileMap() { return *mTileMap; }
 
+	void SetMineral(bool hasMineral) { mHasMineral = hasMineral; }
+	int HasMineral() const { return mHasMineral; }
+
 private:
 	std::unique_ptr<AI::PerceptionModule> mPerceptionModule;
 	std::unique_ptr<AI::SteeringModule> mSteeringModule;
@@ -42,4 +45,6 @@ private:
 	std::array<X::TextureId, 32> mTexturesIds;
 
 	TileMap* mTileMap = nullptr;
+
+	int mHasMineral = 0;
 };

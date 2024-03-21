@@ -196,7 +196,11 @@ bool GameLoop(float deltaTime)
 		{
 			for (auto& agent : ravenAgents)
 			{
-				agent->ShowDebug(showDebug);		//spawn raven
+				agent->ShowDebug(showDebug);		
+			}
+			for (auto& agent : crowAgents)
+			{
+				agent->ShowDebug(showDebug);		
 			}
 		}
 		

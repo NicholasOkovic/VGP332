@@ -84,6 +84,15 @@
     <ClInclude Include="GoalWander.h">
       <Filter>Goals Atomic Crow</Filter>
     </ClInclude>
+    <ClInclude Include="GoalWanderToPosition.h">
+      <Filter>Goals Composite</Filter>
+    </ClInclude>
+    <ClInclude Include="GoalSeekToPositionCrow.h">
+      <Filter>Goals Atomic Crow</Filter>
+    </ClInclude>
+    <ClInclude Include="GoalArriveAtPositionCrow.h">
+      <Filter>Goals Atomic Crow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -138,6 +147,15 @@
       <Filter>CrowStrategy</Filter>
     </ClCompile>
     <ClCompile Include="GoalWander.cpp">
+      <Filter>Goals Atomic Crow</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalWanderToPosition.cpp">
+      <Filter>Goals Composite</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalSeekToPositionCrow.cpp">
+      <Filter>Goals Atomic Crow</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalArriveAtPositionCrow.cpp">
       <Filter>Goals Atomic Crow</Filter>
     </ClCompile>
   </ItemGroup>
