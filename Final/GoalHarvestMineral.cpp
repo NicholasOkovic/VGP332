@@ -35,6 +35,7 @@ GoalHarvestMineral::Status GoalHarvestMineral::Process(Raven& agent)
 		
 		mineral->SetHealth(0);
 		agent.target = nullptr;
+		agent.SetMineral(true);
 		mStatus = GoalHarvestMineral::Status::Completed;
 
 	}

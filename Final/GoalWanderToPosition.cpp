@@ -15,16 +15,13 @@ GoalWanderToPosition::GoalWanderToPosition()
 
 void GoalWanderToPosition::Activate(Crow& agent)
 {
-	/*TileMap mTileMap; = agent.GetTileMap();*/
-	mTileMap.LoadTiles("tiles.txt");
-	mTileMap.LoadMap("map.txt");
-
+	TileMap* mTileMap = agent.GetTileMap();
 
 	mStatus = GoalWanderToPosition::Status::Active;
 	RemoveAllSubGoals(agent);
 
 
-	X::Math::Vector2 startPos = (mTileMap.GetTilePosition(agent.position));
+	X::Math::Vector2 startPos = (mTileMap->GetTilePosition(agent.position));
 
 
 		
@@ -39,12 +36,12 @@ void GoalWanderToPosition::Activate(Crow& agent)
 
 	do {
 
-		endPos = (X::RandomVector2({ 5.0f, 5.0f }, { X::Math::Vector2(mTileMap.GetColumns() - 1, mTileMap.GetRows() - 1) }));
+		endPos = (X::RandomVector2({ 5.0f, 5.0f }, { X::Math::Vector2(mTileMap->GetColumns() - 1, mTileMap->GetRows() - 1) }));
 
-	} while (mTileMap.IsBlocked(endPos.x, endPos.y));
+	} while (mTileMap->IsBlocked(endPos.x, endPos.y));
 
 
-	Path path = mTileMap.FindPathAStar(endPos.x, endPos.y, startPos.x, startPos.y);		
+	Path path = mTileMap->FindPathAStar(endPos.x, endPos.y, startPos.x, startPos.y);		
 
 	float seekDistance = 30;
 

@@ -16,8 +16,9 @@ give them fsm
 
 create the missing strats
 
+check if theres no strats, make a state for no strat
 
-
+make start have tile, to give to goal
 
 
 Logic:

@@ -6,22 +6,25 @@
 
 float RavenHarvestStrategy::CalculateDesirability(Raven& agent) const
 {
-	Mineral* mineral = nullptr;
-	AI::EntityPtrs minerals = agent.world.GetEntitiesInRange({ agent.destination, 1.0f }, static_cast<uint32_t>(AgentType::Mineral));
-	if (!minerals.empty())
+	if (agent.GetState() == RavenState::HarvestMineral)
 	{
-		mineral = static_cast<Mineral*>(minerals[0]);
-	}
-
-	if (mineral != nullptr && mineral->GetHealth() > 0)
-	{
-		const Mineral* mineral = (const Mineral*)(agent.target);
-		if (X::Math::DistanceSqr(agent.position, agent.destination) < 100.0f)
+		Mineral* mineral = nullptr;
+		AI::EntityPtrs minerals = agent.world.GetEntitiesInRange({ agent.destination, 1.0f }, static_cast<uint32_t>(AgentType::Mineral));
+		if (!minerals.empty())
 		{
-			return 10000;
+			mineral = static_cast<Mineral*>(minerals[0]);
+		}
+
+		if (mineral != nullptr && mineral->GetHealth() > 0)
+		{
+			const Mineral* mineral = (const Mineral*)(agent.target);
+			if (X::Math::DistanceSqr(agent.position, agent.destination) < 1000.0f)
+			{
+				return 10000;
+
+			}
 		}
 	}
-	
 	return 0.0f;
 }
 

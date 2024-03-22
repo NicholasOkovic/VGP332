@@ -15,18 +15,15 @@ GoalMoveToPosition::GoalMoveToPosition()
 
 void GoalMoveToPosition::Activate(Raven& agent)
 {
-	TileMap mTileMap; /*= agent.GetTileMap();*/
-	mTileMap.LoadTiles("tiles.txt");
-	mTileMap.LoadMap("map.txt");
-
+	TileMap* mTileMap = agent.GetTileMap();
 	
 	mStatus = GoalMoveToPosition::Status::Active;
 	RemoveAllSubGoals(agent);				
-	X::Math::Vector2 startPos = mTileMap.GetTilePosition(agent.position);
-	X::Math::Vector2 endPos = mTileMap.GetTilePosition(mDestination);
+	X::Math::Vector2 startPos = mTileMap->GetTilePosition(agent.position);
+	X::Math::Vector2 endPos = mTileMap->GetTilePosition(mDestination);
+	agent.SetTargetDestination(mDestination);
 
-
-	Path path = mTileMap.FindPathAStar(endPos.x, endPos.y, startPos.x, startPos.y);		//prolly just need get tile position to input mDestination
+	Path path = mTileMap->FindPathAStar(endPos.x, endPos.y, startPos.x, startPos.y);		//prolly just need get tile position to input mDestination
 
 	float seekDistance = 30;
 	

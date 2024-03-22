@@ -48,6 +48,10 @@ namespace AI
 
 		void ResetSearchParams();
 
+		GridBasedGraph() = default;
+		GridBasedGraph(const GridBasedGraph&) = delete;
+		GridBasedGraph& operator=(const GridBasedGraph&) = delete;
+
 
 		int GetColumns() const { return mColumns; }
 		int GetRows() const { return mRows; }

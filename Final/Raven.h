@@ -31,12 +31,13 @@ public:
 	void SetSeek(bool active);
 	void SetArrive(bool active);
 	//void SetWander(bool active);
-	void setTargetDestination(const X::Math::Vector2& targetdestination);
+	void SetTargetDestination(const X::Math::Vector2& targetdestination);
+	X::Math::Vector2& GetTargetDestination() { return mDestination; }
 
 	const AI::PerceptionModule* GetPerception() const { return mPerceptionModule.get(); }
 
 	void SetTileMap(TileMap* tileMap) { mTileMap = tileMap; }
-	TileMap GetTileMap() { return *mTileMap; }
+	TileMap* GetTileMap() { return mTileMap; }
 
 	void SetMineral(bool hasMineral) { mHasMineral = hasMineral; }
 	bool HasMineral() const { return mHasMineral; }
@@ -59,6 +60,7 @@ private:
 	//AI::WanderingBehavior* mWanderBehavior = nullptr;
 	AI::ArriveBehavior* mArriveBehavior = nullptr;
 
+	X::Math::Vector2 mDestination;
 
 	std::array<X::TextureId, 32> mTexturesIds;
 

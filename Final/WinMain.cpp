@@ -61,8 +61,8 @@ void SpawnRaven()
 	const float screenWidth = X::GetScreenWidth();
 	const float screenHeight = X::GetScreenHeight();
 
-	agent->position = X::RandomVector2({ 80.0f, 80.0f },
-		{ 120.0f, 120.0f });
+	agent->position = X::RandomVector2({ 120.0f, 120.0f },
+		{ 150.0f, 150.0f });
 	agent->destination = destination;
 	agent->radius = radius;
 	agent->ShowDebug(showDebug);
@@ -203,19 +203,6 @@ bool GameLoop(float deltaTime)
 		
 	}
 	ImGui::End();
-
-	if (X::IsMousePressed(X::Mouse::LBUTTON))
-	{
-		const float mouseX = static_cast<float>(X::GetMouseScreenX());
-		const float mouseY = static_cast<float>(X::GetMouseScreenY());
-		destination = { mouseX, mouseY };
-		
-
-		for (auto& agent : ravenAgents)
-		{
-			agent->setTargetDestination(destination);
-		}
-	}
 
 	//rendering
 

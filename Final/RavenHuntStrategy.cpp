@@ -23,7 +23,7 @@ std::unique_ptr<AI::Goal<Raven>> RavenHuntStrategy::CreateGoal() const		//chnage
 
 	auto newGoal = std::make_unique<GoalMoveToPosition>();
 	
-	newGoal->SetDestination(X::Math::Vector2( 200.0f, 200.0f));
+	newGoal->SetDestination(X::Math::Vector2( 500.0f, 500.0f));
 
 	return newGoal;
 }

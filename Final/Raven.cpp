@@ -7,6 +7,7 @@
 #include "RavenHuntStrategy.h"
 #include "RavenHarvestStrategy.h"
 #include "RavenGoToMineralStrategy.h"
+#include "RavenGoHomeStrategy.h"
 using namespace AI;
 
 extern float wanderJitter;
@@ -81,6 +82,7 @@ void Raven::Load()
 	mDecisionModule = std::make_unique<AI::DecisionModule<Raven>>(*this);
 	mDecisionModule->AddStrategy<RavenHuntStrategy>();
 	mDecisionModule->AddStrategy<RavenHarvestStrategy>();
+	mDecisionModule->AddStrategy<RavenGoHomeStrategy>();
 	
 	auto strategy = mDecisionModule->AddStrategy<RavenGoToMineralStrategy>();
 	strategy->SetPerception(mPerceptionModule.get());
@@ -117,6 +119,7 @@ void Raven::Update(float deltaTime)
 	mVisualSensor->viewHalfAngle = viewAngle * X::Math::kDegToRad;
 
 	mPerceptionModule->Update(deltaTime);
+	mStateMachine.Update(deltaTime);
 	mDecisionModule->Update();
 
 	//mWanderBehavior->SetUp(wanderRadius, wanderDistance, wanderJitter);
@@ -173,11 +176,11 @@ void Raven::SetArrive(bool active)
 //}
 
 
-void Raven::setTargetDestination(const X::Math::Vector2& targetdestination)
+void Raven::SetTargetDestination(const X::Math::Vector2& targetdestination)
 {
-	RavenStrategy* strategy = mDecisionModule->AddStrategy<RavenStrategy>();
-	strategy->SetTargetDestination(targetdestination);
-
+	//RavenStrategy* strategy = mDecisionModule->AddStrategy<RavenStrategy>();
+	//strategy->SetTargetDestination(targetdestination);
+	mDestination = targetdestination;
 }
 
 void Raven::ChangeState(RavenState newState)

@@ -1,10 +1,12 @@
 
 #include "RavenStates.h"
+#include "TypeId.h"
+//#include "Mineral.h"
 #include <ImGui/Inc/ImGui.h>
 
 void RavenGoHome::Enter(Raven& agent)
 {
-	agent.setTargetDestination(X::Math::Vector2(100, 100));
+	/*agent.setTargetDestination(X::Math::Vector2(100, 100));*/
 }
 
 void RavenGoHome::Update(Raven& agent, float deltaTime)
@@ -37,7 +39,10 @@ void RavenHarvestMineral::Enter(Raven& agent)
 
 void RavenHarvestMineral::Update(Raven& agent, float deltaTime)
 {
-
+	if (agent.HasMineral())
+	{
+		agent.ChangeState(RavenState::GoHome);
+	}
 
 }
 
@@ -74,16 +79,27 @@ void RavenDeposite::DebugUI()
 }
 
 
-
+void RavenGoToGatherSpot::SetPerception(const AI::PerceptionModule* perception)
+{
+	mPerception = perception;
+}
 
 void RavenGoToGatherSpot::Enter(Raven& agent)
 {
-	agent.setTargetDestination(X::Math::Vector2(500, 500));
+	SetPerception(agent.GetPerception());
 }
 
 void RavenGoToGatherSpot::Update(Raven& agent, float deltaTime)
 {
-	
+	const auto& memoryRecords = mPerception->GetMemoryRecords();
+	for (auto& record : memoryRecords)
+	{
+		AgentType agentType = static_cast<AgentType>(record.GetProperty<int>("type", 0));
+		if (agentType == AgentType::Mineral)
+		{
+			agent.ChangeState(RavenState::GoToMineral);
+		}
+	}
 
 }
 
@@ -96,6 +112,10 @@ void RavenGoToGatherSpot::DebugUI()
 }
 
 
+void RavenGoToMineral::SetPerception(const AI::PerceptionModule* perception)
+{
+	mPerception = perception;
+}
 
 void RavenGoToMineral::Enter(Raven& agent)
 {
@@ -103,10 +123,21 @@ void RavenGoToMineral::Enter(Raven& agent)
 
 void RavenGoToMineral::Update(Raven& agent, float deltaTime)
 {
-	/*if (agent.)
-	{
+	//change to ravenharvestmineral
+	//Mineral* mineral = nullptr;
+	//AI::EntityPtrs minerals = agent.world.GetEntitiesInRange({ agent.destination, 1.0f }, static_cast<uint32_t>(AgentType::Mineral));
+	
 
-	}*/
+
+	float distToTarget = X::Math::Magnitude(agent.position - agent.GetTargetDestination());
+
+	if (distToTarget <= 20.0f)		//if agent is in range of mineral
+	{
+		agent.ChangeState(RavenState::HarvestMineral);
+	}
+
+
+	
 
 }
 

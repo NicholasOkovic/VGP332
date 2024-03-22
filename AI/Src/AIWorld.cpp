@@ -65,7 +65,7 @@ bool AIWorld::HasLineOfSight(const X::Math::LineSegment& lineSegment) const
 
 EntityPtrs AIWorld::GetEntitiesInRange(const X::Math::Circle& range, uint32_t typeId)
 {
-	const float radiusSq = range.radius * range.radius;
+	const float radiusSq = range.radius * range.radius * 500.0f;
 	EntityPtrs entities;
 	for (auto& entity : mEntities)
 	{

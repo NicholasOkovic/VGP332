@@ -20,6 +20,5 @@ public:
 	//void SetTileMap(TileMap& tileMap);
 
 private:
-	TileMap mTileMap;
 	X::Math::Vector2 mDestination;
 };

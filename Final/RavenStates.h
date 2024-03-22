@@ -21,8 +21,9 @@ public:
 	void Update(Raven& agent, float deltaTime) override;
 	void Exit(Raven& agent) override;
 	void DebugUI() override;
+	
 private:
-
+	
 };
 
 class RavenDeposite : public AI::State<Raven>
@@ -42,8 +43,9 @@ public:
 	void Update(Raven& agent, float deltaTime) override;
 	void Exit(Raven& agent) override;
 	void DebugUI() override;
+	void SetPerception(const AI::PerceptionModule* perception);
 private:
-
+	const AI::PerceptionModule* mPerception;
 };
 
 class RavenGoToMineral : public AI::State<Raven>
@@ -53,7 +55,8 @@ public:
 	void Update(Raven& agent, float deltaTime) override;
 	void Exit(Raven& agent) override;
 	void DebugUI() override;
+	void SetPerception(const AI::PerceptionModule* perception);
 private:
-
+	const AI::PerceptionModule* mPerception;
 };
 
