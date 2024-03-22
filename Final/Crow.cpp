@@ -187,9 +187,9 @@ void Crow::ChangeState(CrowState newState)
 	mCrowState = newState;
 }
 
-//void Crow::setTargetDestination(const X::Math::Vector2& targetdestination)
-//{
-//	RavenStrategy* strategy = mDecisionModule->AddStrategy<RavenStrategy>();
-//	strategy->SetTargetDestination(targetdestination);
-//
-//}
+void Crow::SetTargetDestination(const X::Math::Vector2& targetdestination)
+{
+	//RavenStrategy* strategy = mDecisionModule->AddStrategy<RavenStrategy>();
+	//strategy->SetTargetDestination(targetdestination);
+	mDestination = targetdestination;
+}

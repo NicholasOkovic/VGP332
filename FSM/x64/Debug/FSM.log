@@ -1,1 +1,6 @@
-﻿  FSM.vcxproj -> D:\Desktop\artificialInt\x64\Debug\FSM.exe
+﻿  Miner.cpp
+  MinerStates.cpp
+  WinMain.cpp
+  Generating Code...
+     Creating library D:\Desktop\artificialInt\x64\Debug\FSM.lib and object D:\Desktop\artificialInt\x64\Debug\FSM.exp
+  FSM.vcxproj -> D:\Desktop\artificialInt\x64\Debug\FSM.exe

@@ -50,7 +50,7 @@ namespace AI
 				{
 					mCurrentState->Exit(*mAgent);
 				}
-				mCurrentState = mStates[index].get();
+				mCurrentState = mStates[index].get();				
 				mCurrentState->Enter(*mAgent);
 
 			}

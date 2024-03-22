@@ -16,7 +16,7 @@ void CrowGoHome::Update(Crow& agent, float deltaTime)
 	{
 		agent.ChangeState(CrowState::Wander);
 	}
-	else if (agent.position.x <= 20 && agent.position.y <= 20)			///needs to be changed, wrong pos
+	else if (agent.position.x >= 900 && agent.position.y >= 600)			///needs to be changed, maybe wrong pos
 	{
 		agent.ChangeState(CrowState::Deposite);
 	}

@@ -123,6 +123,24 @@
     <ClInclude Include="RavenGoHomeStrategy.h">
       <Filter>Raven\RavenStrategy</Filter>
     </ClInclude>
+    <ClInclude Include="RavenLostStrategy.h">
+      <Filter>Raven\RavenStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="GoalRavenWanderToPosition.h">
+      <Filter>Raven\Composite Goals Raven</Filter>
+    </ClInclude>
+    <ClInclude Include="GoalCrowMoveToPosition.h">
+      <Filter>Crow\Composite Goals Crow</Filter>
+    </ClInclude>
+    <ClInclude Include="CrowDepositeStrategy.h">
+      <Filter>Crow\CrowStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="CrowGoHomeStrategy.h">
+      <Filter>Crow\CrowStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="GoalDepositeMineralCrow.h">
+      <Filter>Crow\Goals Atomic Crow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -202,6 +220,24 @@
     </ClCompile>
     <ClCompile Include="RavenGoHomeStrategy.cpp">
       <Filter>Raven\RavenStrategy</Filter>
+    </ClCompile>
+    <ClCompile Include="RavenLostStrategy.cpp">
+      <Filter>Raven\RavenStrategy</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalRavenWanderToPosition.cpp">
+      <Filter>Raven\Composite Goals Raven</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalCrowMoveToPosition.cpp">
+      <Filter>Crow\Composite Goals Crow</Filter>
+    </ClCompile>
+    <ClCompile Include="CrowDepositeStrategy.cpp">
+      <Filter>Crow\CrowStrategy</Filter>
+    </ClCompile>
+    <ClCompile Include="CrowGoHomeStrategy.cpp">
+      <Filter>Crow\CrowStrategy</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalDepositeMineralCrow.cpp">
+      <Filter>Crow\Goals Atomic Crow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

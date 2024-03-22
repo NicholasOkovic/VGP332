@@ -34,7 +34,8 @@ float viewRange = 300.0f;
 float viewAngle = 45.0f;
 
 
-
+int ravenDeposites = 0;
+int crowDeposites = 0;
 
 
 AIWorld aiWorld;
@@ -67,7 +68,6 @@ void SpawnRaven()
 	agent->radius = radius;
 	agent->ShowDebug(showDebug);
 	agent->SetSeek(useSeek);
-	//agent->SetWander(useWander);
 
 	agent->SetTileMap(&tileMap);
 
@@ -125,7 +125,6 @@ void GameInit()
 
 
 
-
 	textureId = X::LoadTexture("bird1.png");
 	position = { 100.0f, 100.0f };
 }
@@ -144,30 +143,9 @@ bool GameLoop(float deltaTime)
 
 	ImGui::Begin("PathFinding", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 	{
-		const int columns = tileMap.GetColumns();
-		const int rows = tileMap.GetRows();
-		ImGui::DragInt("StartX", &startX, 1, 0, columns - 1);
-		ImGui::DragInt("StartY", &startY, 1, 0, rows - 1);
-		ImGui::DragInt("EndX", &endX, 1, 0, columns - 1);
-		ImGui::DragInt("EndY", &endY, 1, 0, rows - 1);
-		if (ImGui::Button("RunBFS"))
-		{
-			path = tileMap.FindPathBFS(startX, startY, endX, endY);
-		}
-		if (ImGui::Button("RunDFS"))
-		{
-			path = tileMap.FindPathDFS(startX, startY, endX, endY);
-		}
-		if (ImGui::Button("RunDijkstra"))
-		{
-			path = tileMap.FindPathDijkstra(startX, startY, endX, endY);
-		}
-		if (ImGui::Button("RunAStar"))
-		{
-			path = tileMap.FindPathAStar(startX, startY, endX, endY);
-		}
-	
 
+		ImGui::Text("Raven Deposites: [%i]", ravenDeposites);
+		ImGui::Text("Crow Deposites: [%i]", crowDeposites);
 
 		if (ImGui::Button("SpawnRaven"))
 		{
@@ -200,6 +178,7 @@ bool GameLoop(float deltaTime)
 				agent->ShowDebug(showDebug);		
 			}
 		}
+
 		
 	}
 	ImGui::End();

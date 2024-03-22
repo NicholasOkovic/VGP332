@@ -5,11 +5,11 @@
 
 float RavenHuntStrategy::CalculateDesirability(Raven& agent) const			//chnaged hunt strat
 {
-	if (agent.GetState() == RavenState::GoToGatherSpot)
+	if (agent.GetState() == RavenState::GoToGatherSpot) //actually kinda cool, they search the premises of the gather spot
 	{
-		return 1000.0f;
+		return 200.0f;
 	}
-	return 10.0f;
+	return 2.0f;
 }
 
 std::unique_ptr<AI::Goal<Raven>> RavenHuntStrategy::CreateGoal() const		//chnage wander to follow set path/ go to farming area

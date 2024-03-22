@@ -8,9 +8,10 @@ enum class RavenState
 {
 	GoHome,
 	HarvestMineral,
-	Deposite,
+	GoToMineral,
 	GoToGatherSpot,
-	GoToMineral
+	Deposite/*,
+	NoStrat*/
 };
 
 
@@ -45,19 +46,21 @@ public:
 
 	//states & stuff
 	void ChangeState(RavenState newState);
-	//RavenState GetState() { return ((int)mStateMachine); };
 	RavenState GetState() { return mRavenState; }
 	
+
 
 private:
 	std::unique_ptr<AI::PerceptionModule> mPerceptionModule;
 	std::unique_ptr<AI::SteeringModule> mSteeringModule;
 	std::unique_ptr<AI::DecisionModule<Raven>> mDecisionModule;
 
+
+
 	VisualSensor* mVisualSensor = nullptr;
 
 	AI::SeekBehavior* mSeekBehavior = nullptr;
-	//AI::WanderingBehavior* mWanderBehavior = nullptr;
+	
 	AI::ArriveBehavior* mArriveBehavior = nullptr;
 
 	X::Math::Vector2 mDestination;

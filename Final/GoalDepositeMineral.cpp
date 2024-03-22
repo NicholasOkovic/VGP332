@@ -1,6 +1,8 @@
 #include "GoalDepositeMineral.h"
 #include "TypeId.h"
 
+extern int ravenDeposites;
+
 GoalDepositeMineral::GoalDepositeMineral()
 {
 }
@@ -23,7 +25,8 @@ GoalDepositeMineral::Status GoalDepositeMineral::Process(Raven& agent)	//prolly 
 	{
 		agent.target = nullptr;
 		mStatus = GoalDepositeMineral::Status::Completed;		
-
+		agent.SetMineral(false);
+		ravenDeposites++;
 	}
 	return mStatus;
 }

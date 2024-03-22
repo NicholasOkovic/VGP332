@@ -8,6 +8,8 @@
 #include "RavenHarvestStrategy.h"
 #include "RavenGoToMineralStrategy.h"
 #include "RavenGoHomeStrategy.h"
+#include "RavenDepositeStrategy.h"
+#include "RavenLostStrategy.h"
 using namespace AI;
 
 extern float wanderJitter;
@@ -83,6 +85,8 @@ void Raven::Load()
 	mDecisionModule->AddStrategy<RavenHuntStrategy>();
 	mDecisionModule->AddStrategy<RavenHarvestStrategy>();
 	mDecisionModule->AddStrategy<RavenGoHomeStrategy>();
+	mDecisionModule->AddStrategy<RavenDepositeStrategy>();
+	mDecisionModule->AddStrategy<RavenLostStrategy>();
 	
 	auto strategy = mDecisionModule->AddStrategy<RavenGoToMineralStrategy>();
 	strategy->SetPerception(mPerceptionModule.get());
@@ -91,9 +95,11 @@ void Raven::Load()
 	mStateMachine.Initialize(this);
 	mStateMachine.AddState<RavenGoHome>();
 	mStateMachine.AddState<RavenHarvestMineral>();
-	mStateMachine.AddState<RavenDeposite>();
-	mStateMachine.AddState<RavenGoToGatherSpot>();
 	mStateMachine.AddState<RavenGoToMineral>();
+	mStateMachine.AddState<RavenGoToGatherSpot>();
+	mStateMachine.AddState<RavenDeposite>();
+	//mStateMachine.AddState<RavenNoStrat>();
+
 	ChangeState(RavenState::GoHome);
 
 

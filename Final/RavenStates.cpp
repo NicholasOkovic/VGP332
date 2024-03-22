@@ -6,7 +6,7 @@
 
 void RavenGoHome::Enter(Raven& agent)
 {
-	/*agent.setTargetDestination(X::Math::Vector2(100, 100));*/
+	
 }
 
 void RavenGoHome::Update(Raven& agent, float deltaTime)
@@ -16,10 +16,12 @@ void RavenGoHome::Update(Raven& agent, float deltaTime)
 	{
 		agent.ChangeState(RavenState::GoToGatherSpot);
 	}
-	else if (agent.position.x <= 20 && agent.position.y <= 20)
+	else if (agent.position.x <= 120 && agent.position.y <= 120)
 	{
 		agent.ChangeState(RavenState::Deposite);
 	}
+
+	
 
 }
 
@@ -43,7 +45,7 @@ void RavenHarvestMineral::Update(Raven& agent, float deltaTime)
 	{
 		agent.ChangeState(RavenState::GoHome);
 	}
-
+	//maybe make a timer for how long they can stay trying to get the mienral that was stolen
 }
 
 void RavenHarvestMineral::Exit(Raven& agent)
@@ -100,7 +102,7 @@ void RavenGoToGatherSpot::Update(Raven& agent, float deltaTime)
 			agent.ChangeState(RavenState::GoToMineral);
 		}
 	}
-
+	
 }
 
 void RavenGoToGatherSpot::Exit(Raven& agent)
@@ -127,17 +129,12 @@ void RavenGoToMineral::Update(Raven& agent, float deltaTime)
 	//Mineral* mineral = nullptr;
 	//AI::EntityPtrs minerals = agent.world.GetEntitiesInRange({ agent.destination, 1.0f }, static_cast<uint32_t>(AgentType::Mineral));
 	
-
-
 	float distToTarget = X::Math::Magnitude(agent.position - agent.GetTargetDestination());
 
 	if (distToTarget <= 20.0f)		//if agent is in range of mineral
 	{
 		agent.ChangeState(RavenState::HarvestMineral);
 	}
-
-
-	
 
 }
 
@@ -148,3 +145,28 @@ void RavenGoToMineral::Exit(Raven& agent)
 void RavenGoToMineral::DebugUI()
 {
 }
+
+//void RavenNoStrat::Enter(Raven& agent)
+//{
+//}
+//
+//void RavenNoStrat::Update(Raven& agent, float deltaTime)
+//{
+//	/*if (!agent.HasMineral())
+//	{
+//		agent.ChangeState(RavenState::GoToGatherSpot);
+//	}
+//	else
+//	{
+//		agent.ChangeState(RavenState::GoHome);
+//	}*/
+//
+//}
+//
+//void RavenNoStrat::Exit(Raven& agent)
+//{
+//}
+//
+//void RavenNoStrat::DebugUI()
+//{
+//}
