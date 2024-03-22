@@ -11,6 +11,7 @@ enum class CrowState
 	ChaseRaven,
 	Deposite,
 	Wander,
+	Steal
 };
 
 
@@ -38,13 +39,14 @@ public:
 	void SetTileMap(TileMap* tileMap) { mTileMap = tileMap; }
 	TileMap* GetTileMap() { return mTileMap; }
 	void SetMineral(bool hasMineral) { mHasMineral = hasMineral; }
-	int HasMineral() const { return mHasMineral; }
+	bool HasMineral() const { return mHasMineral; }
 
 
 	//states & stuff
 	void ChangeState(CrowState newState);
 	CrowState GetState() { return mCrowState; }
 
+	void SetMaxSpeed(int speed) { maxSpeed = speed; }
 
 private:
 	std::unique_ptr<AI::PerceptionModule> mPerceptionModule;
@@ -64,6 +66,6 @@ private:
 	TileMap* mTileMap = nullptr;
 	AI::StateMachine<Crow> mStateMachine;
 	CrowState mCrowState;
-	int mHasMineral = 0;
+	bool mHasMineral = false;
 
 };

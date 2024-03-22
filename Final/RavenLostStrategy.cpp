@@ -5,11 +5,11 @@
 
 float RavenLostStrategy::CalculateDesirability(Raven& agent) const
 {
-	if (X::Math::Magnitude(agent.position - agent.GetTargetDestination()) <= 200)
+	if (X::Math::Magnitude(agent.position - agent.GetTargetDestination()) <= 100)
 	{
 		return 250.0f;
 	}
-	return 20.0f;
+	return 5.0f;
 }
 
 std::unique_ptr<AI::Goal<Raven>> RavenLostStrategy::CreateGoal() const

@@ -1,1 +1,16 @@
-﻿  Final.vcxproj -> D:\Desktop\artificialInt\x64\Debug\Final.exe
+﻿  WinMain.cpp
+D:\Desktop\artificialInt\Final\Raven.h(51,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'WinMain.cpp')
+  
+D:\Desktop\artificialInt\Final\Crow.h(49,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'WinMain.cpp')
+  
+D:\Desktop\artificialInt\Final\WinMain.cpp(55,45): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
+D:\Desktop\artificialInt\Final\WinMain.cpp(55,26): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
+D:\Desktop\artificialInt\Final\WinMain.cpp(56,47): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
+D:\Desktop\artificialInt\Final\WinMain.cpp(56,27): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
+D:\Desktop\artificialInt\Final\WinMain.cpp(81,45): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
+D:\Desktop\artificialInt\Final\WinMain.cpp(81,26): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
+D:\Desktop\artificialInt\Final\WinMain.cpp(82,47): warning C4244: 'initializing': conversion from 'uint32_t' to 'float', possible loss of data
+D:\Desktop\artificialInt\Final\WinMain.cpp(82,27): warning C4244: 'initializing': conversion from 'uint32_t' to 'const float', possible loss of data
+  Final.vcxproj -> D:\Desktop\artificialInt\x64\Debug\Final.exe

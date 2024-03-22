@@ -3,11 +3,11 @@
 
 #include "TypeId.h"
 #include "VisualSensor.h"
-//#include "RavenStrategy.h"
-//#include "RavenHuntStrategy.h"
+#include "CrowDepositeStrategy.h"
+#include "CrowGoHomeStrategy.h"
 #include "CrowHuntStrategy.h"
-//#include "RavenHarvestStrategy.h"
-//#include "RavenGoToMineralStrategy.h"
+#include "CrowGoToRavenStrategy.h"
+#include "CrowStealStrategy.h"
 using namespace AI;
 
 extern float wanderJitter;
@@ -91,10 +91,12 @@ void Crow::Load()
 
 	mDecisionModule = std::make_unique<AI::DecisionModule<Crow>>(*this);
 	mDecisionModule->AddStrategy<CrowHuntStrategy>();
-	//mDecisionModule->AddStrategy<RavenHarvestStrategy>();
+	mDecisionModule->AddStrategy<CrowDepositeStrategy>();
+	mDecisionModule->AddStrategy<CrowStealStrategy>();
+	mDecisionModule->AddStrategy<CrowGoHomeStrategy>();
 
-	//auto strategy = mDecisionModule->AddStrategy<RavenGoToMineralStrategy>();
-	//strategy->SetPerception(mPerceptionModule.get());
+	auto strategy = mDecisionModule->AddStrategy<CrowGoToRavenStrategy>();
+	strategy->SetPerception(mPerceptionModule.get());
 
 	//stateMachines
 	mStateMachine.Initialize(this);
@@ -102,7 +104,10 @@ void Crow::Load()
 	mStateMachine.AddState<CrowChaseRaven>();
 	mStateMachine.AddState<CrowDeposite>();
 	mStateMachine.AddState<CrowWander>();
+	mStateMachine.AddState<CrowSteal>();
 	ChangeState(CrowState::GoHome);
+
+	SetMaxSpeed(100);
 
 	for (int i = 0; i < mTexturesIds.size(); i++)
 	{
@@ -121,10 +126,11 @@ void Crow::Unload()
 
 void Crow::Update(float deltaTime)
 {
-	mVisualSensor->viewRange = viewRange;
-	mVisualSensor->viewHalfAngle = viewAngle * X::Math::kDegToRad;
+	mVisualSensor->viewRange = viewRange * 1.2f;
+	mVisualSensor->viewHalfAngle = viewAngle * X::Math::kDegToRad * 1.5f;
 
 	mPerceptionModule->Update(deltaTime);
+	mStateMachine.Update(deltaTime);
 	mDecisionModule->Update();
 
 	mWanderBehavior->SetUp(wanderRadius, wanderDistance, wanderJitter);

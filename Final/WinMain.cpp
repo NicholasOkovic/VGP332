@@ -3,7 +3,7 @@
 #include <ImGui/Inc/imgui.h>
 
 
-#include "SCV.h"
+
 #include "Mineral.h"
 #include "Raven.h"
 #include "Crow.h"
@@ -18,11 +18,6 @@ TileMap tileMap;
 X::TextureId textureId;
 X::Math::Vector2 position;
 Path path;
-int startX = 9;
-int startY = 10;
-int endX = 18; //13
-int endY = 18; //15
-
 
 float wanderJitter = 5.0f;
 float wanderRadius = 20.0f;
@@ -33,7 +28,6 @@ float radius = 50.0f;
 float viewRange = 300.0f;
 float viewAngle = 45.0f;
 
-
 int ravenDeposites = 0;
 int crowDeposites = 0;
 
@@ -41,7 +35,6 @@ int crowDeposites = 0;
 AIWorld aiWorld;
 std::vector<std::unique_ptr<Raven>> ravenAgents;
 std::vector<std::unique_ptr<Crow>> crowAgents;
-std::vector<std::unique_ptr<SCV>> scvAgents;
 std::vector<std::unique_ptr<Mineral>> minerals;
 
 X::Math::Vector2 destination = X::Math::Vector2::Zero();
@@ -122,24 +115,13 @@ void GameInit()
 	}
 	tileMap.LoadTiles("tiles.txt");
 	tileMap.LoadMap("map.txt");
-
-
-
-	textureId = X::LoadTexture("bird1.png");
-	position = { 100.0f, 100.0f };
 }
 
 bool GameLoop(float deltaTime)
 {
-	const float moveSpeed = 200.0f; // pixel per second
-	if (X::IsKeyDown(X::Keys::RIGHT))
-		position.x += moveSpeed * deltaTime;
-	else if (X::IsKeyDown(X::Keys::LEFT))
-		position.x -= moveSpeed * deltaTime;
-	if (X::IsKeyDown(X::Keys::DOWN))
-		position.y += moveSpeed * deltaTime;
-	else if (X::IsKeyDown(X::Keys::UP))
-		position.y -= moveSpeed * deltaTime;
+
+
+
 
 	ImGui::Begin("PathFinding", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 	{
@@ -147,37 +129,37 @@ bool GameLoop(float deltaTime)
 		ImGui::Text("Raven Deposites: [%i]", ravenDeposites);
 		ImGui::Text("Crow Deposites: [%i]", crowDeposites);
 
-		if (ImGui::Button("SpawnRaven"))
-		{
-			SpawnRaven();
-		}
-		ImGui::SameLine();
-		if (ImGui::Button("KillRaven") && !ravenAgents.empty())
-		{
-			KillRaven();
-		}
-		
-		if (ImGui::Button("SpawnCrow"))
-		{
-			SpawnCrow();
-		}
-		ImGui::SameLine();
-		if (ImGui::Button("KillCrow") && !crowAgents.empty())
-		{
-			KillCrow();
-		}
+	//	if (ImGui::Button("SpawnRaven"))
+	//	{
+	//		SpawnRaven();
+	//	}
+	//	ImGui::SameLine();
+	//	if (ImGui::Button("KillRaven") && !ravenAgents.empty())			//buttons
+	//	{
+	//		KillRaven();
+	//	}
+	//	
+	//	if (ImGui::Button("SpawnCrow"))
+	//	{
+	//		SpawnCrow();
+	//	}
+	//	ImGui::SameLine();
+	//	if (ImGui::Button("KillCrow") && !crowAgents.empty())
+	//	{
+	//		KillCrow();
+	//	}
 
-		if (ImGui::Checkbox("ShowDebug", &showDebug))
-		{
-			for (auto& agent : ravenAgents)
-			{
-				agent->ShowDebug(showDebug);		
-			}
-			for (auto& agent : crowAgents)
-			{
-				agent->ShowDebug(showDebug);		
-			}
-		}
+	//	if (ImGui::Checkbox("ShowDebug", &showDebug))
+	//	{
+	//		for (auto& agent : ravenAgents)
+	//		{
+	//			agent->ShowDebug(showDebug);		
+	//		}
+	//		for (auto& agent : crowAgents)
+	//		{
+	//			agent->ShowDebug(showDebug);		
+	//		}
+	//	}
 
 		
 	}
@@ -189,15 +171,14 @@ bool GameLoop(float deltaTime)
 
 	tileMap.Render();
 
-	X::DrawSprite(textureId, position, X::Pivot::TopLeft, X::Flip::Horizontal);
-	X::DrawScreenDiamond(position, 5.0f, X::Colors::Cyan);
+	//bases
+	X::DrawScreenDiamond(110.0f, 110.0f, 10.0f, X::Colors::Cyan);
+	X::DrawScreenDiamond(1168.0f, 625.0f, 10.0f, X::Colors::Azure);
 
 	for (int i = 1; i < path.size(); ++i)
 	{
 		X::DrawScreenLine(path[i - 1], path[i], X::Colors::Red);
 	}
-	X::DrawScreenCircle(tileMap.GetPixelPosition(startX, startY), 10.0f, X::Colors::Pink);
-	X::DrawScreenCircle(tileMap.GetPixelPosition(endX, endY), 10.0f, X::Colors::Yellow);
 
 	
 
@@ -220,24 +201,37 @@ bool GameLoop(float deltaTime)
 		agent->Render();
 	}
 
-	auto iter = minerals.begin();
-	while (iter != minerals.end())
+	//auto iter = minerals.begin();
+	//while (iter != minerals.end())
+	//{
+	//	if (iter->get()->GetHealth() == 0)		//removes mushrooms from scene
+	//	{
+	//		iter->reset();
+	//		iter = minerals.erase(iter);
+	//	}
+	//	else
+	//	{
+	//		++iter;
+	//	}
+	//}
+	for (auto& mineral : minerals)
 	{
-		if (iter->get()->GetHealth() == 0)
-		{
-			iter->reset();
-			iter = minerals.erase(iter);
-		}
-		else
-		{
-			++iter;
-		}
+		mineral->Update(deltaTime);
 	}
 	for (auto& mineral : minerals)
 	{
 		mineral->Render();
 	}
 
+
+	if (ravenAgents.size() < 4)
+	{
+		SpawnRaven();
+	}
+	if (crowAgents.size() < 3)
+	{
+		SpawnCrow();
+	}
 
 	const bool quit = X::IsKeyPressed(X::Keys::ESCAPE);
 	return quit;

@@ -48,7 +48,7 @@ public:
 	void ChangeState(RavenState newState);
 	RavenState GetState() { return mRavenState; }
 	
-
+	void SetMaxSpeed(int speed) { maxSpeed = speed; }
 
 private:
 	std::unique_ptr<AI::PerceptionModule> mPerceptionModule;

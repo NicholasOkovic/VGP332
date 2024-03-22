@@ -3,7 +3,7 @@
 
 #include "TypeId.h"
 #include "VisualSensor.h"
-#include "RavenStrategy.h"
+//#include "RavenStrategy.h"
 #include "RavenHuntStrategy.h"
 #include "RavenHarvestStrategy.h"
 #include "RavenGoToMineralStrategy.h"
@@ -102,7 +102,7 @@ void Raven::Load()
 
 	ChangeState(RavenState::GoHome);
 
-
+	SetMaxSpeed(50);
 
 	for (int i = 0; i < mTexturesIds.size(); i++)
 	{

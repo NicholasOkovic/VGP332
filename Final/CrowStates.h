@@ -42,6 +42,18 @@ public:
 	void Update(Crow& agent, float deltaTime) override;
 	void Exit(Crow& agent) override;
 	void DebugUI() override;
+	void SetPerception(const AI::PerceptionModule* perception);
+private:
+	const AI::PerceptionModule* mPerception;
+};
+
+class CrowSteal : public AI::State<Crow>
+{
+public:
+	void Enter(Crow& agent) override;
+	void Update(Crow& agent, float deltaTime) override;
+	void Exit(Crow& agent) override;
+	void DebugUI() override;
 private:
 
 };

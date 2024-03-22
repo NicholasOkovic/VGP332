@@ -2,6 +2,7 @@ D:\Desktop\artificialInt\Final\Crow.cpp;D:\Desktop\artificialInt\Final\x64\Debug
 D:\Desktop\artificialInt\Final\CrowDepositeStrategy.cpp;D:\Desktop\artificialInt\Final\x64\Debug\CrowDepositeStrategy.obj
 D:\Desktop\artificialInt\Final\CrowGoHomeStrategy.cpp;D:\Desktop\artificialInt\Final\x64\Debug\CrowGoHomeStrategy.obj
 D:\Desktop\artificialInt\Final\CrowGoToRavenStrategy.cpp;D:\Desktop\artificialInt\Final\x64\Debug\CrowGoToRavenStrategy.obj
+D:\Desktop\artificialInt\Final\CrowStealStrategy.cpp;D:\Desktop\artificialInt\Final\x64\Debug\CrowStealStrategy.obj
 D:\Desktop\artificialInt\Final\CrowHuntStrategy.cpp;D:\Desktop\artificialInt\Final\x64\Debug\CrowHuntStrategy.obj
 D:\Desktop\artificialInt\Final\CrowStates.cpp;D:\Desktop\artificialInt\Final\x64\Debug\CrowStates.obj
 D:\Desktop\artificialInt\Final\GoalArriveAtPosition.cpp;D:\Desktop\artificialInt\Final\x64\Debug\GoalArriveAtPosition.obj
@@ -14,6 +15,7 @@ D:\Desktop\artificialInt\Final\GoalMoveToPosition.cpp;D:\Desktop\artificialInt\F
 D:\Desktop\artificialInt\Final\GoalRavenWanderToPosition.cpp;D:\Desktop\artificialInt\Final\x64\Debug\GoalRavenWanderToPosition.obj
 D:\Desktop\artificialInt\Final\GoalSeekToPosition.cpp;D:\Desktop\artificialInt\Final\x64\Debug\GoalSeekToPosition.obj
 D:\Desktop\artificialInt\Final\GoalSeekToPositionCrow.cpp;D:\Desktop\artificialInt\Final\x64\Debug\GoalSeekToPositionCrow.obj
+D:\Desktop\artificialInt\Final\GoalStealMineralCrow.cpp;D:\Desktop\artificialInt\Final\x64\Debug\GoalStealMineralCrow.obj
 D:\Desktop\artificialInt\Final\GoalWander.cpp;D:\Desktop\artificialInt\Final\x64\Debug\GoalWander.obj
 D:\Desktop\artificialInt\Final\Mineral.cpp;D:\Desktop\artificialInt\Final\x64\Debug\Mineral.obj
 D:\Desktop\artificialInt\Final\Raven.cpp;D:\Desktop\artificialInt\Final\x64\Debug\Raven.obj
@@ -25,7 +27,6 @@ D:\Desktop\artificialInt\Final\RavenHuntStrategy.cpp;D:\Desktop\artificialInt\Fi
 D:\Desktop\artificialInt\Final\RavenLostStrategy.cpp;D:\Desktop\artificialInt\Final\x64\Debug\RavenLostStrategy.obj
 D:\Desktop\artificialInt\Final\RavenStates.cpp;D:\Desktop\artificialInt\Final\x64\Debug\RavenStates.obj
 D:\Desktop\artificialInt\Final\RavenStrategy.cpp;D:\Desktop\artificialInt\Final\x64\Debug\RavenStrategy.obj
-D:\Desktop\artificialInt\Final\SCV.cpp;D:\Desktop\artificialInt\Final\x64\Debug\SCV.obj
 D:\Desktop\artificialInt\Final\TileMap.cpp;D:\Desktop\artificialInt\Final\x64\Debug\TileMap.obj
 D:\Desktop\artificialInt\Final\VisualSensor.cpp;D:\Desktop\artificialInt\Final\x64\Debug\VisualSensor.obj
 D:\Desktop\artificialInt\Final\GoalWanderToPosition.cpp;D:\Desktop\artificialInt\Final\x64\Debug\GoalWanderToPosition.obj

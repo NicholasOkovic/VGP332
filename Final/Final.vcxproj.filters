@@ -54,9 +54,6 @@
     <ClInclude Include="Raven.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SCV.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TypeId.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -141,6 +138,12 @@
     <ClInclude Include="GoalDepositeMineralCrow.h">
       <Filter>Crow\Goals Atomic Crow</Filter>
     </ClInclude>
+    <ClInclude Include="CrowStealStrategy.h">
+      <Filter>Crow\CrowStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="GoalStealMineralCrow.h">
+      <Filter>Crow\Goals Atomic Crow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -153,9 +156,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Raven.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SCV.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="VisualSensor.cpp">
@@ -237,6 +237,12 @@
       <Filter>Crow\CrowStrategy</Filter>
     </ClCompile>
     <ClCompile Include="GoalDepositeMineralCrow.cpp">
+      <Filter>Crow\Goals Atomic Crow</Filter>
+    </ClCompile>
+    <ClCompile Include="CrowStealStrategy.cpp">
+      <Filter>Crow\CrowStrategy</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalStealMineralCrow.cpp">
       <Filter>Crow\Goals Atomic Crow</Filter>
     </ClCompile>
   </ItemGroup>

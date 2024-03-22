@@ -36,14 +36,14 @@ void GoalWanderToPosition::Activate(Crow& agent)
 
 	do {
 
-		endPos = (X::RandomVector2({ 5.0f, 5.0f }, { X::Math::Vector2(mTileMap->GetColumns() - 1, mTileMap->GetRows() - 1) }));
+		endPos = (X::RandomVector2({ 5.0f, 5.0f }, { X::Math::Vector2(mTileMap->GetColumns() - 4, mTileMap->GetRows() - 4) }));
 
 	} while (mTileMap->IsBlocked(endPos.x, endPos.y));
 
 
 	Path path = mTileMap->FindPathAStar(endPos.x, endPos.y, startPos.x, startPos.y);		
 
-	float seekDistance = 30;
+	float seekDistance = 35;
 
 	/*for (int i = 0; i < path.size() - 1; i++)
 	{

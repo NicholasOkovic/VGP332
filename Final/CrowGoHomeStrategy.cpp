@@ -14,7 +14,7 @@ std::unique_ptr<AI::Goal<Crow>> CrowGoHomeStrategy::CreateGoal() const
 {
 	auto newGoal = std::make_unique<GoalCrowMoveToPosition>();
 
-	newGoal->SetDestination(X::Math::Vector2(120.0f, 120.0f));
+	newGoal->SetDestination(X::Math::Vector2(1180.0f, 600.0f));
 
 	return newGoal;
 }

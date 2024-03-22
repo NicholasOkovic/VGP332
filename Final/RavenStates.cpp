@@ -131,7 +131,7 @@ void RavenGoToMineral::Update(Raven& agent, float deltaTime)
 	
 	float distToTarget = X::Math::Magnitude(agent.position - agent.GetTargetDestination());
 
-	if (distToTarget <= 20.0f)		//if agent is in range of mineral
+	if (distToTarget <= 30.0f)		//if agent is in range of mineral
 	{
 		agent.ChangeState(RavenState::HarvestMineral);
 	}

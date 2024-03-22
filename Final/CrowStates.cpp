@@ -1,13 +1,10 @@
 
 #include "CrowStates.h"
+#include "TypeId.h"
 #include <ImGui/Inc/ImGui.h>
 
 void CrowGoHome::Enter(Crow& agent)
 {
-	const float screenWidth = X::GetScreenWidth();
-	const float screenHeight = X::GetScreenHeight();
-
-	//agent.setTargetDestination(X::Math::Vector2(screenWidth - 250.0f, screenHeight / 1.2f));	///maybe add strat so no need to write stuff here except ifs
 }
 
 void CrowGoHome::Update(Crow& agent, float deltaTime)
@@ -16,7 +13,7 @@ void CrowGoHome::Update(Crow& agent, float deltaTime)
 	{
 		agent.ChangeState(CrowState::Wander);
 	}
-	else if (agent.position.x >= 900 && agent.position.y >= 600)			///needs to be changed, maybe wrong pos
+	else if (agent.position.x >= 1160.0f && agent.position.y >= 590.0f)			
 	{
 		agent.ChangeState(CrowState::Deposite);
 	}
@@ -36,9 +33,15 @@ void CrowChaseRaven::Enter(Crow& agent)
 {
 }
 
-void CrowChaseRaven::Update(Crow& agent, float deltaTime)		//create strat for 
+void CrowChaseRaven::Update(Crow& agent, float deltaTime)		
 {
 
+	float distToTarget = X::Math::Magnitude(agent.position - agent.GetTargetDestination());
+
+	if (distToTarget <= 25.0f)		//if agent is in range of Raven
+	{
+		agent.ChangeState(CrowState::Steal);
+	}
 }
 
 void CrowChaseRaven::Exit(Crow& agent)
@@ -73,9 +76,14 @@ void CrowDeposite::DebugUI()
 
 
 
+void CrowWander::SetPerception(const AI::PerceptionModule* perception)
+{
+	mPerception = perception;
+}
 
 void CrowWander::Enter(Crow& agent)
 {
+	SetPerception(agent.GetPerception());
 }
 
 void CrowWander::Update(Crow& agent, float deltaTime)
@@ -84,6 +92,18 @@ void CrowWander::Update(Crow& agent, float deltaTime)
 	{
 		agent.ChangeState(CrowState::GoHome);
 	}
+
+	const auto& memoryRecords = mPerception->GetMemoryRecords();
+	for (auto& record : memoryRecords)
+	{
+		AgentType agentType = static_cast<AgentType>(record.GetProperty<int>("type", 0));
+		if (agentType == AgentType::Raven)
+		{
+			agent.ChangeState(CrowState::ChaseRaven);
+		}
+	}
+
+
 }
 
 void CrowWander::Exit(Crow& agent)
@@ -93,3 +113,32 @@ void CrowWander::Exit(Crow& agent)
 void CrowWander::DebugUI()
 {
 }
+
+
+
+void CrowSteal::Enter(Crow& agent)
+{
+}
+
+void CrowSteal::Update(Crow& agent, float deltaTime)
+{
+	float distToTarget = X::Math::Magnitude(agent.position - agent.GetTargetDestination());
+	if (agent.HasMineral())
+	{
+		agent.ChangeState(CrowState::GoHome);
+	}
+	else if (distToTarget >= 30.0f)
+	{
+		agent.ChangeState(CrowState::Wander);
+	}
+}
+
+void CrowSteal::Exit(Crow& agent)
+{
+}
+
+void CrowSteal::DebugUI()
+{
+}
+
+

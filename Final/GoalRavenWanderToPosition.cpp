@@ -8,10 +8,6 @@ GoalRavenWanderToPosition::GoalRavenWanderToPosition()
 {
 }
 
-//void GoalMoveToPosition::SetTileMap(Raven& agent)
-//{
-//	mTileMap = agent.GetTileMap();
-//}
 
 void GoalRavenWanderToPosition::Activate(Raven& agent)
 {
@@ -23,20 +19,11 @@ void GoalRavenWanderToPosition::Activate(Raven& agent)
 
 	X::Math::Vector2 startPos = (mTileMap->GetTilePosition(agent.position));
 
-
-		
-
-	//while end pos is blocked get a new one
-	//if (startPos)					///need ot make a check to see if position is in a wall
-	//{
-
-	//}
-
 	X::Math::Vector2 endPos;
 
 	do {
 
-		endPos = (X::RandomVector2({ 5.0f, 5.0f }, { X::Math::Vector2(mTileMap->GetColumns() - 1, mTileMap->GetRows() - 1) }));
+		endPos = (X::RandomVector2({ 5.0f, 5.0f }, { X::Math::Vector2(mTileMap->GetColumns() - 2, mTileMap->GetRows() - 2) }));
 
 	} while (mTileMap->IsBlocked(endPos.x, endPos.y));
 

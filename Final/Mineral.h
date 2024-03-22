@@ -12,9 +12,10 @@ public:
 	void Render();
 	int GetHealth() const { return mHealth; }			
 	void SetHealth(int health) { mHealth = health; }
-
+	void Update(float deltaTime);
 
 private:
 	X::TextureId mTextureId;
 	int mHealth = 100;
+	float mTimer = 1;
 };

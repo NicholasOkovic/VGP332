@@ -135,6 +135,7 @@
     <ClInclude Include="CrowDepositeStrategy.h" />
     <ClInclude Include="CrowGoHomeStrategy.h" />
     <ClInclude Include="CrowGoToRavenStrategy.h" />
+    <ClInclude Include="CrowStealStrategy.h" />
     <ClInclude Include="CrowHuntStrategy.h" />
     <ClInclude Include="CrowStates.h" />
     <ClInclude Include="GoalArriveAtPosition.h" />
@@ -147,6 +148,7 @@
     <ClInclude Include="GoalRavenWanderToPosition.h" />
     <ClInclude Include="GoalSeekToPosition.h" />
     <ClInclude Include="GoalSeekToPositionCrow.h" />
+    <ClInclude Include="GoalStealMineralCrow.h" />
     <ClInclude Include="GoalWander.h" />
     <ClInclude Include="Mineral.h" />
     <ClInclude Include="Raven.h" />
@@ -158,7 +160,6 @@
     <ClInclude Include="RavenLostStrategy.h" />
     <ClInclude Include="RavenStates.h" />
     <ClInclude Include="RavenStrategy.h" />
-    <ClInclude Include="SCV.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="TypeId.h" />
     <ClInclude Include="VisualSensor.h" />
@@ -169,6 +170,7 @@
     <ClCompile Include="CrowDepositeStrategy.cpp" />
     <ClCompile Include="CrowGoHomeStrategy.cpp" />
     <ClCompile Include="CrowGoToRavenStrategy.cpp" />
+    <ClCompile Include="CrowStealStrategy.cpp" />
     <ClCompile Include="CrowHuntStrategy.cpp" />
     <ClCompile Include="CrowStates.cpp" />
     <ClCompile Include="GoalArriveAtPosition.cpp" />
@@ -181,6 +183,7 @@
     <ClCompile Include="GoalRavenWanderToPosition.cpp" />
     <ClCompile Include="GoalSeekToPosition.cpp" />
     <ClCompile Include="GoalSeekToPositionCrow.cpp" />
+    <ClCompile Include="GoalStealMineralCrow.cpp" />
     <ClCompile Include="GoalWander.cpp" />
     <ClCompile Include="Mineral.cpp" />
     <ClCompile Include="Raven.cpp" />
@@ -192,7 +195,6 @@
     <ClCompile Include="RavenLostStrategy.cpp" />
     <ClCompile Include="RavenStates.cpp" />
     <ClCompile Include="RavenStrategy.cpp" />
-    <ClCompile Include="SCV.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="VisualSensor.cpp" />
     <ClCompile Include="GoalWanderToPosition.cpp" />

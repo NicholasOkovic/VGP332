@@ -10,8 +10,8 @@ void RavenGoToMineralStrategy::SetPerception(const AI::PerceptionModule* percept
 
 float RavenGoToMineralStrategy::CalculateDesirability(Raven& agent) const
 {
-	if (agent.GetState() == RavenState::GoToMineral)
-	{
+	/*if (agent.GetState() == RavenState::GoToMineral)
+	{*/
 		const auto& memoryRecords = mPerception->GetMemoryRecords();
 		float highestImportance = 0.0f;
 		X::Math::Vector2 targetDestination = X::Math::Vector2::Zero();
@@ -26,13 +26,12 @@ float RavenGoToMineralStrategy::CalculateDesirability(Raven& agent) const
 				}
 			}
 		}
-
 		return highestImportance;
-	}
-	else
-	{
-		return 0.0f;
-	}
+	//}
+	//else
+	//{
+		//return 0.0f;
+	//}
 }
 
 std::unique_ptr<AI::Goal<Raven>> RavenGoToMineralStrategy::CreateGoal() const
